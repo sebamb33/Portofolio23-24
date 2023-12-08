@@ -1,7 +1,7 @@
 <template>
   <div class="Navbar">
     <div class="button-container">
-      <button @click="showComponent('Technologie')">Technologie</button>
+      <button @click="showComponent('TechnologiesComponent')">Technologie</button>
       <button @click="showComponent('Experience')">Expérience</button>
       <button @click="showComponent('Projets')">Projets</button>
       <button @click="showComponent('Contact')">Contact</button>
