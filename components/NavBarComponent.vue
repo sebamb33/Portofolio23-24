@@ -1,19 +1,31 @@
 <template>
   <div class="Navbar">
-    <ul>
-      <li>Technologie</li>
-      <li>Expérience</li>
-      <li>Projets</li>
-      <li>Contact</li>
-    </ul>
+    <div class="button-container">
+      <button @click="showComponent('Technologie')">Technologie</button>
+      <button @click="showComponent('Experience')">Expérience</button>
+      <button @click="showComponent('Projets')">Projets</button>
+      <button @click="showComponent('Contact')">Contact</button>
+    </div>
   </div>
 </template>
 
 <style>
-ul {
-  margin: auto;
-  list-style: none;
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+button {
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  margin: 0;
   padding: 0;
+  cursor: pointer;
+  outline: none;
+  color: #999;
+  transition: color 0.3s;
 }
 
 li {
@@ -35,7 +47,6 @@ ul:first-child {
   padding: 1em;
 }
 
-/* Style au survol */
 li:hover {
   background-color: #ccc;
   border-color: #888;
@@ -44,3 +55,13 @@ li:hover {
 
 
 </style>
+<script>
+export default {
+  name: 'NavBarComponent',
+  methods: {
+    showComponent(componentName) {
+      this.$emit('showComponent', componentName);
+    }
+  }
+}
+</script>
