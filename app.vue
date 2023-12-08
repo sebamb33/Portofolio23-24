@@ -1,17 +1,23 @@
 <template>
   <div class="body">
     <HeaderComponent/>
-    <NavBarComponent @show-component="changeComponent"/>
-    </div>
+    <div class="application">
+      <NavBarComponent @show-component="changeComponent"/>
+      <div class="component-container">
+        <component :is="currentComponent"/>
+      </div>
+      </div>
+  </div>
 </template>
 <script lang="ts">
 import {HeaderComponent, NavBarComponent} from "#components";
-
+import TechnologiesComponent from "~/components/Technologie/TechnologiesComponent.vue";
 export default {
   name: 'App',
   components: {
     HeaderComponent,
-    NavBarComponent
+    NavBarComponent,
+    TechnologiesComponent
   },
   data() {
     return {
@@ -29,6 +35,15 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
 body {
   font-family: 'Fira Code', monospace;
+}
+.body .application {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.body .application .component-container {
+  margin: auto;
+  width: 70%;
 }
 
 </style>
