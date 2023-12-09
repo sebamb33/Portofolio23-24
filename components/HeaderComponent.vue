@@ -1,15 +1,22 @@
 <template>
   <div class="header">
     <h1>Ambona Sébastien</h1>
-    <p>Développeur web.</p>
+    <p class="typedText">Développeur web.</p>
+    <p class="presentation ">
+      Je suis un développeur web  alternant et passionné par les nouvelles technologies et
+      l'innovation. Je suis actuellement en formation dans le campus Ynov de
+      Bordeaux.
+    </p>
+    <button class="buttonSend">Me contacter</button>
   </div>
+
 </template>
 <style>
 .header {
   display: flex;
   flex-direction: column;
-  width: 50%;
-  margin : auto;
+  width: 20%;
+  margin-left: 20%;
 }
 h1
 {
@@ -17,15 +24,18 @@ h1
   font-size: 3em;
   margin-top: 2.5em;
 }
-p{
+.typedText{
   margin: auto;
   width: 10em;
+  height: 2em;
   animation: typing 2s steps(22), blink .5s step-end infinite alternate;
   white-space: nowrap;
   overflow: hidden;
   border-right: 3px solid;
-  font-family: monospace;
   font-size: 2em;
+}
+.presentation{
+  margin-top: 2em;
 }
 
 @keyframes typing {
@@ -39,4 +49,54 @@ p{
     border-color: transparent
   }
 }
+.buttonSend {
+  width: 70%;
+  height: 10%;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+  7px 7px 20px 0px rgba(0, 0, 0, 0.3),
+  4px 4px 5px 0px rgba(0, 0, 0, 0.3);
+  outline: none;
+}
+.buttonSend {
+  border: none;
+  color: #000;
+}
+.buttonSend:after {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 100%;
+  top: 0;
+  left: 0;
+  direction: rtl;
+  z-index: -1;
+  box-shadow:
+      -7px -7px 20px 0px rgba(255, 255, 255, 0.3),
+      -4px -4px 5px 0px rgba(255, 255, 255, 0.3),
+      7px 7px 20px 0px rgba(0, 0, 0, 0.5),
+      4px 4px 5px 0px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+.buttonSend:hover {
+  color: #000;
+}
+.buttonSend:hover:after {
+  left: auto;
+  right: 0;
+  width: 100%;
+}
+.buttonSend:active {
+  top: 2px;
+}
 </style>
+<script setup lang="ts">
+</script>
