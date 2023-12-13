@@ -1,21 +1,16 @@
 <template>
   <div class="body">
-
     <div class="application">
       <NavBarComponent @show-component="changeComponent"/>
-      <div class ='letfPart'>
+      <div class="letfPart">
         <SocialBarComponent/>
         <HeaderComponent/>
-        <ProfilPictureComponent></ProfilPictureComponent>
+        <Nuxt/>
       </div>
-
-
-      <div class="component-container">
-        <component :is="currentComponent"/>
-      </div>
-      </div>
+    </div>
   </div>
 </template>
+
 <script lang="ts">
 import {HeaderComponent, NavBarComponent,SocialBarComponent,} from "#components";
 import TechnologiesComponent from "~/components/Technologie/TechnologiesComponent.vue";
