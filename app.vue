@@ -1,16 +1,18 @@
 <template>
   <div class="body">
-    <HeaderComponent/>
     <div class="application">
       <NavBarComponent @show-component="changeComponent"/>
-      <div class="component-container">
-        <component :is="currentComponent"/>
+      <div class="letfPart">
+        <SocialBarComponent/>
+        <HeaderComponent/>
+        <Nuxt/>
       </div>
-      </div>
+    </div>
   </div>
 </template>
+
 <script lang="ts">
-import {HeaderComponent, NavBarComponent} from "#components";
+import {HeaderComponent, NavBarComponent,SocialBarComponent,} from "#components";
 import TechnologiesComponent from "~/components/Technologie/TechnologiesComponent.vue";
 export default {
   name: 'App',
@@ -38,8 +40,14 @@ body {
 }
 .body .application {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
+}
+.body .application .letfPart
+{
+  display: flex;
+  flex-direction:row;
+  justify-items: center;
 }
 .body .application .component-container {
   margin: auto;

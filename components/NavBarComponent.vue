@@ -1,30 +1,31 @@
 <template>
   <div class="Navbar">
+    <img :src="logoUrl" alt="Logo" width="70" height="70">
     <div class="button-container">
-      <button @click="showComponent('TechnologiesComponent')">Technologie</button>
+      <button @click="showComponent('TechnologiesComponent')">Technologies</button>
       <button @click="showComponent('Experience')">Expérience</button>
-      <button @click="showComponent('Projets')">Projets</button>
-      <button @click="showComponent('Contact')">Contact</button>
+      <button @click="showComponent('Projets')"> Mes Projets</button>
     </div>
   </div>
 </template>
 
 <style>
 .button-container {
+  width: 30%;
+  margin-left: 60%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row-reverse;
   justify-content: space-between;
-  height: 100%;
 }
 button {
   background: none;
   border: none;
-  font-size: 1.5em;
+  font-size: 1em;
   margin: 0;
   padding: 0;
   cursor: pointer;
   outline: none;
-  color: #999;
+  color:black;
   transition: color 0.3s;
 }
 
@@ -38,12 +39,12 @@ ul:first-child {
 }
 
 .Navbar {
+  display: flex;
+  align-content: baseline ;
   position: relative;
-  border: 1px solid #ccc;
-  width: 12em;
-  margin-top: 7em;
-  border-radius: 1em;
-  background: #f5f5f5;
+  width: 100%;
+  height: 15%;
+  margin-top: 2em;
   padding: 1em;
 }
 
@@ -62,6 +63,11 @@ export default {
     showComponent(componentName) {
       this.$emit('showComponent', componentName);
     }
-  }
+  },
+  data() {
+    return {
+      logoUrl: '/assets/LogoPortofolio.svg'
+    }
+  },
 }
 </script>
