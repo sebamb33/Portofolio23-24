@@ -8,12 +8,12 @@
     </a>
   </div>
 </template>
-<style>
+<style scoped>
 .social-bar{
   display: flex;
   flex-direction: column;
   margin: auto 0;
-  margin-left: 1em;
+  margin-left: 2em;
 }
 .social-bar a
 {

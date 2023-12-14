@@ -8,9 +8,9 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .ProfilPictureComponent {
-  width: 20%;
+  width: 25%;
   background-color: white;
   border: 10px solid black;
   padding: 15px;
@@ -18,10 +18,11 @@
   text-align: center;
   margin: auto;
   margin-top: 5%;
+  height: 80%;
 }
 
 .ProfilPictureComponent img {
-  width: 100%;
+  width: 90%;
   height: 70%;
   //height: auto; /* garde les proportions de l'image */
   margin-bottom: 20%;
