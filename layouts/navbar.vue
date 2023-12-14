@@ -1,10 +1,12 @@
 <template>
   <div class="Navbar">
+    <NuxtLink to="/">
     <img :src="logoUrl" alt="Logo" width="70" height="70">
+    </NuxtLink>
     <div class="button-container">
-      <button @click="showComponent('TechnologiesComponent')">Technologies</button>
-      <button @click="showComponent('Experience')">Expérience</button>
-      <button @click="showComponent('Projets')"> Mes Projets</button>
+      <div class="lien"><NuxtLink to="/technology">Technologies</NuxtLink></div>
+      <div class="lien"><NuxtLink to="/experience">Experience</NuxtLink></div>
+      <div class="lien"><NuxtLink to="/project">Projets</NuxtLink></div>
     </div>
   </div>
 </template>
@@ -16,8 +18,9 @@
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
+
 }
-button {
+.lien {
   background: none;
   border: none;
   font-size: 1em;
@@ -28,14 +31,9 @@ button {
   color:black;
   transition: color 0.3s;
 }
-
-li {
-  margin-bottom: 2em;
-  transition: background-color 0.3s, border-color 0.3s; 
-}
-
-ul:first-child {
-  margin-top: 2em;
+.lien a{
+  text-decoration: none;
+  color:black;
 }
 
 .Navbar {
@@ -47,13 +45,6 @@ ul:first-child {
   margin-top: 1em;
   padding: 1em;
 }
-
-li:hover {
-  background-color: #ccc;
-  border-color: #888;
-  cursor: pointer;
-}
-
 
 </style>
 <script>

@@ -10,7 +10,7 @@
 
 <script>
 import SocialBarComponent from "~/layouts/socialBar.vue";
-import NavBarComponent from "~/layouts/Navbar.vue";
+import NavBarComponent from "~/layouts/navbar.vue";
 
 export default {
   components: {NavBarComponent, SocialBarComponent}
