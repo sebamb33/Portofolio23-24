@@ -9,7 +9,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .button-container {
   width: 30%;
   margin-left: 60%;
@@ -44,7 +44,7 @@ ul:first-child {
   position: relative;
   width: 100%;
   height: 15%;
-  margin-top: 2em;
+  margin-top: 1em;
   padding: 1em;
 }
 

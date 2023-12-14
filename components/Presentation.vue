@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="description">
     <h1>Ambona Sébastien</h1>
     <p class="typedText">Développeur web.</p>
     <p class="presentation ">
@@ -11,12 +11,13 @@
   </div>
 
 </template>
-<style>
-.header {
+<style scoped>
+.description {
   display: flex;
   flex-direction: column;
-  width: 20%;
-  margin-left: 20%;
+  width: 30%;
+  margin-left: 10%;
+  height: 90%;
 }
 h1
 {
@@ -25,7 +26,6 @@ h1
   margin-top: 2.5em;
 }
 .typedText{
-  margin: auto;
   width: 10em;
   height: 2em;
   animation: typing 2s steps(22), blink .5s step-end infinite alternate;
