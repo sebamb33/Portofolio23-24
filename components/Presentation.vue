@@ -21,7 +21,6 @@
 }
 h1
 {
-  margin: auto;
   font-size: 3em;
   margin-top: 2.5em;
 }
@@ -57,7 +56,6 @@ h1
   padding: 10px 25px;
   font-weight: 500;
   background: transparent;
-  cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
   display: inline-block;
