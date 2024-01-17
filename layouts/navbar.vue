@@ -26,7 +26,6 @@
   font-size: 1em;
   margin: 0;
   padding: 0;
-  cursor: pointer;
   outline: none;
   color:black;
   transition: color 0.3s;
