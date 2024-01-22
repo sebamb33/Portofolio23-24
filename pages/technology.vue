@@ -8,9 +8,9 @@
         Niveaux
     </div>
       <div class="skillLevel">
-        <Skillbar :myProp=3 />
+        <Skillbar :skillNumber=3 />
       </div>
-    <p class="Pratique">
+    <p class="technologyDetails">
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad alias aperiam commodi
     </p>
   </div>
