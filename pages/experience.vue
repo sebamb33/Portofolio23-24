@@ -54,7 +54,7 @@
   font-size: 1.2em;
   grid-column: 1;
   border-top: 2px solid;
-  animation: slideDown 2s ease-out forwards,blurIn 1s ease-out forwards;
+  animation: slideDown 2s ease-out forwards,blurIn 3s ease-out forwards;
 }
 
 .experienceItem {
@@ -66,8 +66,8 @@
     flex-direction: column;
     padding: 1rem;
     margin-bottom: 4rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    animation: slideUp 2s ease-out forwards, blurIn 1s ease-out forwards;
+    //box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: slideUp 2s ease-out forwards, blurIn 3s ease-out forwards;
 
 }
  .experienceItem:last-child {
