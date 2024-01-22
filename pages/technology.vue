@@ -8,7 +8,7 @@
         Niveaux
     </div>
       <div class="skillLevel">
-
+        <Skillbar :myProp=3 />
       </div>
     <p class="Pratique">
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad alias aperiam commodi
@@ -17,7 +17,11 @@
 </div>
 </template>
 <script lang = 'ts'>
-export default {};
+import Skillbar from "~/components/Skillbar.vue";
+
+export default {
+  components: {Skillbar}
+};
 </script>
 <style scoped>
 
