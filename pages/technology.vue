@@ -1,6 +1,24 @@
 <template>
+<div class="Technologies">
+  <div class="technology">
+    <div class="technologyName">
+        Vue Et Nuxt
+    </div>
+    <div class="skill">
+        Niveaux
+    </div>
+      <div class="skillLevel">
 
+      </div>
+    <p class="Pratique">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad alias aperiam commodi
+    </p>
+  </div>
+</div>
 </template>
 <script lang = 'ts'>
 export default {};
 </script>
+<style scoped>
+
+</style>
