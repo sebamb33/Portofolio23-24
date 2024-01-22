@@ -1,6 +1,6 @@
 <template>
-<div class="Technologies">
-  <div class="technology">
+<div class="technology">
+  <div class="oneTechno">
     <div class="technologyName">
         Vue Et Nuxt
     </div>
@@ -24,5 +24,14 @@ export default {
 };
 </script>
 <style scoped>
-
+.technology{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 70%;
+}
+.oneTechno{
+  display: flex;
+  flex-direction: column;
+}
 </style>

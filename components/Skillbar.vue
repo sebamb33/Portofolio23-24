@@ -10,13 +10,11 @@
   </div>
 </template>
 <script setup lang="ts">
-{
-  defineProps(
-      {
-        skillNumber: int
-      }
-  )
-}
+import { defineProps } from 'vue';
+
+const props = defineProps({
+  skillNumber: Number
+});
 </script>
 <style scoped>
 html {
