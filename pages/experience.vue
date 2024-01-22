@@ -1,9 +1,9 @@
 <template>
    <div class="experience">
-
-     <div class="experienceHistory">
-       <div class="experienceData">
-         <div class="date">Sept 2021 - Sept 2022</div>
+      <div class="date">Sept 2021 - Sept 2022</div>
+      <div class="date">Sept 2021 - Sept 2022</div>
+    
+       <div class="experienceItem">
          <p class="experienceText">Durant mon année d'alternance, j'ai travaillé sur la maintenance applicative d'une application pour les gens du voyage avec Windev, une expérience riche en diversité client. Cette mission m'a confronté à des besoins variés, stimulant ma capacité d'adaptation et d'innovation. J'ai développé des compétences clés en planification de tâches, acquérant une compréhension pratique de la gestion de projet. La relation directe avec les clients a aiguisé mes aptitudes en communication et en gestion des attentes. Chaque interaction a renforcé ma compréhension des besoins spécifiques des utilisateurs,</p>
          <div class="experienceTech">
            <div class="technologie">Windev</div>
@@ -12,10 +12,8 @@
            <div class="technologie">Vue</div>
            <div class="technologie">Docker</div>
          </div>
-
-       </div>
-       <div class="experienceData">
-         <div class="date">Sept 2022 - Maintenant</div>
+        </div>
+       <div class="experienceItem">
          <p class="experienceText">Durant mon année d'alternance, j'ai travaillé sur la maintenance applicative d'une application pour les gens du voyage avec Windev, une expérience riche en diversité client. Cette mission m'a confronté à des besoins variés, stimulant ma capacité d'adaptation et d'innovation. J'ai développé des compétences clés en planification de tâches, acquérant une compréhension pratique de la gestion de projet. La relation directe avec les clients a aiguisé mes aptitudes en communication et en gestion des attentes. Chaque interaction a renforcé ma compréhension des besoins spécifiques des utilisateurs,</p>
          <div class="experienceTech">
            <div class="technologie">Windev</div>
@@ -25,7 +23,6 @@
            <div class="technologie">Docker</div>
          </div>
        </div>
-     </div>
    </div>
 </template>
 <script>
@@ -35,30 +32,38 @@
 .experience {
   margin-left: 5rem;
   position: relative;
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 20rem 60rem;
+  grid-template-rows: 50vh 50vh;
 }
 
 .date {
   font-weight: bold; /* Rend le texte en gras */
   font-size: 1.2em; /* Augmente la taille de la police */
   border-bottom: solid 2px;
+  grid-column: 1;
 }
 
-.experienceData {
-  display: flex;
-  flex-direction: column;
-  padding: 2rem;
-  border: solid 6px;
-  width: 50%;
-  margin: auto;
-  background: #f0f0f0;
-  border-radius: 8px;
-  margin-bottom: 2rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  animation: slideUp 2s ease-out forwards, blurIn 4s ease-out forwards;
-  animation-delay: var(--animation-delay, 0s);
-
+.experienceItem {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    height: 70%;
+    border: solid 6px;
+    width: 90%;
+    margin: auto;
+    background: #f0f0f0;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: slideUp 2s ease-out forwards, blurIn 4s ease-out forwards;
+    animation-delay: var(--animation-delay, 0s);
+    
+}
+ .experienceItem:nth-of-type(1) {
+ grid-row: 2;
 }
 
 @keyframes slideUp {
