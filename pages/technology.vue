@@ -210,26 +210,8 @@ export default {
     technologies.forEach((techno, index) => {
       techno.style.animationDelay = `${index * 0.3}s`;
     });
-    this.addHoverEffect();
   },
-  methods: {
-    addHoverEffect() {
-      const oneTechnos = this.$el.querySelectorAll('.oneTechno');
-      oneTechnos.forEach(techno => {
-        techno.addEventListener('mousemove', (e) => {
-          const rect = techno.getBoundingClientRect();
-          const x = e.clientX - rect.left - rect.width / 2;
-          const y = e.clientY - rect.top - rect.height / 2;
-          const rotateY = (x / rect.width) * 40;
-          const rotateX = -(y / rect.height) * 40;
-          techno.style.transform = `scale(1.2) rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
-        });
-        techno.addEventListener('mouseleave', () => {
-          techno.style.transform = 'none';
-        });
-      });
-    }
-  }
+
 };
 
 </script>
@@ -270,14 +252,14 @@ export default {
   height: 40%;
   margin-bottom: 5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  transition: transform 0.5s ease;
   animation: slideIn 0.7s ease-out forwards;
-  transform: translateY(500px);
+  transform: translateY(200px);
   filter: blur(10px);
   border-radius: 3px;
 }
 .oneTechno:hover {
-  transform: scale(1.2) rotateY(-10deg);
+  transform: scale(1.1) rotateY(5deg) rotateX(5deg) !important;
 }
 .technoData{
   margin: 1rem;
