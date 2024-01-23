@@ -4,6 +4,9 @@
     <div class="technologyName">
         Vue Et Nuxt
     </div>
+    <div class="technologyLogo">
+      <Icon name="uil:vuejs" color="black" class="technologyIcon" />
+    </div>
     <div class="skill">
         Niveaux
     </div>
@@ -33,5 +36,9 @@ export default {
 .oneTechno{
   display: flex;
   flex-direction: column;
+}
+.technologyIcon{
+  height: 5rem;
+  width: 5rem;
 }
 </style>
