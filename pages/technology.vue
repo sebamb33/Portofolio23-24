@@ -274,6 +274,7 @@ export default {
   animation: slideIn 0.7s ease-out forwards;
   transform: translateY(500px);
   filter: blur(10px);
+  border-radius: 3px;
 }
 .oneTechno:hover {
   transform: scale(1.2) rotateY(-10deg);
