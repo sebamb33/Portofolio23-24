@@ -5,15 +5,16 @@
       <slot />
 
     </div>
-
+    <Footer/>
   </template>
 
 <script>
 import SocialBarComponent from "~/layouts/socialBar.vue";
 import NavBarComponent from "~/layouts/navbar.vue";
+import Footer from "~/layouts/Footer.vue";
 
 export default {
-  components: {NavBarComponent, SocialBarComponent}
+  components: {NavBarComponent, SocialBarComponent,Footer}
 };
 </script>
   <style>

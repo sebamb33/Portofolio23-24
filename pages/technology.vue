@@ -218,7 +218,7 @@ export default {
 <style scoped>
 .technology{
   padding: 2rem;
-  height: 80vh;
+  height: 70vh;
   overflow-y: scroll;
   flex-wrap: wrap;
   display: flex;
@@ -227,6 +227,7 @@ export default {
   width: 80%;
   margin: auto;
   -ms-overflow-style: none;
+  cursor: none;
 }
 .technology::-webkit-scrollbar{
   display: none;
