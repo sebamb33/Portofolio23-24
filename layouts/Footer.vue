@@ -21,7 +21,9 @@ export default {
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 20%;
+  height: 5%;
+  background: white;
+  z-index: 10;
   text-align: center;
 }
 </style>
