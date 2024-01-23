@@ -1,21 +1,22 @@
 <template>
   <div class="skillbar">
     <ul>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
+      <li v-for="n in 5" :key="n" :class="{ 'blink': n <= skillNumber }" :style="{ 'animation-delay': `${n-1}s` }"></li>
     </ul>
   </div>
 </template>
+
 <script setup lang="ts">
 import { defineProps } from 'vue';
 
 const props = defineProps({
-  skillNumber: Number
+  skillNumber: {
+    type: Number,
+    default: 5
+  }
 });
 </script>
+
 <style scoped>
 html {
   min-height: 100%;
@@ -23,10 +24,11 @@ html {
 }
 
 ul {
+  display: flex;
+  flex-direction: row;
   margin: auto;
   height: 10px;
-  width: 500px;
-  position: absolute;
+  width: 100%;
   top: 0;
   left: 0;
   right: 0;
@@ -38,36 +40,18 @@ ul {
 li {
   display: block;
   float: left;
-  width: 90px;
-  height: 10px;
+  width: 50px;
+  height: 5px;
   margin-right: 10px;
   background: lightgrey;
   box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-  animation: blink 1s ease-out forwards;
 }
 
-
-li:nth-child(1) {
-  animation-delay: 1s;
+.blink {
+  animation: blink-animation 1s ease-out forwards;
 }
 
-li:nth-child(2) {
-  animation-delay: 2s;
-}
-
-li:nth-child(3) {
-  animation-delay: 3s;
-}
-
-li:nth-child(4) {
-  animation-delay: 4s;
-}
-
-li:nth-child(5) {
-  animation-delay: 5s;
-}
-
-@keyframes blink {
+@keyframes blink-animation {
   0% { background: lightgrey; }
   50% {
     background: black;
