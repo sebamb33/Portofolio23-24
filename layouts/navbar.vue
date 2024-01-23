@@ -42,7 +42,6 @@
   width: 100%;
   height: 15%;
   margin-top: 1em;
-  padding: 1em;
 }
 
 </style>
