@@ -9,7 +9,7 @@
     </p>
     <button class="buttonSend" @click="mailToModal">Me contacter</button>
   </div>
-  <ModalMail v-if="modalOpen" />
+  <ModalMail v-if="modalOpen" :show="modalOpen" @close="modalOpen = false" />
 </template>
 <style scoped>
 .description {
