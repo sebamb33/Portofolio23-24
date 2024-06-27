@@ -2,14 +2,13 @@
   <div class="description">
     <h1>Ambona Sébastien</h1>
     <p class="typedText">Développeur web.</p>
-    <p class="presentation ">
-      Je suis un développeur web  alternant et passionné par les nouvelles technologies et
-      l'innovation. Je suis actuellement en formation dans le campus Ynov de
-      Bordeaux.
+    <p class="presentation">
+      Je suis un développeur web alternant et passionné par les nouvelles
+      technologies et l'innovation. Je suis actuellement en formation dans le
+      campus Ynov de Bordeaux.
     </p>
     <button class="buttonSend">Me contacter</button>
   </div>
-
 </template>
 <style scoped>
 .description {
@@ -19,33 +18,32 @@
   margin-left: 10%;
   height: 90%;
 }
-h1
-{
+h1 {
   font-size: 3em;
   margin-top: 2.5em;
 }
-.typedText{
+.typedText {
   width: 10em;
-  height: 2em;
-  animation: typing 2s steps(22), blink .5s step-end infinite alternate;
+  height: 6em;
+  animation: typing 2s steps(22), blink 0.5s step-end infinite alternate;
   white-space: nowrap;
   overflow: hidden;
   border-right: 3px solid;
-  font-size: 2em;
+  font-size: 1.5em;
 }
-.presentation{
+.presentation {
   margin-top: 2em;
 }
 
 @keyframes typing {
   from {
-    width: 0
+    width: 0;
   }
 }
 
 @keyframes blink {
   50% {
-    border-color: transparent
+    border-color: transparent;
   }
 }
 .buttonSend {
@@ -60,8 +58,7 @@ h1
   position: relative;
   display: inline-block;
   box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
-  7px 7px 20px 0px rgba(0, 0, 0, 0.3),
-  4px 4px 5px 0px rgba(0, 0, 0, 0.3);
+    7px 7px 20px 0px rgba(0, 0, 0, 0.3), 4px 4px 5px 0px rgba(0, 0, 0, 0.3);
   outline: none;
 }
 .buttonSend {
@@ -77,11 +74,9 @@ h1
   left: 0;
   direction: rtl;
   z-index: -1;
-  box-shadow:
-      -7px -7px 20px 0px rgba(255, 255, 255, 0.3),
-      -4px -4px 5px 0px rgba(255, 255, 255, 0.3),
-      7px 7px 20px 0px rgba(0, 0, 0, 0.5),
-      4px 4px 5px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: -7px -7px 20px 0px rgba(255, 255, 255, 0.3),
+    -4px -4px 5px 0px rgba(255, 255, 255, 0.3),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.5), 4px 4px 5px 0px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
 }
 .buttonSend:hover {
@@ -96,5 +91,4 @@ h1
   top: 2px;
 }
 </style>
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
