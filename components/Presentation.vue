@@ -7,8 +7,9 @@
       technologies et l'innovation. Je suis actuellement en formation dans le
       campus Ynov de Bordeaux.
     </p>
-    <button class="buttonSend">Me contacter</button>
+    <button class="buttonSend" @click="mailToModal">Me contacter</button>
   </div>
+  <ModalMail v-if="modalOpen" />
 </template>
 <style scoped>
 .description {
@@ -64,6 +65,7 @@ h1 {
 .buttonSend {
   border: none;
   color: #000;
+  height: 3em;
 }
 .buttonSend:after {
   position: absolute;
@@ -91,4 +93,11 @@ h1 {
   top: 2px;
 }
 </style>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+const modalOpen = ref(false);
+const mailToModal = () => {
+  modalOpen.value = true;
+};
+</script>
