@@ -25,7 +25,7 @@ h1 {
 }
 .typedText {
   width: 10em;
-  height: 6em;
+  height: 1.5em;
   animation: typing 2s steps(22), blink 0.5s step-end infinite alternate;
   white-space: nowrap;
   overflow: hidden;
