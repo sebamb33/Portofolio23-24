@@ -88,6 +88,9 @@
   .button-container {
     display: none;
   }
+  .Navbar {
+    justify-content: space-between;
+  }
   .burger-icon {
     display: block;
   }

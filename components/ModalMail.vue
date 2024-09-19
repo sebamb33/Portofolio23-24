@@ -15,19 +15,28 @@
           v-model="message"
           placeholder="Votre message"
           required
-          class="textarea-message"
-        ></textarea>
+          class="textarea-message"/>
+        <vue-hcaptcha
+            class="hcaptcha"
+            :sitekey="hcaptchaKey"
+            @verify="onVerify"
+        ></vue-hcaptcha>
 
-        <button type="submit" class="buttonSend">Envoyer</button>
+        <button v-if="verifyHcaptcha" type="submit" class="buttonSend">Envoyer</button>
       </form>
     </div>
   </div>
+
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from "vue";
+import { defineComponent, ref } from "vue";
+import VueHcaptcha from '@hcaptcha/vue3-hcaptcha';
 
 export default defineComponent({
+  components: {
+    VueHcaptcha,
+  },
   props: {
     show: {
       type: Boolean,
@@ -38,11 +47,26 @@ export default defineComponent({
   setup(props, { emit }) {
     const email = ref("");
     const message = ref("");
-
+    const verifyHcaptcha = ref(false);
+    const captchaToken = ref("");
+    const hcaptchaKey = import.meta.env.VITE_HCAPTCHA_SITE_KEY;
     const submitForm = () => {
-      // Handle form submission
-      console.log(email.value, message.value);
+      if (!verifyHcaptcha.value) {
+        alert("Veuillez compléter le captcha avant d'envoyer le formulaire.");
+        return;
+      }
       emit("close");
+    };
+
+    const onVerify = (token: string) => {
+      captchaToken.value = token;
+      verifyHcaptcha.value = true;
+      //TODO check the field and the email
+    };
+
+    const onCaptchaError = () => {
+      console.log("Erreur captcha");
+      verifyHcaptcha.value = false;
     };
 
     const close = () => {
@@ -54,11 +78,15 @@ export default defineComponent({
       message,
       submitForm,
       close,
+      verifyHcaptcha,
+      captchaToken,
+      onVerify,
+      onCaptchaError,
+      hcaptchaKey
     };
   },
 });
 </script>
-
 <style scoped>
 .modal-overlay {
   position: fixed;
@@ -193,5 +221,10 @@ export default defineComponent({
   100% {
     transform: translateX(1500px) skewX(30deg) scaleX(1.3);
   }
+}
+.hcaptcha{
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: center;
 }
 </style>
