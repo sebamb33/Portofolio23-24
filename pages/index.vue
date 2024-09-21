@@ -15,4 +15,7 @@ export default {};
   display: flex;
   height: 90%;
 }
+.body{
+  margin:auto;
+}
 </style>

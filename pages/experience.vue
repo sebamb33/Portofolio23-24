@@ -36,6 +36,8 @@
   grid-template-columns: 20rem 50rem;
   row-gap: 2rem;
   align-items: stretch;
+  margin: auto;
+  width: 30%;
 }
 
 @keyframes slideDown {

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="principal">
     <CustomCursor />
     <NuxtLayout>
       <nuxtPage />
@@ -26,9 +26,17 @@ body {
   cursor: none;
   font-family: 'Fira Code', monospace;
   height: 70%;
-  margin: 0;
   padding: 0;
 
+}
+.principal{
+  margin: auto;
+
+.navbar{
+position: absolute;
+top:40%;
+left:0;
+}
 }
 *, button, a, input, textarea {
   cursor: none !important;

@@ -25,7 +25,7 @@ h1 {
 }
 .typedText {
   width: 10em;
-  height: 1.5em;
+  height: 2%;
   animation: typing 2s steps(22), blink 0.5s step-end infinite alternate;
   white-space: nowrap;
   overflow: hidden;
@@ -101,7 +101,9 @@ h1 {
       margin-bottom: 5em;
     }
   }
-
+.presentation{
+  margin: 5%;
+}
 
 }
 </style>
