@@ -92,6 +92,18 @@ h1 {
 .buttonSend:active {
   top: 2px;
 }
+@media screen and (max-width: 1200px) {
+  .description{
+  margin: auto;
+  width: 80%;
+    .presentation
+    {
+      margin-bottom: 5em;
+    }
+  }
+
+
+}
 </style>
 <script setup lang="ts">
 import { ref } from "vue";

@@ -8,6 +8,26 @@
   </div>
 </template>
 
+
+<script lang="ts">
+import { defineComponent, computed } from 'vue'
+
+export default defineComponent({
+  name: 'ProfilPictureComponent',
+  data() {
+    return {
+      dateNaissance: new Date('2000-07-05')
+    }
+  },
+  computed: {
+    ageInfo() {
+      const diff = Date.now() - this.dateNaissance.getTime();
+      const age = new Date(diff);
+      return Math.abs(age.getUTCFullYear() - 1970);
+    }
+  }
+})
+</script>
 <style scoped>
 .ProfilPictureComponent {
   width: 25%;
@@ -33,23 +53,11 @@
   color: black;
   font-size: 18px;
 }
-</style>
-<script lang="ts">
-import { defineComponent, computed } from 'vue'
 
-export default defineComponent({
-  name: 'ProfilPictureComponent',
-  data() {
-    return {
-      dateNaissance: new Date('2000-07-05')
-    }
-  },
-  computed: {
-    ageInfo() {
-      const diff = Date.now() - this.dateNaissance.getTime();
-      const age = new Date(diff);
-      return Math.abs(age.getUTCFullYear() - 1970);
-    }
+@media screen and (max-width: 1200px) {
+  .ProfilPictureComponent {
+    display: none;
   }
-})
-</script>
+
+}
+</style>
