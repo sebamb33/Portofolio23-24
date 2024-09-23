@@ -3,15 +3,26 @@
     <div class="modal meep-meep" @click.stop>
       <span class="close" @click="close">&times;</span>
       <h2>Contactez moi</h2>
-      <form name="contact" netlify>
+      <form
+        name="subscribe"
+        method="post"
+        id="myForm"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+        @submit.prevent="submitForm"
+      >
+        <input type="hidden" name="form-name" value="subscribe" />
         <p>
-          <label>Name <input type="text" name="name" /></label>
+          <label>Your Name: <input type="text" name="name" /></label>
         </p>
         <p>
-          <label>Email <input type="email" name="email" /></label>
+          <label>Your Email: <input type="email" name="email" /></label>
         </p>
         <p>
-          <button type="submit">Send</button>
+          <label>Message: <textarea name="message"></textarea></label>
+        </p>
+        <p>
+          <button type="submit">Subscribe</button>
         </p>
       </form>
     </div>
