@@ -6,46 +6,19 @@
       <form
         name="contact"
         method="POST"
-        data-netlify="true"
         data-netlify-recaptcha="true"
+        data-netlify="true"
       >
-        <input type="hidden" name="form-name" value="contact" />
-
-        <div>
-          <label for="name">Nom:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            v-model="form.name"
-            required
-          />
-        </div>
-
-        <div>
-          <label for="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            v-model="form.email"
-            required
-          />
-        </div>
-
-        <div>
-          <label for="message">Message:</label>
-          <textarea
-            id="message"
-            name="message"
-            v-model="form.message"
-            required
-          ></textarea>
-        </div>
-
+        <p>
+          <label> Email: <input type="text" name="name" /> </label>
+        </p>
+        <p>
+          <label> Message: <textarea name="message"></textarea></label>
+        </p>
         <div data-netlify-recaptcha="true"></div>
-
-        <button type="submit">Envoyer</button>
+        <p>
+          <button type="submit">Send</button>
+        </p>
       </form>
     </div>
   </div>
