@@ -3,27 +3,29 @@
     <div class="modal meep-meep" @click.stop>
       <span class="close" @click="close">&times;</span>
       <h2>Contactez moi</h2>
-      <form
-        name="contact"
-        method="POST"
-        data-netlify-recaptcha="true"
-        data-netlify="true"
-        data-netlify-honeypot="bot-field"
-      >
-        <div class="hidden">
-          <input name="bot-field" type="hidden" />
-        </div>
-        <p>
-          <label> Email: <input type="text" name="name" /> </label>
-        </p>
-        <p>
-          <label> Message: <textarea name="message"></textarea></label>
-        </p>
-        <div data-netlify-recaptcha="true"></div>
-        <recaptcha />
-        <p>
-          <button type="submit">Send</button>
-        </p>
+      <form @submit.prevent="submitForm">
+        <input
+          type="email"
+          v-model="email"
+          placeholder="Votre email"
+          required
+          class="input-email"
+        />
+        <textarea
+          v-model="message"
+          placeholder="Votre message"
+          required
+          class="textarea-message"
+        />
+        <vue-hcaptcha
+          class="hcaptcha"
+          :sitekey="hcaptchaKey"
+          @verify="onVerify"
+        ></vue-hcaptcha>
+
+        <button v-if="verifyHcaptcha" type="submit" class="buttonSend">
+          Envoyer
+        </button>
       </form>
     </div>
   </div>
@@ -32,25 +34,8 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import VueHcaptcha from "@hcaptcha/vue3-hcaptcha";
+
 export default defineComponent({
-  modules: ["@nuxtjs/recaptcha"],
-  recaptcha: {
-    hideBadge: false,
-    siteKey: process.env.SITE_RECAPTCHA_KEY,
-    size: "normal",
-    version: 2,
-  },
-  head() {
-    return {
-      script: [
-        {
-          src: "https://www.google.com/recaptcha/api.js",
-          async: true,
-          defer: true,
-        },
-      ],
-    };
-  },
   components: {
     VueHcaptcha,
   },
@@ -63,22 +48,43 @@ export default defineComponent({
   emits: ["close"],
   setup(props, { emit }) {
     const email = ref("");
-    const form = ref({
-      name: "",
-      email: "",
-      message: "",
-    });
-    const submited = ref(false);
     const message = ref("");
+    const verifyHcaptcha = ref(false);
+    const captchaToken = ref("");
+    const hcaptchaKey = import.meta.env.VITE_HCAPTCHA_SITE_KEY;
+    const submitForm = () => {
+      if (!verifyHcaptcha.value) {
+        alert("Veuillez compléter le captcha avant d'envoyer le formulaire.");
+        return;
+      }
+      emit("close");
+    };
+
+    const onVerify = (token: string) => {
+      captchaToken.value = token;
+      verifyHcaptcha.value = true;
+      //TODO check the field and the email
+    };
+
+    const onCaptchaError = () => {
+      console.log("Erreur captcha");
+      verifyHcaptcha.value = false;
+    };
 
     const close = () => {
       emit("close");
     };
 
     return {
-      submited,
-      form,
+      email,
+      message,
+      submitForm,
       close,
+      verifyHcaptcha,
+      captchaToken,
+      onVerify,
+      onCaptchaError,
+      hcaptchaKey,
     };
   },
 });
@@ -221,9 +227,6 @@ export default defineComponent({
   100% {
     transform: translateX(1500px) skewX(30deg) scaleX(1.3);
   }
-}
-.hidden {
-  display: none;
 }
 .hcaptcha {
   display: flex;
