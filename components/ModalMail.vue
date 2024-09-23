@@ -8,7 +8,6 @@
         method="POST"
         data-netlify="true"
         data-netlify-recaptcha="true"
-        @submit.prevent="handleSubmit"
       >
         <input type="hidden" name="form-name" value="contact" />
 
@@ -44,7 +43,6 @@
           ></textarea>
         </div>
 
-        <!-- reCAPTCHA -->
         <div data-netlify-recaptcha="true"></div>
 
         <button type="submit">Envoyer</button>
@@ -56,8 +54,14 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import VueHcaptcha from "@hcaptcha/vue3-hcaptcha";
-
 export default defineComponent({
+  modules: ["@nuxtjs/recaptcha"],
+  recaptcha: {
+    hideBadge: false,
+    siteKey: process.env.SITE_RECAPTCHA_KEY,
+    size: "normal",
+    version: 2,
+  },
   head() {
     return {
       script: [
