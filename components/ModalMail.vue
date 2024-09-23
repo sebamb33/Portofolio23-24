@@ -3,29 +3,28 @@
     <div class="modal meep-meep" @click.stop>
       <span class="close" @click="close">&times;</span>
       <h2>Contactez moi</h2>
-      <form @submit.prevent="submitForm" netlify>
-        <input
-          type="email"
-          v-model="email"
-          placeholder="Votre email"
-          required
-          class="input-email"
-        />
-        <textarea
-          v-model="message"
-          placeholder="Votre message"
-          required
-          class="textarea-message"
-        />
-        <vue-hcaptcha
-          class="hcaptcha"
-          :sitekey="hcaptchaKey"
-          @verify="onVerify"
-        ></vue-hcaptcha>
-
-        <button v-if="verifyHcaptcha" type="submit" class="buttonSend">
-          Envoyer
-        </button>
+      <form
+        name="contact"
+        method="POST"
+        netlify-honeypot="bot-field"
+        data-netlify="true"
+        data-netlify-recaptcha="true"
+      >
+        <p class="hidden">
+          <label>
+            Don’t fill this out if you’re human: <input name="bot-field" />
+          </label>
+        </p>
+        <p>
+          <label> Email: <input type="text" name="email" /> </label>
+        </p>
+        <p>
+          <label> Message: <textarea name="message"></textarea></label>
+        </p>
+        <div data-netlify-recaptcha="true"></div>
+        <p>
+          <button type="submit">Send</button>
+        </p>
       </form>
     </div>
   </div>
@@ -49,42 +48,13 @@ export default defineComponent({
   setup(props, { emit }) {
     const email = ref("");
     const message = ref("");
-    const verifyHcaptcha = ref(false);
-    const captchaToken = ref("");
-    const hcaptchaKey = import.meta.env.VITE_HCAPTCHA_SITE_KEY;
-    const submitForm = () => {
-      if (!verifyHcaptcha.value) {
-        alert("Veuillez compléter le captcha avant d'envoyer le formulaire.");
-        return;
-      }
-      emit("close");
-    };
-
-    const onVerify = (token: string) => {
-      captchaToken.value = token;
-      verifyHcaptcha.value = true;
-      //TODO check the field and the email
-    };
-
-    const onCaptchaError = () => {
-      console.log("Erreur captcha");
-      verifyHcaptcha.value = false;
-    };
 
     const close = () => {
       emit("close");
     };
 
     return {
-      email,
-      message,
-      submitForm,
       close,
-      verifyHcaptcha,
-      captchaToken,
-      onVerify,
-      onCaptchaError,
-      hcaptchaKey,
     };
   },
 });
@@ -227,6 +197,9 @@ export default defineComponent({
   100% {
     transform: translateX(1500px) skewX(30deg) scaleX(1.3);
   }
+}
+.hidden {
+  display: none;
 }
 .hcaptcha {
   display: flex;
