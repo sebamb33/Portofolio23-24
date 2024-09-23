@@ -5,40 +5,41 @@
       <nuxtPage />
     </NuxtLayout>
   </div>
-
 </template>
 
 <script lang="ts">
-
 export default {
-  name: 'App',
+  name: "App",
 
   data() {
     return {
-      currentComponent: 'Techno'
-    }
+      currentComponent: "Techno",
+    };
   },
-}
+};
 </script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code&display=swap");
 body {
   cursor: none;
-  font-family: 'Fira Code', monospace;
+  font-family: "Fira Code", monospace;
   height: 70%;
   padding: 0;
-
 }
-.principal{
+.principal {
   margin: auto;
 
-.navbar{
-position: absolute;
-top:40%;
-left:0;
+  .navbar {
+    position: absolute;
+    top: 40%;
+    left: 0;
+  }
 }
-}
-*, button, a, input, textarea {
+*,
+button,
+a,
+input,
+textarea {
   cursor: none !important;
 }
 </style>
