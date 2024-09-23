@@ -4,26 +4,50 @@
       <span class="close" @click="close">&times;</span>
       <h2>Contactez moi</h2>
       <form
-        name="subscribe"
-        method="post"
-        id="myForm"
+        name="contact"
+        method="POST"
         data-netlify="true"
-        data-netlify-honeypot="bot-field"
-        @submit.prevent="submitForm"
+        data-netlify-recaptcha="true"
+        @submit.prevent="handleSubmit"
       >
-        <input type="hidden" name="form-name" value="subscribe" />
-        <p>
-          <label>Your Name: <input type="text" name="name" /></label>
-        </p>
-        <p>
-          <label>Your Email: <input type="email" name="email" /></label>
-        </p>
-        <p>
-          <label>Message: <textarea name="message"></textarea></label>
-        </p>
-        <p>
-          <button type="submit">Subscribe</button>
-        </p>
+        <input type="hidden" name="form-name" value="contact" />
+
+        <div>
+          <label for="name">Nom:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            v-model="form.name"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            v-model="form.email"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="message">Message:</label>
+          <textarea
+            id="message"
+            name="message"
+            v-model="form.message"
+            required
+          ></textarea>
+        </div>
+
+        <!-- reCAPTCHA -->
+        <div data-netlify-recaptcha="true"></div>
+
+        <button type="submit">Envoyer</button>
       </form>
     </div>
   </div>
@@ -57,6 +81,12 @@ export default defineComponent({
   emits: ["close"],
   setup(props, { emit }) {
     const email = ref("");
+    const form = ref({
+      name: "",
+      email: "",
+      message: "",
+    });
+    const submited = ref(false);
     const message = ref("");
 
     const close = () => {
@@ -64,6 +94,8 @@ export default defineComponent({
     };
 
     return {
+      submited,
+      form,
       close,
     };
   },
