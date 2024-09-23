@@ -3,29 +3,13 @@
     <div class="modal meep-meep" @click.stop>
       <span class="close" @click="close">&times;</span>
       <h2>Contactez moi</h2>
-      <form
-        name="contact"
-        method="POST"
-        netlify-honeypot="bot-field"
-        data-netlify="true"
-        data-netlify-recaptcha="true"
-      >
-        <p class="hidden">
-          <label>
-            Don’t fill this out if you’re human: <input name="bot-field" />
-          </label>
-        </p>
-
+      <form name="contact" netlify>
         <p>
-          <label> Email: <input type="text" name="email" required /> </label>
+          <label>Name <input type="text" name="name" /></label>
         </p>
-
         <p>
-          <label> Message: <textarea name="message" required></textarea></label>
+          <label>Email <input type="email" name="email" /></label>
         </p>
-
-        <div data-netlify-recaptcha="true"></div>
-
         <p>
           <button type="submit">Send</button>
         </p>
