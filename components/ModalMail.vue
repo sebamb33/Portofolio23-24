@@ -15,13 +15,17 @@
             Don’t fill this out if you’re human: <input name="bot-field" />
           </label>
         </p>
+
         <p>
-          <label> Email: <input type="text" name="email" /> </label>
+          <label> Email: <input type="text" name="email" required /> </label>
         </p>
+
         <p>
-          <label> Message: <textarea name="message"></textarea></label>
+          <label> Message: <textarea name="message" required></textarea></label>
         </p>
+
         <div data-netlify-recaptcha="true"></div>
+
         <p>
           <button type="submit">Send</button>
         </p>
@@ -35,6 +39,17 @@ import { defineComponent, ref } from "vue";
 import VueHcaptcha from "@hcaptcha/vue3-hcaptcha";
 
 export default defineComponent({
+  head() {
+    return {
+      script: [
+        {
+          src: "https://www.google.com/recaptcha/api.js",
+          async: true,
+          defer: true,
+        },
+      ],
+    };
+  },
   components: {
     VueHcaptcha,
   },
