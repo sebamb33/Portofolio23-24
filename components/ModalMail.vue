@@ -8,7 +8,11 @@
         method="POST"
         data-netlify-recaptcha="true"
         data-netlify="true"
+        data-netlify-honeypot="bot-field"
       >
+        <div class="hidden">
+          <input name="bot-field" type="hidden" />
+        </div>
         <p>
           <label> Email: <input type="text" name="name" /> </label>
         </p>
@@ -16,6 +20,7 @@
           <label> Message: <textarea name="message"></textarea></label>
         </p>
         <div data-netlify-recaptcha="true"></div>
+        <recaptcha />
         <p>
           <button type="submit">Send</button>
         </p>
