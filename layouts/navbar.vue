@@ -90,6 +90,10 @@
   }
   .Navbar {
     justify-content: space-between;
+    position: sticky;
+    top: 0px;
+    background: white;
+    z-index: 100;
   }
   .burger-icon {
     display: block;

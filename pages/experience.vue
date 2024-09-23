@@ -1,51 +1,110 @@
 <template>
-   <div class="experience">
-      <div class="date">Sept 2021 - Sept 2022</div>
-      <div class="date">Sept 2021 - Sept 2022</div>
-    
-       <div class="experienceItem">
-         <p class="experienceText">Durant mon année d'alternance, j'ai travaillé sur la maintenance applicative d'une application pour les gens du voyage avec Windev, une expérience riche en diversité client. Cette mission m'a confronté à des besoins variés, stimulant ma capacité d'adaptation et d'innovation. J'ai développé des compétences clés en planification de tâches, acquérant une compréhension pratique de la gestion de projet. La relation directe avec les clients a aiguisé mes aptitudes en communication et en gestion des attentes. Chaque interaction a renforcé ma compréhension des besoins spécifiques des utilisateurs,</p>
-         <div class="experienceTech">
-           <div class="technologie">Windev</div>
-           <div class="technologie">Laravel</div>
-           <div class="technologie">React</div>
-           <div class="technologie">Vue</div>
-           <div class="technologie">Docker</div>
-         </div>
-        </div>
-       <div class="experienceItem">
-         <p class="experienceText">Durant mon année d'alternance, j'ai travaillé sur la maintenance applicative d'une application pour les gens du voyage avec Windev, une expérience riche en diversité client. Cette mission m'a confronté à des besoins variés, stimulant ma capacité d'adaptation et d'innovation. J'ai développé des compétences clés en planification de tâches, acquérant une compréhension pratique de la gestion de projet. La relation directe avec les clients a aiguisé mes aptitudes en communication et en gestion des attentes. Chaque interaction a renforcé ma compréhension des besoins spécifiques des utilisateurs,</p>
-         <div class="experienceTech">
-           <div class="technologie">Windev</div>
-           <div class="technologie">Laravel</div>
-           <div class="technologie">React</div>
-           <div class="technologie">Vue</div>
-           <div class="technologie">Docker</div>
-         </div>
-       </div>
-   </div>
-  <div class="experienceResponsive"v-if="!isDesktop">
-    <div class="oneExprienceResponsive">
-      <div class="dateResponsive">
-          Sept/2021-Septembre/2022
-      </div>
-      <div class="exprienceTextResponsive">
-        <p>Durant mon année d'alternance, j'ai travaillé sur la maintenance applicative d'une application pour les gens du voyage avec Windev, une expérience riche en diversité client. Cette mission m'a confronté à des besoins variés, stimulant ma capacité d'adaptation et d'innovation. J'ai développé des compétences clés en planification de tâches, acquérant une compréhension pratique de la gestion de projet. La relation directe avec les clients a aiguisé mes aptitudes en communication et en gestion des attentes. Chaque interaction a renforcé ma compréhension des besoins spécifiques des utilisateurs,</p>
-      </div>
-    </div>
-    <div class="oneExprienceResponsive">
-      <div class="dateResponsive">
-          Sept/2021-Septembre/2022
-      </div>
-      <div class="exprienceTextResponsive">
-        <p>Durant mon année d'alternance, j'ai travaillé sur la maintenance applicative d'une application pour les gens du voyage avec Windev, une expérience riche en diversité client. Cette mission m'a confronté à des besoins variés, stimulant ma capacité d'adaptation et d'innovation. J'ai développé des compétences clés en planification de tâches, acquérant une compréhension pratique de la gestion de projet. La relation directe avec les clients a aiguisé mes aptitudes en communication et en gestion des attentes. Chaque interaction a renforcé ma compréhension des besoins spécifiques des utilisateurs,</p>
-      </div>
-    </div>
+  <div class="experience">
+    <div class="date">Sept 2021 - Sept 2022</div>
+    <div class="date">Sept 2021 - Sept 2022</div>
 
+    <div class="experienceItem">
+      <p class="experienceText">
+        Durant mon année d'alternance, j'ai travaillé sur la maintenance
+        applicative d'une application pour les gens du voyage avec Windev, une
+        expérience riche en diversité client. Cette mission m'a confronté à des
+        besoins variés, stimulant ma capacité d'adaptation et d'innovation. J'ai
+        développé des compétences clés en planification de tâches, acquérant une
+        compréhension pratique de la gestion de projet. La relation directe avec
+        les clients a aiguisé mes aptitudes en communication et en gestion des
+        attentes. Chaque interaction a renforcé ma compréhension des besoins
+        spécifiques des utilisateurs,
+      </p>
+      <div class="experienceTech">
+        <div class="technologie">Windev</div>
+        <div class="technologie">Laravel</div>
+        <div class="technologie">React</div>
+        <div class="technologie">Vue</div>
+        <div class="technologie">Docker</div>
+      </div>
+    </div>
+    <div class="experienceItem">
+      <p class="experienceText">
+        Durant mon année d'alternance, j'ai travaillé sur la maintenance
+        applicative d'une application pour les gens du voyage avec Windev, une
+        expérience riche en diversité client. Cette mission m'a confronté à des
+        besoins variés, stimulant ma capacité d'adaptation et d'innovation. J'ai
+        développé des compétences clés en planification de tâches, acquérant une
+        compréhension pratique de la gestion de projet. La relation directe avec
+        les clients a aiguisé mes aptitudes en communication et en gestion des
+        attentes. Chaque interaction a renforcé ma compréhension des besoins
+        spécifiques des utilisateurs,
+      </p>
+      <div class="experienceTech">
+        <div class="technologie">Windev</div>
+        <div class="technologie">Laravel</div>
+        <div class="technologie">React</div>
+        <div class="technologie">Vue</div>
+        <div class="technologie">Docker</div>
+      </div>
+    </div>
+  </div>
+  <div class="experienceResponsive" v-if="!isDesktop">
+    <div class="oneExprienceResponsive">
+      <div class="dateResponsive">Septembre/2021-Septembre/2022</div>
+      <div class="exprienceTextResponsive">
+        <p>
+          Durant mon année d'alternance, j'ai travaillé sur la maintenance
+          applicative d'une application pour les gens du voyage avec Windev, une
+          expérience riche en diversité client. Cette mission m'a confronté à
+          des besoins variés, stimulant ma capacité d'adaptation et
+          d'innovation. J'ai développé des compétences clés en planification de
+          tâches, acquérant une compréhension pratique de la gestion de projet.
+          La relation directe avec les clients a aiguisé mes aptitudes en
+          communication et en gestion des attentes. Chaque interaction a
+          renforcé ma compréhension des besoins spécifiques des utilisateurs,
+        </p>
+      </div>
+      <div class="exprienceTechResponsive">
+        <ul>
+          <li>Windev</li>
+          <li>Laravel</li>
+          <li>React</li>
+          <li>Vue</li>
+          <li>Docker</li>
+        </ul>
+      </div>
+    </div>
+    <div class="oneExprienceResponsive">
+      <div class="dateResponsive">Septembre/2021-Septembre/2022</div>
+      <div class="exprienceTextResponsive">
+        <p>
+          Durant mon année d'alternance, j'ai travaillé sur la maintenance
+          applicative d'une application pour les gens du voyage avec Windev, une
+          expérience riche en diversité client. Cette mission m'a confronté à
+          des besoins variés, stimulant ma capacité d'adaptation et
+          d'innovation. J'ai développé des compétences clés en planification de
+          tâches, acquérant une compréhension pratique de la gestion de projet.
+          La relation directe avec les clients a aiguisé mes aptitudes en
+          communication et en gestion des attentes. Chaque interaction a
+          renforcé ma compréhension des besoins spécifiques des utilisateurs,
+        </p>
+      </div>
+      <div class="exprienceTechResponsive">
+        <ul>
+          <li>Windev</li>
+          <li>Laravel</li>
+          <li>React</li>
+          <li>Vue</li>
+          <li>Docker</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, onBeforeUnmount, ref, computed } from "vue";
+import {
+  defineComponent,
+  onMounted,
+  onBeforeUnmount,
+  ref,
+  computed,
+} from "vue";
 
 export default defineComponent({
   setup() {
@@ -100,24 +159,27 @@ export default defineComponent({
   font-size: 1.2em;
   grid-column: 1;
   border-top: 2px solid;
-  animation: slideDown 2s ease-out forwards,blurIn 3s ease-out forwards;
+  animation:
+    slideDown 2s ease-out forwards,
+    blurIn 3s ease-out forwards;
 }
 
 .experienceItem {
-    height: 90%;
-    border-top: 2px solid;
-    grid-column: 2;
-    grid-row: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    margin-bottom: 4rem;
-    //box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    animation: slideUp 2s ease-out forwards, blurIn 3s ease-out forwards;
-
+  height: 90%;
+  border-top: 2px solid;
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin-bottom: 4rem;
+  //box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation:
+    slideUp 2s ease-out forwards,
+    blurIn 3s ease-out forwards;
 }
- .experienceItem:last-child {
- grid-row: 2;
+.experienceItem:last-child {
+  grid-row: 2;
 }
 
 @keyframes slideUp {
@@ -130,7 +192,6 @@ export default defineComponent({
     opacity: 1;
   }
 }
-
 
 @keyframes blurIn {
   0% {
@@ -148,7 +209,7 @@ export default defineComponent({
 }
 
 .experienceData::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   height: 3px;
@@ -166,11 +227,9 @@ export default defineComponent({
   transform-origin: bottom left;
 }
 
-
 .experienceData .experienceTech {
   will-change: transform, opacity;
 }
-
 
 .experienceData .experienceTech {
   animation: fadeIn 0.5s ease forwards;
@@ -216,22 +275,24 @@ export default defineComponent({
   position: absolute;
   left: 0%;
 }
-.dateResponsive{
+.dateResponsive {
   font-weight: bold;
   font-size: 35px;
 }
-.experienceResponsive{
+.experienceResponsive {
   margin-left: 5%;
   margin-right: 2%;
   display: flex;
   flex-direction: column;
-  margin-top:2%;
+  margin-top: 2%;
   justify-content: space-between;
 }
+.exprienceTechResponsive li {
+  list-style: square;
+}
 @media screen and (max-width: 1000px) {
-  .experience{
+  .experience {
     display: none;
   }
-
 }
 </style>

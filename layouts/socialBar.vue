@@ -21,4 +21,12 @@
 .social-bar a {
   margin-top: 5%;
 }
+@media screen and (max-width: 1000px) {
+  .social-bar {
+    position: sticky;
+    height: 20%;
+    top: 170px;
+    background: white;
+  }
+}
 </style>
