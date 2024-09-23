@@ -3,7 +3,7 @@
     <div class="modal meep-meep" @click.stop>
       <span class="close" @click="close">&times;</span>
       <h2>Contactez moi</h2>
-      <form @submit.prevent="submitForm">
+      <form @submit.prevent="submitForm" netlify>
         <input
           type="email"
           v-model="email"
@@ -15,23 +15,25 @@
           v-model="message"
           placeholder="Votre message"
           required
-          class="textarea-message"/>
+          class="textarea-message"
+        />
         <vue-hcaptcha
-            class="hcaptcha"
-            :sitekey="hcaptchaKey"
-            @verify="onVerify"
+          class="hcaptcha"
+          :sitekey="hcaptchaKey"
+          @verify="onVerify"
         ></vue-hcaptcha>
 
-        <button v-if="verifyHcaptcha" type="submit" class="buttonSend">Envoyer</button>
+        <button v-if="verifyHcaptcha" type="submit" class="buttonSend">
+          Envoyer
+        </button>
       </form>
     </div>
   </div>
-
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import VueHcaptcha from '@hcaptcha/vue3-hcaptcha';
+import VueHcaptcha from "@hcaptcha/vue3-hcaptcha";
 
 export default defineComponent({
   components: {
@@ -82,7 +84,7 @@ export default defineComponent({
       captchaToken,
       onVerify,
       onCaptchaError,
-      hcaptchaKey
+      hcaptchaKey,
     };
   },
 });
@@ -157,8 +159,10 @@ export default defineComponent({
   transition: all 0.3s ease;
   position: relative;
   display: inline-block;
-  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
-    7px 7px 20px 0px rgba(0, 0, 0, 0.3), 4px 4px 5px 0px rgba(0, 0, 0, 0.3);
+  box-shadow:
+    inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.3),
+    4px 4px 5px 0px rgba(0, 0, 0, 0.3);
   outline: none;
 }
 .buttonSend {
@@ -176,9 +180,11 @@ export default defineComponent({
   left: 0;
   direction: rtl;
   z-index: -1;
-  box-shadow: -7px -7px 20px 0px rgba(255, 255, 255, 0.3),
+  box-shadow:
+    -7px -7px 20px 0px rgba(255, 255, 255, 0.3),
     -4px -4px 5px 0px rgba(255, 255, 255, 0.3),
-    7px 7px 20px 0px rgba(0, 0, 0, 0.5), 4px 4px 5px 0px rgba(0, 0, 0, 0.3);
+    7px 7px 20px 0px rgba(0, 0, 0, 0.5),
+    4px 4px 5px 0px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
 }
 .buttonSend:hover {
@@ -222,7 +228,7 @@ export default defineComponent({
     transform: translateX(1500px) skewX(30deg) scaleX(1.3);
   }
 }
-.hcaptcha{
+.hcaptcha {
   display: flex;
   margin-bottom: 20px;
   justify-content: center;
