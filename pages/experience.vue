@@ -24,20 +24,64 @@
          </div>
        </div>
    </div>
-</template>
-<script>
+  <div class="experienceResponsive"v-if="!isDesktop">
+    <div class="oneExprienceResponsive">
+      <div class="dateResponsive">
+          Sept/2021-Septembre/2022
+      </div>
+      <div class="exprienceTextResponsive">
+        <p>Durant mon année d'alternance, j'ai travaillé sur la maintenance applicative d'une application pour les gens du voyage avec Windev, une expérience riche en diversité client. Cette mission m'a confronté à des besoins variés, stimulant ma capacité d'adaptation et d'innovation. J'ai développé des compétences clés en planification de tâches, acquérant une compréhension pratique de la gestion de projet. La relation directe avec les clients a aiguisé mes aptitudes en communication et en gestion des attentes. Chaque interaction a renforcé ma compréhension des besoins spécifiques des utilisateurs,</p>
+      </div>
+    </div>
+    <div class="oneExprienceResponsive">
+      <div class="dateResponsive">
+          Sept/2021-Septembre/2022
+      </div>
+      <div class="exprienceTextResponsive">
+        <p>Durant mon année d'alternance, j'ai travaillé sur la maintenance applicative d'une application pour les gens du voyage avec Windev, une expérience riche en diversité client. Cette mission m'a confronté à des besoins variés, stimulant ma capacité d'adaptation et d'innovation. J'ai développé des compétences clés en planification de tâches, acquérant une compréhension pratique de la gestion de projet. La relation directe avec les clients a aiguisé mes aptitudes en communication et en gestion des attentes. Chaque interaction a renforcé ma compréhension des besoins spécifiques des utilisateurs,</p>
+      </div>
+    </div>
 
+  </div>
+</template>
+<script lang="ts">
+import { defineComponent, onMounted, onBeforeUnmount, ref, computed } from "vue";
+
+export default defineComponent({
+  setup() {
+    const screenWidth = ref(0);
+
+    const handleResize = () => {
+      if (typeof window !== "undefined") {
+        screenWidth.value = window.innerWidth;
+      }
+    };
+
+    onMounted(() => {
+      handleResize();
+      window.addEventListener("resize", handleResize);
+    });
+
+    onBeforeUnmount(() => {
+      window.removeEventListener("resize", handleResize);
+    });
+
+    const isDesktop = computed(() => screenWidth.value >= 1000);
+
+    return {
+      isDesktop,
+    };
+  },
+});
 </script>
 <style>
 .experience {
-  margin-left: 5rem;
   position: relative;
   display: grid;
   grid-template-columns: 20rem 50rem;
   row-gap: 2rem;
   align-items: stretch;
   margin: auto;
-  width: 30%;
 }
 
 @keyframes slideDown {
@@ -171,5 +215,23 @@
   height: 0.7rem;
   position: absolute;
   left: 0%;
+}
+.dateResponsive{
+  font-weight: bold;
+  font-size: 35px;
+}
+.experienceResponsive{
+  margin-left: 5%;
+  margin-right: 2%;
+  display: flex;
+  flex-direction: column;
+  margin-top:2%;
+  justify-content: space-between;
+}
+@media screen and (max-width: 1000px) {
+  .experience{
+    display: none;
+  }
+
 }
 </style>

@@ -16,7 +16,7 @@
   display: flex;
   flex-direction: column;
   margin: auto 0;
-  margin-left: 2em;
+  margin-left: 13px;
 }
 .social-bar a {
   margin-top: 5%;
