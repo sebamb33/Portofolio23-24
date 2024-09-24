@@ -109,7 +109,6 @@ import {
 export default defineComponent({
   setup() {
     const screenWidth = ref(0);
-
     const handleResize = () => {
       if (typeof window !== "undefined") {
         screenWidth.value = window.innerWidth;
@@ -140,7 +139,8 @@ export default defineComponent({
   grid-template-columns: 20rem 50rem;
   row-gap: 2rem;
   align-items: stretch;
-  margin: auto;
+  margin: 10px auto;
+  max-height: 50vh;
 }
 
 @keyframes slideDown {
@@ -160,8 +160,8 @@ export default defineComponent({
   grid-column: 1;
   border-top: 2px solid;
   animation:
-    slideDown 2s ease-out forwards,
-    blurIn 3s ease-out forwards;
+    slideDown 500ms ease-out forwards,
+    blurIn 1s ease-out forwards;
 }
 
 .experienceItem {
@@ -175,8 +175,8 @@ export default defineComponent({
   margin-bottom: 4rem;
   //box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   animation:
-    slideUp 2s ease-out forwards,
-    blurIn 3s ease-out forwards;
+    slideUp 500ms ease-out forwards,
+    blurIn 1s ease-out forwards;
 }
 .experienceItem:last-child {
   grid-row: 2;
@@ -292,6 +292,11 @@ export default defineComponent({
 }
 @media screen and (max-width: 1000px) {
   .experience {
+    display: none;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .experienceResponsive {
     display: none;
   }
 }

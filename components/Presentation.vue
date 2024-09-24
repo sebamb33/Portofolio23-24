@@ -26,7 +26,9 @@ h1 {
 .typedText {
   width: 10em;
   height: 2%;
-  animation: typing 2s steps(22), blink 0.5s step-end infinite alternate;
+  animation:
+    typing 1s steps(15, end) 1s forwards,
+    blink 0.6s step-end infinite 3s;
   white-space: nowrap;
   overflow: hidden;
   border-right: 3px solid;
@@ -58,8 +60,10 @@ h1 {
   transition: all 0.3s ease;
   position: relative;
   display: inline-block;
-  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
-    7px 7px 20px 0px rgba(0, 0, 0, 0.3), 4px 4px 5px 0px rgba(0, 0, 0, 0.3);
+  box-shadow:
+    inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.3),
+    4px 4px 5px 0px rgba(0, 0, 0, 0.3);
   outline: none;
 }
 .buttonSend {
@@ -76,9 +80,11 @@ h1 {
   left: 0;
   direction: rtl;
   z-index: -1;
-  box-shadow: -7px -7px 20px 0px rgba(255, 255, 255, 0.3),
+  box-shadow:
+    -7px -7px 20px 0px rgba(255, 255, 255, 0.3),
     -4px -4px 5px 0px rgba(255, 255, 255, 0.3),
-    7px 7px 20px 0px rgba(0, 0, 0, 0.5), 4px 4px 5px 0px rgba(0, 0, 0, 0.3);
+    7px 7px 20px 0px rgba(0, 0, 0, 0.5),
+    4px 4px 5px 0px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
 }
 .buttonSend:hover {
@@ -93,18 +99,16 @@ h1 {
   top: 2px;
 }
 @media screen and (max-width: 1200px) {
-  .description{
-  margin: auto;
-  width: 80%;
-    .presentation
-    {
+  .description {
+    margin: auto;
+    width: 80%;
+    .presentation {
       margin-bottom: 5em;
     }
   }
-.presentation{
-  margin: 5%;
-}
-
+  .presentation {
+    margin: 5%;
+  }
 }
 </style>
 <script setup lang="ts">
