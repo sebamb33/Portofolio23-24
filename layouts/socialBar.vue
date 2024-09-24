@@ -21,6 +21,10 @@
 .social-bar a {
   margin-top: 5%;
 }
+.social-bar img:hover {
+  scale: 1.15;
+  transition: scale 0.25s;
+}
 @media screen and (max-width: 1000px) {
   .social-bar {
     position: sticky;
