@@ -246,7 +246,7 @@ export default {
   border-radius: 3px;
 }
 .oneTechno:hover {
-  transform: scale(1.1) rotateY(5deg) rotateX(5deg) !important;
+  transform: scale(1.2) !important;
 }
 .technoData {
   margin: 1rem;

@@ -23,6 +23,7 @@
         <div class="technologie">Docker</div>
       </div>
     </div>
+
     <div class="experienceItem">
       <p class="experienceText">
         Durant mon année d'alternance, j'ai travaillé sur la maintenance
@@ -45,6 +46,7 @@
     </div>
   </div>
   <div class="experienceResponsive" v-if="!isDesktop">
+    <hr />
     <div class="oneExprienceResponsive">
       <div class="dateResponsive">Septembre/2021-Septembre/2022</div>
       <div class="exprienceTextResponsive">
@@ -70,6 +72,7 @@
         </ul>
       </div>
     </div>
+    <hr />
     <div class="oneExprienceResponsive">
       <div class="dateResponsive">Septembre/2021-Septembre/2022</div>
       <div class="exprienceTextResponsive">
@@ -141,6 +144,10 @@ export default defineComponent({
   align-items: stretch;
   margin: 10px auto;
   max-height: 50vh;
+}
+hr {
+  border: 3px solid black;
+  width: 100%;
 }
 
 @keyframes slideDown {
