@@ -34,9 +34,7 @@ export default async (event: H3Event) => {
       .setText(`Vous avez reçu un nouveau message de ${email}.`);
 
     const response = await mailerSend.email.send(emailParams);
-    console.log("réponse", response);
-    console.log("emailparams", emailParams);
-    console.log("mail envoyé à", process.env.VITE_MAIL_SEND_USER);
+
     return {
       success: true,
       message: "Email envoyé avec succès.",

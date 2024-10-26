@@ -16,14 +16,12 @@ export default async function SendEmail(email: string, message: string) {
 
     if (result.success) {
       console.log("result", result);
-      console.log("Email envoyé avec succès:", result);
     } else {
       console.error("Erreur lors de l'envoi de l'email:", result.message);
     }
 
     return result;
   } catch (error) {
-    console.log("lerreur", error);
     console.error("Erreur lors de la requête d'envoi d'email:", error);
     throw error;
   }
