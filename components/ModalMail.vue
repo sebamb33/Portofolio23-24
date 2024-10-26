@@ -54,7 +54,7 @@ export default defineComponent({
     setup(props, { emit }) {
         const email = ref("");
         const message = ref("");
-        const verifyHcaptcha = ref(true);
+        const verifyHcaptcha = ref(false);
         const captchaToken = ref("");
         const hcaptchaKey = import.meta.env.VITE_HCAPTCHA_SITE_KEY;
         const submitForm = () => {
