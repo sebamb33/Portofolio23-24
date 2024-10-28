@@ -107,7 +107,7 @@
 }
 </style>
 <script>
-import Menu from "../components/Menu";
+import Menu from "../components/menu";
 export default {
     name: "NavBarComponent",
     methods: {
