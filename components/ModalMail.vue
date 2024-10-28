@@ -40,6 +40,7 @@
 import { defineComponent, ref } from "vue";
 import VueHcaptcha from "@hcaptcha/vue3-hcaptcha";
 import SendEmail from "../services/servicesMail";
+import swal from "sweetalert";
 export default defineComponent({
     components: {
         VueHcaptcha,
@@ -59,8 +60,10 @@ export default defineComponent({
         const hcaptchaKey = import.meta.env.VITE_HCAPTCHA_SITE_KEY;
         const submitForm = () => {
             if (!verifyHcaptcha.value) {
-                alert(
+                swal(
+                    "Attention",
                     "Veuillez compléter le captcha avant d'envoyer le formulaire.",
+                    "warning",
                 );
                 return;
             }
@@ -70,7 +73,6 @@ export default defineComponent({
         const onVerify = (token: string) => {
             captchaToken.value = token;
             verifyHcaptcha.value = true;
-            //TODO check the field and the email
         };
 
         const onCaptchaError = () => {
@@ -86,7 +88,11 @@ export default defineComponent({
             if (email.value && message.value) {
                 try {
                     await SendEmail(email.value, message.value);
-                    alert("Email envoyé");
+                    swal(
+                        "Email envoyé",
+                        "Votre e-mail a bien été envoyé, je vous répondrai dans les plus brefs délais.",
+                        "success",
+                    );
                 } catch (error) {
                     alert("Erreur lors de l'envoi de l'email");
                 }
