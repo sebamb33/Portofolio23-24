@@ -1,6 +1,6 @@
 import { H3Event, readBody } from "h3";
-import { MailerSend, EmailParams, Sender, Recipient } from "mailersend";
-
+import nodemailer from "nodemailer";
+import { defineComponent, ref } from "vue";
 export default async (event: H3Event) => {
   const body = await readBody(event);
   const { email, message } = body;
@@ -13,32 +13,29 @@ export default async (event: H3Event) => {
   }
 
   try {
-    const mailerSend = new MailerSend({
-      apiKey: process.env.VITE_MAILER_SEND_KEY || "",
+    const transporter = nodemailer.createTransport({
+      host: import.meta.env.VITE_SMTP_HOST,
+      port: parseInt(import.meta.env.VITE_SMTP_PORT || "587"),
+      secure: false,
+      auth: {
+        user: import.meta.env.VITE_SMTP_USER,
+        pass: import.meta.env.VITE_SMTP_PASS,
+      },
     });
 
-    const sentFrom = new Sender(
-      "contact@sebastienambona.fr",
-      "portofolio_sebastien",
-    );
+    const mailOptions = {
+      from: `"Portofolio ambona" <${import.meta.env.VITE_SMTP_USER}>`,
+      to: import.meta.env.VITE_MAIL_SEND_USER,
+      subject: "Demande de contact sur votre site web",
+      html: generateEmailHtml(email, message),
+      text: `Vous avez reçu un nouveau message de ${email}.`,
+    };
 
-    const recipients = [
-      new Recipient(process.env.VITE_MAIL_SEND_USER || "", "Sebastien"),
-    ];
-
-    const emailParams = new EmailParams()
-      .setFrom(sentFrom)
-      .setTo(recipients)
-      .setSubject("Demande de contact sur votre site web")
-      .setHtml(generateEmailHtml(email, message))
-      .setText(`Vous avez reçu un nouveau message de ${email}.`);
-
-    const response = await mailerSend.email.send(emailParams);
-
+    const info = await transporter.sendMail(mailOptions);
     return {
       success: true,
       message: "Email envoyé avec succès.",
-      data: response,
+      data: info,
     };
   } catch (error) {
     console.error("Erreur lors de l'envoi de l'email:", error);
