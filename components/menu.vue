@@ -80,11 +80,11 @@ export default {
     top: 0px;
     background: white;
     transform: translateX(-100%);
-    animation: slide-out 0.3s forwards; /* Animation pour la fermeture */
+    animation: slide-out 0.3s forwards;
 }
 
 .slide-in {
-    animation: slide-in 0.3s forwards; /* Animation pour l'ouverture */
+    animation: slide-in 0.3s forwards;
 }
 
 @keyframes slide-in {
