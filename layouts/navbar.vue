@@ -11,9 +11,6 @@
                 <div class="lien">
                     <NuxtLink to="/experience">Experience</NuxtLink>
                 </div>
-                <!-- <div class="lien">
-                    <NuxtLink to="/project">Projets</NuxtLink>
-                </div> -->
             </div>
             <button
                 id="burger-icon"
