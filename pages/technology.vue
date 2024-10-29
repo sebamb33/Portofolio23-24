@@ -18,8 +18,9 @@
                     <Skillbar :skillNumber="4" />
                 </div>
                 <p class="technologyDetails">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-                    alias aperiam commodi
+                    Utilisé chez AgenceGW et personnellement pour des
+                    applications. VueJs m'a permis de renforcer mes compétences
+                    en développement front-end.
                 </p>
             </div>
         </div>
@@ -41,8 +42,8 @@
                     <Skillbar :skillNumber="3" />
                 </div>
                 <p class="technologyDetails">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-                    alias aperiam commodi
+                    Utilisé dans de nombreux projets durant mes études et dans
+                    quelques projet personnelle
                 </p>
             </div>
         </div>
@@ -64,8 +65,8 @@
                     <Skillbar :skillNumber="3" />
                 </div>
                 <p class="technologyDetails">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-                    alias aperiam commodi
+                    Utilisé en autodidacte pour comprendre le développement
+                    backend en Node.js, renforçant ma maîtrise des API.
                 </p>
             </div>
         </div>
@@ -87,8 +88,8 @@
                     <Skillbar :skillNumber="3" />
                 </div>
                 <p class="technologyDetails">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-                    alias aperiam commodi
+                    Appris en autodidacte pour simplifier l'interaction avec les
+                    bases de données en TS.
                 </p>
             </div>
         </div>
@@ -110,8 +111,9 @@
                     <Skillbar :skillNumber="5" />
                 </div>
                 <p class="technologyDetails">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-                    alias aperiam commodi
+                    Utilisé durant mes études pour les tests unitaires, Jest m’a
+                    permis d’améliorer la qualité et la fiabilité de mes
+                    applications.
                 </p>
             </div>
         </div>
@@ -133,8 +135,9 @@
                     <Skillbar :skillNumber="2" />
                 </div>
                 <p class="technologyDetails">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-                    alias aperiam commodi
+                    Principalement utilisé chez AgenceGW pour le backend,
+                    Symfony m'a permis de renforcer mes compétences en
+                    architecture MVC.
                 </p>
             </div>
         </div>
@@ -156,8 +159,8 @@
                     <Skillbar :skillNumber="4" />
                 </div>
                 <p class="technologyDetails">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-                    alias aperiam commodi
+                    Utilisé en entreprise pour les tests end-to-end, Cypress m’a
+                    permis d'automatiser et de fiabiliser le processus de test.
                 </p>
             </div>
         </div>
@@ -179,8 +182,9 @@
                     <Skillbar :skillNumber="4" />
                 </div>
                 <p class="technologyDetails">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-                    alias aperiam commodi
+                    Utilisé pour la virtualisation des environnements, Docker
+                    m'a permis d'assurer la portabilité et la cohérence des
+                    applications.
                 </p>
             </div>
         </div>
@@ -202,8 +206,8 @@
                     <Skillbar :skillNumber="4" />
                 </div>
                 <p class="technologyDetails">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-                    alias aperiam commodi
+                    Utilisé chez AgenceGW pour des sites éco-conçus, Kirby m’a
+                    permis de créer des solutions légères et optimisées.
                 </p>
             </div>
         </div>
