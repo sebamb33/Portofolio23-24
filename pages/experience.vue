@@ -291,7 +291,6 @@ hr {
 .experienceTech {
     display: flex;
     justify-content: space-around;
-    width: 60%;
 }
 
 .experienceHistory {
@@ -327,6 +326,24 @@ hr {
         display: none;
     }
 }
+@media screen and (max-width: 1200px) {
+    .experienceText {
+        width: 700px;
+    }
+    .experienceTech {
+        display: flex;
+        flex-wrap: wrap;
+        width: 500px;
+    }
+    .experience {
+        row-gap: 0px;
+        grid-template-columns: none;
+    }
+    .date {
+        width: 200px;
+    }
+}
+
 @media screen and (min-width: 1000px) {
     .experienceResponsive {
         display: none;

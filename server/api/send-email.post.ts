@@ -55,9 +55,6 @@ function generateEmailHtml(userEmail: string, userMessage: string): string {
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Demande de contact</title>
-      <style>
-        /* Ton CSS pour l'email ici */
-      </style>
     </head>
     <body>
       <div class="container">
