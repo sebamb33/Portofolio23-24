@@ -59,7 +59,7 @@
     <div class="experienceResponsive" v-if="!isDesktop">
         <hr />
         <div class="oneExprienceResponsive">
-            <div class="dateResponsive">Septembre/2021-Septembre/2022</div>
+            <div class="dateResponsive">Septembre/2022-Decembre/2024</div>
             <div class="exprienceTextResponsive">
                 <p>
                     Lors de mon alternance chez AgenceGW, j’ai évolué dans un
