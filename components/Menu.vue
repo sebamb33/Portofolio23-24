@@ -24,7 +24,7 @@
         </div>
         <div class="menu_logo">
             <a
-                href="https://www.linkedin.com/in/s%C3%A9bastien-ambona-6b1b3a1b0/"
+                href="https://www.linkedin.com/in/s%C3%A9bastien-ambona-931306218/"
                 target="_blank"
             >
                 <img src="https://img.icons8.com/50/000000/linkedin.png" />
