@@ -116,7 +116,7 @@ export default {
 .menu_link {
   opacity: 0;
   padding-bottom: 20px;
-  font-size: 50px;
+  font-size: 45px;
   font-weight: 800;
   transform: translateX(-50px);
   transition:
