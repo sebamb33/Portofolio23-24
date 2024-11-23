@@ -24,7 +24,7 @@ h1 {
 }
 .typedText {
   width: 10em;
-  height: 2%;
+  min-height: 30px;
   animation:
     typing 1s steps(15, end) 1s forwards,
     blink 0.6s step-end infinite 3s;
