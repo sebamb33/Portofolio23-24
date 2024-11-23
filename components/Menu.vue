@@ -46,7 +46,7 @@ export default {
       links: [
         { to: "/", label: "Accueil" },
         { to: "/technology", label: "Technologies" },
-        { to: "/experience", label: "Experience" },
+        { to: "/experience", label: "Éxperiences" },
       ],
     };
   },
@@ -58,7 +58,6 @@ export default {
       document.querySelector(".app").style.display = "flex";
     },
     onMenuAnimationEnd() {
-      // Déclenche l'animation des liens après la fin de l'animation du menu
       if (this.menuOpen) {
         this.linksAnimated = true;
         document.querySelector(".app").style.display = "none";
@@ -127,7 +126,7 @@ export default {
 .slide-in-link {
   opacity: 1;
   transform: translateX(0);
-  transition-delay: 0.1s; /* Délai pour l'apparition des liens */
+  transition-delay: 0.1s;
 }
 
 .menu_link a {
@@ -142,5 +141,14 @@ export default {
   padding: 30px;
   margin-bottom: 50px;
   align-items: center;
+}
+@media screen and (max-width: 1000px) {
+  .menu_link {
+    font-size: 30px;
+  }
+  .menu_nav {
+    height: 70vh;
+    overflow: hidden;
+  }
 }
 </style>
