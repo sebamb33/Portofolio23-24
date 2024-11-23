@@ -95,7 +95,7 @@
 
         <div class="skill">Niveaux :</div>
         <div class="skillLevel">
-          <Skillbar :skillNumber="5" />
+          <Skillbar :skillNumber="3" />
         </div>
         <p class="technologyDetails">
           Utilisé durant mes études pour les tests unitaires, Jest m’a permis
@@ -114,7 +114,7 @@
 
         <div class="skill">Niveaux :</div>
         <div class="skillLevel">
-          <Skillbar :skillNumber="2" />
+          <Skillbar :skillNumber="3" />
         </div>
         <p class="technologyDetails">
           Principalement utilisé chez AgenceGW pour le backend, Symfony m'a
@@ -246,9 +246,7 @@ export default {
   border-radius: 3px;
   min-height: 350px;
 }
-.oneTechno:hover {
-  transform: scale(1.2) !important;
-}
+
 .technoData {
   margin: 1rem;
 }

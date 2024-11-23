@@ -81,11 +81,11 @@ export default {
   top: 0px;
   background: white;
   transform: translateX(-100%);
-  animation: slide-out 0.3s forwards;
+  animation: slide-out 0.5s forwards;
 }
 
 .slide-in {
-  animation: slide-in 0.3s forwards;
+  animation: slide-in 0.2s forwards;
 }
 
 @keyframes slide-in {
@@ -94,6 +94,7 @@ export default {
   }
   to {
     transform: translateX(0);
+    height: 100vh;
   }
 }
 
@@ -146,9 +147,11 @@ export default {
   .menu_link {
     font-size: 30px;
   }
+  .menu_router {
+    height: 40vh;
+  }
   .menu_nav {
     height: 70vh;
-    overflow: hidden;
   }
 }
 </style>
