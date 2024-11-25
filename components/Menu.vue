@@ -27,10 +27,18 @@
         href="https://www.linkedin.com/in/s%C3%A9bastien-ambona-931306218/"
         target="_blank"
       >
-        <img src="https://img.icons8.com/50/000000/linkedin.png" />
+        <img
+          src="https://img.icons8.com/50/000000/linkedin.png"
+          alt="logo linkedin"
+          title="Redirection vers mon linkedin"
+        />
       </a>
       <a href="https://github.com/sebamb33" target="_blank">
-        <img src="https://img.icons8.com/50/000000/github--v1.png" />
+        <img
+          src="https://img.icons8.com/50/000000/github--v1.png"
+          alt="Logo Github"
+          title="Redirection vers mon Github"
+        />
       </a>
     </div>
   </div>

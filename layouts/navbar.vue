@@ -2,7 +2,13 @@
   <div>
     <div class="Navbar" v-if="!menuDisplay">
       <NuxtLink to="/">
-        <img :src="logoUrl" alt="Logo" width="70" height="70" />
+        <img
+          :src="logoUrl"
+          alt="Logo de ambona sébastien"
+          title="Logo du A de ambona"
+          width="70"
+          height="70"
+        />
       </NuxtLink>
       <div class="button-container" onclick="menu=!menu">
         <div class="lien">
