@@ -7,7 +7,9 @@
     <div class="menu_top" @click="closeMenu">
       <img
         src="https://img.icons8.com/ios-glyphs/30/000000/delete-sign.png"
-        heigh="50"
+        height="50"
+        alt="close menu"
+        title="Cross to close menu"
       />
     </div>
     <div class="menu_router">
@@ -54,7 +56,7 @@ export default {
       links: [
         { to: "/", label: "Accueil" },
         { to: "/technology", label: "Technologies" },
-        { to: "/experience", label: "Éxperiences" },
+        { to: "/experience", label: "Expériences" },
       ],
     };
   },
