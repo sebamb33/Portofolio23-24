@@ -1,32 +1,35 @@
 <template>
   <div class="ProfilPictureComponent">
-    <img src="/assets/LogoPortofolio.svg" alt="Votre nom">
+    <img
+      src="/assets/LogoPortofolio.svg"
+      alt="Logo ambona Sébastien"
+      title="Logo reprsentant le A de ambona"
+    />
     <div class="description">
       <p>Développeur Full-Stack</p>
-      <p>{{ageInfo}} ans - Bordeaux - Master Ynov</p>
+      <p>{{ ageInfo }} ans - Bordeaux - Master Ynov</p>
     </div>
   </div>
 </template>
 
-
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent, computed } from "vue";
 
 export default defineComponent({
-  name: 'ProfilPictureComponent',
+  name: "ProfilPictureComponent",
   data() {
     return {
-      dateNaissance: new Date('2000-07-05')
-    }
+      dateNaissance: new Date("2000-07-05"),
+    };
   },
   computed: {
     ageInfo() {
       const diff = Date.now() - this.dateNaissance.getTime();
       const age = new Date(diff);
       return Math.abs(age.getUTCFullYear() - 1970);
-    }
-  }
-})
+    },
+  },
+});
 </script>
 <style scoped>
 .ProfilPictureComponent {
@@ -58,6 +61,5 @@ export default defineComponent({
   .ProfilPictureComponent {
     display: none;
   }
-
 }
 </style>

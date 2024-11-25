@@ -4,10 +4,18 @@
       href="https://www.linkedin.com/in/s%C3%A9bastien-ambona-931306218/"
       target="_blank"
     >
-      <img src="https://img.icons8.com/50/000000/linkedin.png" />
+      <img
+        src="https://img.icons8.com/50/000000/linkedin.png"
+        alt="Logo linkedin"
+        title="Redirection vers mon Linkedin"
+      />
     </a>
     <a href="https://github.com/sebamb33" target="_blank">
-      <img src="https://img.icons8.com/50/000000/github--v1.png" />
+      <img
+        src="https://img.icons8.com/50/000000/github--v1.png"
+        alt="logo github"
+        title="Redirection vers mon github"
+      />
     </a>
   </div>
 </template>

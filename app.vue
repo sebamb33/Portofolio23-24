@@ -2,22 +2,54 @@
   <div class="principal">
     <CustomCursor />
     <NuxtLayout>
-      <nuxtPage />
+      <nuxt-page />
     </NuxtLayout>
   </div>
 </template>
 
 <script lang="ts">
-export default {
+export default defineComponent({
   name: "App",
 
-  data() {
+  setup() {
+    useHead({
+      htmlAttrs: {
+        lang: "fr",
+      },
+      meta: [
+        {
+          name: "robots",
+          content: "index, follow",
+        },
+        {
+          name: "x-robots-tag",
+          content: "index, follow, max-image-preview:large, notranslate",
+        },
+        {
+          name: "description",
+          content:
+            "Ambona Sébastien, développeur full stack de 24 ans, je fournis des solutions web de qualité, alliant innovation et performance pour répondre aux besoins.",
+        },
+        {
+          name: "keywords",
+          content:
+            "développeur full stack, portofolio, Ambona Sébastien, développement web,Bordeaux, technologie,Ambona,Sebastien,Sébastien",
+        },
+        {
+          name: "publisher",
+          content: "Ambona Sébastien",
+        },
+      ],
+      title: "Portofolio de Ambona Sébastien Développeur web Full Stack",
+    });
+
     return {
       currentComponent: "Techno",
     };
   },
-};
+});
 </script>
+
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Fira+Code&display=swap");
 body {
@@ -28,13 +60,14 @@ body {
 }
 .principal {
   margin: auto;
-
-  .navbar {
-    position: absolute;
-    top: 40%;
-    left: 0;
-  }
 }
+
+.navbar {
+  position: absolute;
+  top: 40%;
+  left: 0;
+}
+
 *,
 button,
 a,
