@@ -15,7 +15,7 @@
           <NuxtLink to="/technology">Technologies</NuxtLink>
         </div>
         <div class="lien">
-          <NuxtLink to="/experience">Éxperiences</NuxtLink>
+          <NuxtLink to="/experience">Expériences</NuxtLink>
         </div>
       </div>
       <button

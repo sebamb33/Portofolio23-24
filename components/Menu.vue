@@ -56,7 +56,7 @@ export default {
       links: [
         { to: "/", label: "Accueil" },
         { to: "/technology", label: "Technologies" },
-        { to: "/experience", label: "Éxperiences" },
+        { to: "/experience", label: "Expériences" },
       ],
     };
   },
