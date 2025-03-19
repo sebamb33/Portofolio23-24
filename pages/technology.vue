@@ -238,13 +238,14 @@ export default {
   max-width: 20rem;
   height: 40%;
   margin-bottom: 5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.5s ease;
   animation: slideIn 450ms ease-out forwards;
   transform: translateY(200px);
   filter: blur(10px);
-  border-radius: 3px;
   min-height: 350px;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 12px 12px 24px #f3f0f0, -12px -12px 24px #f2f2f2;
 }
 
 .technoData {

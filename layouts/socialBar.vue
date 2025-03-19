@@ -38,4 +38,10 @@
     display: none;
   }
 }
+img {
+  border-radius: 10px;
+  background: white;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+  padding: 5px;
+}
 </style>
