@@ -38,4 +38,15 @@
     display: none;
   }
 }
+img {
+  color: white;
+  padding: 5px;
+  font-size: 12px;
+  border-radius: 0.5em;
+  background: #f9f8f8;
+  cursor: pointer;
+  border: 1px solid #e8e8e8;
+  transition: all 0.3s;
+  box-shadow: 6px 6px 12px #f2f2f2, -6px -6px 12px #ffffff;
+}
 </style>

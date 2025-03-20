@@ -37,17 +37,25 @@ export default defineComponent({
   background-color: white;
   border: 10px solid black;
   padding: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
   text-align: center;
   margin: auto;
   margin-top: 5%;
   height: 80%;
+  border-radius: 15px;
+  background: #f9f8f8;
+  cursor: pointer;
+  border: 1px solid #e8e8e8;
+  transition: all 0.3s;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 12px 12px 24px #f3f0f0, -12px -12px 24px #f2f2f2;
 }
 
 .ProfilPictureComponent img {
   width: 90%;
   height: 70%;
-  //height: auto; /* garde les proportions de l'image */
+  /* garde les proportions de l'image */
   margin-bottom: 20%;
 }
 
