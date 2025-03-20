@@ -39,9 +39,14 @@
   }
 }
 img {
-  border-radius: 10px;
-  background: white;
-  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
-  padding: 5px;
+  color: white;
+  padding: 0.2em 0.5em;
+  font-size: 12px;
+  border-radius: 0.5em;
+  background: #e8e8e8;
+  cursor: pointer;
+  border: 1px solid #e8e8e8;
+  transition: all 0.3s;
+  box-shadow: 6px 6px 12px #efefef, -6px -6px 12px #ffffff;
 }
 </style>

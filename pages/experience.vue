@@ -163,6 +163,10 @@ export default defineComponent({
   align-items: stretch;
   margin: 10px auto;
   max-height: 50vh;
+  border-radius: 10px;
+  padding: 10px;
+  background: white;
+  box-shadow: 12px 12px 24px #f3f0f0, -12px -12px 24px #f2f2f2;
 }
 hr {
   border: 3px solid black;
@@ -340,9 +344,14 @@ hr {
   }
 }
 .experienceTech .technologie {
-  border-radius: 5px;
-  padding: 10px;
-  background: #ffffff;
-  box-shadow: 16px 16px 32px #e6e6e6, -16px -16px 32px #ffffff;
+  color: black;
+  padding: 1em 2em;
+  font-size: 12px;
+  border-radius: 0.5em;
+  background: #e8e8e8;
+  cursor: pointer;
+  border: 1px solid #e8e8e8;
+  transition: all 0.3s;
+  box-shadow: 6px 6px 12px #efefef, -6px -6px 12px #ffffff;
 }
 </style>
