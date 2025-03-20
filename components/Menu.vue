@@ -7,7 +7,7 @@
     <div class="menu_top" @click="closeMenu">
       <img
         src="https://img.icons8.com/ios-glyphs/30/000000/delete-sign.png"
-        height="50"
+        height="30"
         alt="close menu"
         title="Cross to close menu"
       />
@@ -129,9 +129,7 @@ export default {
   font-size: 45px;
   font-weight: 800;
   transform: translateX(-50px);
-  transition:
-    transform 0.3s ease-out,
-    opacity 0.3s ease-out;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 }
 
 .slide-in-link {

@@ -54,7 +54,6 @@
     </div>
   </div>
   <div class="experienceResponsive" v-if="!isDesktop">
-    <hr />
     <div class="oneExprienceResponsive">
       <div class="dateResponsive">Septembre/2022-Decembre/2024</div>
       <div class="exprienceTextResponsive">
@@ -89,7 +88,6 @@
       </ul>
     </div>
 
-    <hr />
     <div class="oneExprienceResponsive">
       <div class="dateResponsive">Septembre/2021-Septembre/2022</div>
       <div class="exprienceTextResponsive">
@@ -163,14 +161,10 @@ export default defineComponent({
   align-items: stretch;
   margin: 10px auto;
   max-height: 50vh;
-  border-radius: 10px;
+  border-radius: 15px;
   padding: 10px;
   background: white;
   box-shadow: 12px 12px 24px #f3f0f0, -12px -12px 24px #f2f2f2;
-}
-hr {
-  border: 3px solid black;
-  width: 100%;
 }
 
 @keyframes slideDown {
@@ -188,21 +182,16 @@ hr {
   font-weight: bold;
   font-size: 1.2em;
   grid-column: 1;
-  border-top: 2px solid;
-  animation: slideDown 500ms ease-out forwards, blurIn 1s ease-out forwards;
 }
 
 .experienceItem {
   height: 90%;
-  border-top: 2px solid;
   grid-column: 2;
   grid-row: 1;
   display: flex;
   flex-direction: column;
   padding: 1rem;
   margin-bottom: 4rem;
-
-  animation: slideUp 500ms ease-out forwards, blurIn 1s ease-out forwards;
 }
 .experienceItem:last-child {
   grid-row: 2;
@@ -255,16 +244,6 @@ hr {
 
 .experienceData .experienceTech {
   will-change: transform, opacity;
-}
-
-.experienceData .experienceTech {
-  animation: fadeIn 0.5s ease forwards;
-  animation-delay: var(--animation-delay, 0s) + 0.6s;
-}
-
-.experienceData .experienceTech {
-  animation: fadeIn 0.5s ease forwards;
-  animation-delay: var(--animation-delay, 0s) + 0.7s;
 }
 
 @keyframes fadeIn {
@@ -335,6 +314,9 @@ hr {
   }
   .date {
     width: 200px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 50px;
   }
 }
 
@@ -348,9 +330,9 @@ hr {
   padding: 1em 2em;
   font-size: 12px;
   border-radius: 0.5em;
-  background: #e8e8e8;
+  background: #f9f8f8;
   cursor: pointer;
-  border: 1px solid #e8e8e8;
+  border: 1px solid #f7f5f5;
   transition: all 0.3s;
   box-shadow: 6px 6px 12px #efefef, -6px -6px 12px #ffffff;
 }
