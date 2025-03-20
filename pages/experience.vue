@@ -316,7 +316,7 @@ export default defineComponent({
     width: 200px;
     display: flex;
     flex-direction: column;
-    padding-top: 50px;
+    padding: 30px;
   }
 }
 
