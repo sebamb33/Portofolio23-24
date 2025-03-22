@@ -42,11 +42,11 @@ img {
   color: white;
   padding: 5px;
   font-size: 12px;
-  border-radius: 0.5em;
-  background: #f9f8f8;
+  border-radius: 1em;
+  background: white;
   cursor: pointer;
   border: 1px solid #e8e8e8;
   transition: all 0.3s;
-  box-shadow: 6px 6px 12px #f2f2f2, -6px -6px 12px #ffffff;
+  box-shadow: 12px 12px 24px #f3f0f0, -12px -12px 24px #f2f2f2;
 }
 </style>
