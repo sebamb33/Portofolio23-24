@@ -49,7 +49,7 @@
   padding: 0;
   outline: none;
   color: black;
-  transition: color 0.3s;
+  transition: color 0.3s; 
 }
 .lien a {
   text-decoration: none;
