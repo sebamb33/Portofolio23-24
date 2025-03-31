@@ -57,7 +57,7 @@ export default {
     width: 4px;
     height: 4px;
     background-color: black;
-    border-radius: 50%;
+    border-radius: 55%;
     transform: translate(-50%, -50%);
 }
 
