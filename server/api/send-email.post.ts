@@ -1,7 +1,8 @@
 import { H3Event, readBody } from "h3";
-import nodemailer from "nodemailer";
-import { defineComponent, ref } from "vue";
-export default async (event: H3Event) => {
+import { Resend } from "resend";
+
+export default defineEventHandler(async (event: H3Event) => {
+  const config = useRuntimeConfig();
   const body = await readBody(event);
   const { email, message } = body;
 
@@ -12,40 +13,29 @@ export default async (event: H3Event) => {
     };
   }
 
+  const resend = new Resend(config.RESEND_API_KEY);
+
   try {
-    const transporter = nodemailer.createTransport({
-      host: import.meta.env.VITE_SMTP_HOST,
-      port: parseInt(import.meta.env.VITE_SMTP_PORT || "587"),
-      secure: false,
-      auth: {
-        user: import.meta.env.VITE_SMTP_USER,
-        pass: import.meta.env.VITE_SMTP_PASS,
-      },
-    });
-
-    const mailOptions = {
-      from: `"Portofolio ambona" <${import.meta.env.VITE_SMTP_USER}>`,
-      to: import.meta.env.VITE_MAIL_SEND_USER,
-      subject: "Demande de contact sur votre site web",
+    const data = await resend.emails.send({
+      from: "Portfolio <test@contact.sebastienambona.fr>", // ou votre domaine vérifié
+      to: ["sebastien@ambona.fr"],
+      subject: "Nouveau message depuis votre portfolio",
       html: generateEmailHtml(email, message),
-      text: `Vous avez reçu un nouveau message de ${email}.`,
-    };
-
-    const info = await transporter.sendMail(mailOptions);
+    });
     return {
       success: true,
       message: "Email envoyé avec succès.",
-      data: info,
+      data,
     };
   } catch (error) {
     console.error("Erreur lors de l'envoi de l'email:", error);
     return {
       success: false,
       message: "Erreur lors de l'envoi de l'email.",
-      error,
+      error: error instanceof Error ? error.message : String(error),
     };
   }
-};
+});
 
 function generateEmailHtml(userEmail: string, userMessage: string): string {
   return `
@@ -55,6 +45,33 @@ function generateEmailHtml(userEmail: string, userMessage: string): string {
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Demande de contact</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          line-height: 1.6;
+          color: #333;
+        }
+        .container {
+          max-width: 600px;
+          margin: 0 auto;
+          padding: 20px;
+        }
+        .header {
+          text-align: center;
+          margin-bottom: 30px;
+        }
+        .content {
+          background-color: #f9f9f9;
+          padding: 20px;
+          border-radius: 5px;
+        }
+        .footer {
+          text-align: center;
+          margin-top: 30px;
+          font-size: 0.8em;
+          color: #666;
+        }
+      </style>
     </head>
     <body>
       <div class="container">
@@ -70,7 +87,7 @@ function generateEmailHtml(userEmail: string, userMessage: string): string {
           <a href="mailto:${userEmail}">Répondre</a>
         </div>
         <div class="footer">
-          <p>&copy; 2024 Ambona Sébastien, Bordeaux. Tous droits réservés.</p>
+          <p>&copy; 2025 Ambona Sébastien, Bordeaux. Tous droits réservés.</p>
         </div>
       </div>
     </body>

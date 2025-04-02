@@ -22,12 +22,7 @@
                     @verify="onVerify"
                 ></vue-hcaptcha>
 
-                <button
-                    v-if="verifyHcaptcha"
-                    type="submit"
-                    class="buttonSend"
-                    @click="verifyEmail"
-                >
+                <button type="submit" class="buttonSend" @click="verifyEmail">
                     Envoyer
                 </button>
             </form>
