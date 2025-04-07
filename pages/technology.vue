@@ -1,242 +1,119 @@
 <template>
-  <div class="technology">
-    <div class="oneTechno">
-      <div class="technoData">
-        <div class="technologyHeader">
-          <div class="technologyLogo">
-            <Icon name="uil:vuejs" color="black" class="technologyIcon" />
+  <section class="technologySection">
+    <h1 class="technologyTitle">Technologies</h1>
+    <div class="technology">
+      <div
+        class="oneTechno"
+        v-for="(tech, index) in technologies"
+        :key="index"
+        :style="{ animationDelay: `${index * 0.2}s` }"
+      >
+        <div class="technoData">
+          <div class="technologyHeader">
+            <div class="technologyLogo">
+              <Icon :name="tech.icon" color="black" class="technologyIcon" />
+            </div>
+            <div class="technologyName">{{ tech.name }}</div>
           </div>
-          <div class="technologyName">VueJs</div>
+          <div class="skill">Niveaux :</div>
+          <div class="skillLevel">
+            <Skillbar :skillNumber="tech.skillLevel" />
+          </div>
+          <p class="technologyDetails">{{ tech.details }}</p>
         </div>
-
-        <div class="skill">Niveaux :</div>
-        <div class="skillLevel">
-          <Skillbar :skillNumber="4" />
-        </div>
-        <p class="technologyDetails">
-          Utilisé chez AgenceGW et personnellement pour des applications. VueJs
-          m'a permis de renforcer mes compétences en développement front-end.
-        </p>
       </div>
     </div>
-    <div class="oneTechno">
-      <div class="technoData">
-        <div class="technologyHeader">
-          <div class="technologyLogo">
-            <Icon name="uil:react" color="black" class="technologyIcon" />
-          </div>
-          <div class="technologyName">React</div>
-        </div>
-
-        <div class="skill">Niveaux :</div>
-        <div class="skillLevel">
-          <Skillbar :skillNumber="3" />
-        </div>
-        <p class="technologyDetails">
-          Utilisé dans de nombreux projets durant mes études et dans quelques
-          projet personnelle
-        </p>
-      </div>
-    </div>
-    <div class="oneTechno">
-      <div class="technoData">
-        <div class="technologyHeader">
-          <div class="technologyLogo">
-            <Icon name="devicon:express" color="black" class="technologyIcon" />
-          </div>
-          <div class="technologyName">Express</div>
-        </div>
-
-        <div class="skill">Niveaux :</div>
-        <div class="skillLevel">
-          <Skillbar :skillNumber="3" />
-        </div>
-        <p class="technologyDetails">
-          Utilisé en autodidacte pour comprendre le développement backend en
-          Node.js, renforçant ma maîtrise des API.
-        </p>
-      </div>
-    </div>
-    <div class="oneTechno">
-      <div class="technoData">
-        <div class="technologyHeader">
-          <div class="technologyLogo">
-            <Icon
-              name="tabler:brand-prisma"
-              color="black"
-              class="technologyIcon"
-            />
-          </div>
-          <div class="technologyName">Prisma</div>
-        </div>
-
-        <div class="skill">Niveaux :</div>
-        <div class="skillLevel">
-          <Skillbar :skillNumber="3" />
-        </div>
-        <p class="technologyDetails">
-          Appris en autodidacte pour simplifier l'interaction avec les bases de
-          données en TS.
-        </p>
-      </div>
-    </div>
-    <div class="oneTechno">
-      <div class="technoData">
-        <div class="technologyHeader">
-          <div class="technologyLogo">
-            <Icon
-              name="simple-icons:jest"
-              color="black"
-              class="technologyIcon"
-            />
-          </div>
-          <div class="technologyName">Jest</div>
-        </div>
-
-        <div class="skill">Niveaux :</div>
-        <div class="skillLevel">
-          <Skillbar :skillNumber="3" />
-        </div>
-        <p class="technologyDetails">
-          Utilisé durant mes études pour les tests unitaires, Jest m’a permis
-          d’améliorer la qualité et la fiabilité de mes applications.
-        </p>
-      </div>
-    </div>
-    <div class="oneTechno">
-      <div class="technoData">
-        <div class="technologyHeader">
-          <div class="technologyLogo">
-            <Icon name="logos:symfony" color="black" class="technologyIcon" />
-          </div>
-          <div class="technologyName">Symfony</div>
-        </div>
-
-        <div class="skill">Niveaux :</div>
-        <div class="skillLevel">
-          <Skillbar :skillNumber="3" />
-        </div>
-        <p class="technologyDetails">
-          Principalement utilisé chez AgenceGW pour le backend, Symfony m'a
-          permis de renforcer mes compétences en architecture MVC.
-        </p>
-      </div>
-    </div>
-    <div class="oneTechno">
-      <div class="technoData">
-        <div class="technologyHeader">
-          <div class="technologyLogo">
-            <Icon name="logos:cypress" color="black" class="technologyIcon" />
-          </div>
-          <div class="technologyName">Cypress</div>
-        </div>
-
-        <div class="skill">Niveaux :</div>
-        <div class="skillLevel">
-          <Skillbar :skillNumber="4" />
-        </div>
-        <p class="technologyDetails">
-          Utilisé en entreprise pour les tests end-to-end, Cypress m’a permis
-          d'automatiser et de fiabiliser le processus de test.
-        </p>
-      </div>
-    </div>
-    <div class="oneTechno">
-      <div class="technoData">
-        <div class="technologyHeader">
-          <div class="technologyLogo">
-            <Icon name="la:docker" color="black" class="technologyIcon" />
-          </div>
-          <div class="technologyName">Docker</div>
-        </div>
-
-        <div class="skill">Niveaux :</div>
-        <div class="skillLevel">
-          <Skillbar :skillNumber="4" />
-        </div>
-        <p class="technologyDetails">
-          Utilisé pour la virtualisation des environnements, Docker m'a permis
-          d'assurer la portabilité et la cohérence des applications.
-        </p>
-      </div>
-    </div>
-    <div class="oneTechno">
-      <div class="technoData">
-        <div class="technologyHeader">
-          <div class="technologyLogo">
-            <Icon
-              name="logos:kirby-icon"
-              color="black"
-              class="technologyIcon"
-            />
-          </div>
-          <div class="technologyName">Kirby</div>
-        </div>
-
-        <div class="skill">Niveaux :</div>
-        <div class="skillLevel">
-          <Skillbar :skillNumber="4" />
-        </div>
-        <p class="technologyDetails">
-          Utilisé chez AgenceGW pour des sites éco-conçus, Kirby m’a permis de
-          créer des solutions légères et optimisées.
-        </p>
-      </div>
-    </div>
-    <div class="oneTechno">
-      <div class="technoData">
-        <div class="technologyHeader">
-          <div class="technologyLogo">
-            <Icon
-              name="simple-icons:hono"
-              color="black"
-              class="technologyIcon"
-            />
-          </div>
-          <div class="technologyName">Hono</div>
-        </div>
-
-        <div class="skill">Niveaux :</div>
-        <div class="skillLevel">
-          <Skillbar :skillNumber="3" />
-        </div>
-        <p class="technologyDetails">
-          Technologie moderne et performante pour le backend. Utilisé en
-          autodidacte pour créer des solutions légères et optimisées.
-        </p>
-      </div>
-    </div>
-    <div class="oneTechno">
-      <div class="technoData">
-        <div class="technologyHeader">
-          <div class="technologyLogo">
-            <Icon
-              name="lineicons:drizzle"
-              color="black"
-              class="technologyIcon"
-            />
-          </div>
-          <div class="technologyName">Drizzle</div>
-        </div>
-
-        <div class="skill">Niveaux :</div>
-        <div class="skillLevel">
-          <Skillbar :skillNumber="2" />
-        </div>
-        <p class="technologyDetails">
-          ORM avec une approche différente de celle de Prisma, permettant une
-          gestion plus fine des requêtes et des relations. Drizzle est conçu
-          pour être rapide et léger, avec une syntaxe sql.
-        </p>
-      </div>
-    </div>
-  </div>
+  </section>
 </template>
+
 <script lang="ts">
 import Skillbar from "~/components/Skillbar.vue";
 
 export default {
   components: { Skillbar },
+  data() {
+    return {
+      technologies: [
+        {
+          name: "VueJs",
+          icon: "uil:vuejs",
+          skillLevel: 4,
+          details:
+            "Utilisé chez AgenceGW et personnellement pour des applications. VueJs m'a permis de renforcer mes compétences en développement front-end.",
+        },
+        {
+          name: "React",
+          icon: "uil:react",
+          skillLevel: 3,
+          details:
+            "Utilisé dans de nombreux projets durant mes études et dans quelques projet personnelle.",
+        },
+        {
+          name: "Express",
+          icon: "devicon:express",
+          skillLevel: 3,
+          details:
+            "Utilisé en autodidacte pour comprendre le développement backend en Node.js, renforçant ma maîtrise des API.",
+        },
+        {
+          name: "Prisma",
+          icon: "tabler:brand-prisma",
+          skillLevel: 3,
+          details:
+            "Appris en autodidacte pour simplifier l'interaction avec les bases de données en TS.",
+        },
+        {
+          name: "Jest",
+          icon: "simple-icons:jest",
+          skillLevel: 3,
+          details:
+            "Utilisé durant mes études pour les tests unitaires, Jest m’a permis d’améliorer la qualité et la fiabilité de mes applications.",
+        },
+        {
+          name: "Symfony",
+          icon: "logos:symfony",
+          skillLevel: 3,
+          details:
+            "Principalement utilisé chez AgenceGW pour le backend, Symfony m'a permis de renforcer mes compétences en architecture MVC.",
+        },
+        {
+          name: "Cypress",
+          icon: "logos:cypress",
+          skillLevel: 4,
+          details:
+            "Utilisé en entreprise pour les tests end-to-end, Cypress m’a permis d'automatiser et de fiabiliser le processus de test.",
+        },
+        {
+          name: "Docker",
+          icon: "la:docker",
+          skillLevel: 4,
+          details:
+            "Utilisé pour la virtualisation des environnements, Docker m'a permis d'assurer la portabilité et la cohérence des applications.",
+        },
+        {
+          name: "Kirby",
+          icon: "logos:kirby-icon",
+          skillLevel: 4,
+          details:
+            "Utilisé chez AgenceGW pour des sites éco-conçus, Kirby m’a permis de créer des solutions légères et optimisées.",
+        },
+        {
+          name: "Hono",
+          icon: "simple-icons:hono",
+          skillLevel: 3,
+          details:
+            "Technologie moderne et performante pour le backend. Utilisé en autodidacte pour créer des solutions légères et optimisées.",
+        },
+        {
+          name: "Drizzle",
+          icon: "lineicons:drizzle",
+          skillLevel: 2,
+          details:
+            "ORM avec une approche différente de celle de Prisma, permettant une gestion plus fine des requêtes et des relations. Drizzle est conçu pour être rapide et léger, avec une syntaxe sql.",
+        },
+      ],
+    };
+  },
   head() {
     return {
       title: "Technologies - Portfolio",
@@ -255,79 +132,108 @@ export default {
       ],
     };
   },
-  mounted() {
-    const technologies = this.$el.querySelectorAll(".oneTechno");
-    technologies.forEach((techno: HTMLElement, index: number) => {
-      techno.style.animationDelay = `${index * 0.3}s`;
-    });
-  },
 };
 </script>
+
 <style scoped>
-.technology {
-  padding: 2rem;
-  height: 80vh;
-  overflow-y: auto; /* Changed to auto for better control */
-  flex-wrap: wrap;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 70%;
+/* General Styles */
+.technologySection {
+  padding: 5rem;
+  text-align: center;
   margin: auto;
-  scrollbar-width: none; /* For Firefox */
-  -ms-overflow-style: none; /* For Internet Explorer and Edge */
 }
-.technology::-webkit-scrollbar {
-  width: 0; /* For Chrome, Safari, and Opera */
-  height: 0;
+
+.technologyTitle {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #333;
 }
-.technologyHeader {
-  margin: 3px;
+
+.technology {
+  padding: 50px 0;
   display: flex;
-  align-items: flex-end;
-  border-bottom: 2px solid black;
-  padding-bottom: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem; /* Space between cards */
+  overflow-y: initial;
+  overflow-x: hidden; /* Prevent horizontal overflow */
+  scrollbar-width: none; /* Firefox */
 }
-.technologyName {
-  font-size: 2rem;
-  margin-left: 1rem;
+
+.technology::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
-.skill {
-  margin: 1rem 0rem;
-}
+
+/* Card Styles */
 .oneTechno {
   display: flex;
   flex-direction: column;
   max-width: 20rem;
-  height: 40%;
-  margin-bottom: 5rem;
-  transition: transform 0.5s ease;
-  animation: slideIn 450ms ease-out forwards;
-  transform: translateY(200px);
-  filter: blur(10px);
-  min-height: 350px;
-  border-radius: 10px;
+  padding: 1.5rem;
+  border-radius: 15px;
   background: white;
-  box-shadow: 12px 12px 24px #f3f0f0, -12px -12px 24px #f2f2f2;
+  box-shadow: 6px 6px 12px #e0e0e0, -6px -6px 12px #ffffff; /* Adjusted shadow */
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+  transform: translateY(50px);
+  visibility: hidden; /* Ensure the card is hidden initially */
 }
 
-.technoData {
-  margin: 1rem;
+.technologyHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
 }
+
+.technologyLogo {
+  flex-shrink: 0;
+}
+
+.technologyName {
+  font-size: 1.5rem;
+  margin-left: 1rem;
+  color: #333;
+}
+
+.skill {
+  margin: 1rem 0;
+  font-weight: bold;
+}
+
+.technologyDetails {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* Icon Styles */
 .technologyIcon {
-  height: 3rem;
   width: 3rem;
+  height: 3rem;
 }
-@keyframes slideIn {
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+    visibility: hidden; /* Ensure the card remains hidden */
+  }
   to {
     opacity: 1;
     transform: translateY(0);
-    filter: blur(0);
+    visibility: visible; /* Make the card visible at the end */
   }
 }
-@media (max-width: 815px) {
-  .technology {
-    justify-content: center;
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .technologyTitle {
+    font-size: 2rem;
+  }
+
+  .oneTechno {
+    max-width: 100%;
   }
 }
 </style>
