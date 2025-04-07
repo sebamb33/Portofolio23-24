@@ -12,9 +12,9 @@ export default defineEventHandler(async (event: H3Event) => {
       message: "Email et message sont requis.",
     };
   }
-
+  console.log("je suis la ");
   const resend = new Resend(config.RESEND_API_KEY);
-
+  console.log("resend", resend);
   try {
     // Email pour moi
     const dataAdmin = await resend.emails.send({
@@ -23,6 +23,7 @@ export default defineEventHandler(async (event: H3Event) => {
       subject: "Nouveau message depuis votre portfolio",
       html: generateEmailHtml(email, message),
     });
+    console.log("dataAdmin", dataAdmin);
 
     // Email de confirmation pour l'utilisateur
     const dataUser = await resend.emails.send({
@@ -31,6 +32,7 @@ export default defineEventHandler(async (event: H3Event) => {
       subject: "Merci pour votre message",
       html: generateConfirmationEmailHtml(),
     });
+    console.log("dataUser", dataUser);
 
     return {
       success: true,
