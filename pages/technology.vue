@@ -222,7 +222,7 @@ export default {
   to {
     opacity: 1;
     transform: translateY(0);
-    visibility: visible; /* Make the card visible at the end */
+    visibility: visible;
   }
 }
 
@@ -230,6 +230,16 @@ export default {
 @media (max-width: 768px) {
   .technologyTitle {
     font-size: 2rem;
+  }
+  .skill {
+    text-align: left;
+  }
+  .technologySection {
+    padding: 1rem;
+  }
+  .technology {
+    padding: 60px;
+    gap: 4rem; /
   }
 
   .oneTechno {

@@ -72,9 +72,9 @@ export default defineComponent({
 <style scoped>
 /* General Styles */
 .experience {
-  padding: 2rem;
+  padding: 0.5rem;
   max-width: 1200px;
-  margin: auto;
+  margin: 5rem auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -82,7 +82,7 @@ export default defineComponent({
 
 .experienceTitle {
   font-size: 2.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 5rem;
   text-align: center;
   color: #333;
 }
@@ -161,6 +161,9 @@ export default defineComponent({
 
   .experienceItem {
     padding: 1rem;
+    width: 75%;
+    margin: auto;
+    gap: 4rem;
   }
 
   .date {
