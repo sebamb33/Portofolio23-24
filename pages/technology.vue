@@ -239,7 +239,7 @@ export default {
   }
   .technology {
     padding: 60px;
-    gap: 4rem; /
+    gap: 4rem;
   }
 
   .oneTechno {
