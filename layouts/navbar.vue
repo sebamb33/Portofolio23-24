@@ -62,7 +62,7 @@
   justify-content: space-between;
   margin: auto;
   position: relative;
-  width: 80%;
+  width: 95%;
   height: 15%;
   margin-top: 1em;
   border: 1px solid #e8e8e8;
