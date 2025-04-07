@@ -16,4 +16,26 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ["nuxt-icon"],
   compatibilityDate: "2025-04-02",
+
+  nitro: {
+    routeRules: {
+      "/assets/**": {
+        headers: {
+          "Cache-Control": "public, max-age=31536000, immutable",
+        },
+      },
+    },
+  },
+  app: {
+    head: {
+      link: [
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Fira+Code&display=swap",
+          media: "print",
+          onload: "this.media='all'",
+        },
+      ],
+    },
+  },
 });
