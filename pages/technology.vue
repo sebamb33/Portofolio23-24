@@ -154,7 +154,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 2rem; /* Space between cards */
+  gap: 2rem;
   overflow-y: initial;
   overflow-x: hidden; /* Prevent horizontal overflow */
   scrollbar-width: none; /* Firefox */
@@ -172,11 +172,11 @@ export default {
   padding: 1.5rem;
   border-radius: 15px;
   background: white;
-  box-shadow: 6px 6px 12px #e0e0e0, -6px -6px 12px #ffffff; /* Adjusted shadow */
+  box-shadow: 6px 6px 12px #e0e0e0, -6px -6px 12px #ffffff;
   animation: fadeInUp 0.6s ease forwards;
   opacity: 0;
   transform: translateY(50px);
-  visibility: hidden; /* Ensure the card is hidden initially */
+  visibility: hidden;
 }
 
 .technologyHeader {
