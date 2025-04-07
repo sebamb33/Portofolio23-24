@@ -126,11 +126,7 @@
       <div class="technoData">
         <div class="technologyHeader">
           <div class="technologyLogo">
-            <Icon
-              name="devicon-plain:cypressio-wordmark"
-              color="black"
-              class="technologyIcon"
-            />
+            <Icon name="logos:cypress" color="black" class="technologyIcon" />
           </div>
           <div class="technologyName">Cypress</div>
         </div>
@@ -241,9 +237,27 @@ import Skillbar from "~/components/Skillbar.vue";
 
 export default {
   components: { Skillbar },
+  head() {
+    return {
+      title: "Technologies - Portfolio",
+      meta: [
+        {
+          name: "description",
+          content:
+            "Découvrez les technologies que j'ai utilisées et maîtrisées, comme VueJs, React, Docker, et bien d'autres.",
+        },
+        {
+          name: "keywords",
+          content:
+            "VueJs, React, Docker, Cypress, Prisma, Symfony, Jest, Hono, Drizzle, Portfolio",
+        },
+        { name: "author", content: "Seb" },
+      ],
+    };
+  },
   mounted() {
     const technologies = this.$el.querySelectorAll(".oneTechno");
-    technologies.forEach((techno, index) => {
+    technologies.forEach((techno: HTMLElement, index: number) => {
       techno.style.animationDelay = `${index * 0.3}s`;
     });
   },
