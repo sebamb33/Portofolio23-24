@@ -23,10 +23,10 @@
                 ></vue-hcaptcha>
 
                 <button
-                    v-if="verifyHcaptcha"
                     type="submit"
                     class="buttonSend"
                     @click="verifyEmail"
+                    v-if="verifyHcaptcha"
                 >
                     Envoyer
                 </button>
