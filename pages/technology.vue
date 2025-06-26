@@ -15,11 +15,6 @@
             </div>
             <div class="technologyName">{{ tech.name }}</div>
           </div>
-          <div class="skill">Niveaux :</div>
-          <div class="skillLevel">
-            <Skillbar :skillNumber="tech.skillLevel" />
-          </div>
-          <p class="technologyDetails">{{ tech.details }}</p>
         </div>
       </div>
     </div>
@@ -27,89 +22,53 @@
 </template>
 
 <script lang="ts">
-import Skillbar from "~/components/Skillbar.vue";
-
 export default {
-  components: { Skillbar },
   data() {
     return {
       technologies: [
         {
           name: "VueJs",
           icon: "uil:vuejs",
-          skillLevel: 4,
-          details:
-            "Utilisé chez AgenceGW et personnellement pour des applications. VueJs m'a permis de renforcer mes compétences en développement front-end.",
         },
         {
           name: "React",
           icon: "uil:react",
-          skillLevel: 3,
-          details:
-            "Utilisé dans de nombreux projets durant mes études et dans quelques projet personnelle.",
         },
         {
           name: "Express",
           icon: "devicon:express",
-          skillLevel: 3,
-          details:
-            "Utilisé en autodidacte pour comprendre le développement backend en Node.js, renforçant ma maîtrise des API.",
         },
         {
           name: "Prisma",
           icon: "tabler:brand-prisma",
-          skillLevel: 3,
-          details:
-            "Appris en autodidacte pour simplifier l'interaction avec les bases de données en TS.",
         },
         {
           name: "Jest",
           icon: "simple-icons:jest",
-          skillLevel: 3,
-          details:
-            "Utilisé durant mes études pour les tests unitaires, Jest m’a permis d’améliorer la qualité et la fiabilité de mes applications.",
         },
         {
           name: "Symfony",
           icon: "logos:symfony",
-          skillLevel: 3,
-          details:
-            "Principalement utilisé chez AgenceGW pour le backend, Symfony m'a permis de renforcer mes compétences en architecture MVC.",
         },
         {
           name: "Cypress",
           icon: "logos:cypress",
-          skillLevel: 4,
-          details:
-            "Utilisé en entreprise pour les tests end-to-end, Cypress m’a permis d'automatiser et de fiabiliser le processus de test.",
         },
         {
           name: "Docker",
           icon: "la:docker",
-          skillLevel: 4,
-          details:
-            "Utilisé pour la virtualisation des environnements, Docker m'a permis d'assurer la portabilité et la cohérence des applications.",
         },
         {
           name: "Kirby",
           icon: "logos:kirby-icon",
-          skillLevel: 4,
-          details:
-            "Utilisé chez AgenceGW pour des sites éco-conçus, Kirby m’a permis de créer des solutions légères et optimisées.",
         },
         {
           name: "Hono",
           icon: "simple-icons:hono",
-          skillLevel: 3,
-          details:
-            "Technologie moderne et performante pour le backend. Utilisé en autodidacte pour créer des solutions légères et optimisées.",
         },
         {
           name: "Drizzle",
           icon: "lineicons:drizzle",
-          skillLevel: 2,
-          details:
-            "ORM avec une approche différente de celle de Prisma, permettant une gestion plus fine des requêtes et des relations. Drizzle est conçu pour être rapide et léger, avec une syntaxe sql.",
         },
       ],
     };
@@ -193,17 +152,6 @@ export default {
   font-size: 1.5rem;
   margin-left: 1rem;
   color: #333;
-}
-
-.skill {
-  margin: 1rem 0;
-  font-weight: bold;
-}
-
-.technologyDetails {
-  font-size: 0.9rem;
-  color: #666;
-  line-height: 1.5;
 }
 
 /* Icon Styles */
