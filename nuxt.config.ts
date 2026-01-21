@@ -14,7 +14,7 @@ export default defineNuxtConfig({
   },
 
   devtools: { enabled: true },
-  modules: ["nuxt-icon"],
+  modules: ["nuxt-icon", "@vueuse/motion/nuxt"],
   compatibilityDate: "2025-04-02",
 
   nitro: {

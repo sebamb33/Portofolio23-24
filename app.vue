@@ -57,6 +57,8 @@ body {
   font-family: "Fira Code", monospace;
   height: 70%;
   padding: 0;
+  background: linear-gradient(145deg, #f8f9fa 0%, #f5f6fa 50%, #f7f8f9 100%);
+  min-height: 100vh;
 }
 .principal {
   margin: auto;
