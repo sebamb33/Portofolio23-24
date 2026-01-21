@@ -3,7 +3,7 @@
     <h1 class="experienceTitle">Expériences</h1>
     <div class="experienceContainer">
       <article
-        class="experienceItem"
+        class="experience-card"
         v-for="(exp, index) in experiences"
         :key="index"
         :style="{ animationDelay: `${index * 0.3}s` }"
@@ -50,7 +50,7 @@ export default defineComponent({
     ]);
 
     onMounted(() => {
-      const items = document.querySelectorAll(".experienceItem");
+      const items = document.querySelectorAll(".experience-card");
       items.forEach((item) => {
         const element = item as HTMLElement; // Cast explicit
         element.style.opacity = "0";
@@ -95,27 +95,79 @@ export default defineComponent({
 }
 
 /* Experience Item */
-.experienceItem {
-  background: white;
-  box-shadow: 12px 12px 24px #f3f0f0, -12px -12px 24px #f2f2f2;
-  border-radius: 15px;
+.experience-card {
   padding: 1.5rem;
   transition: transform 0.3s ease, opacity 0.3s ease;
   animation: fadeIn 0.6s ease forwards;
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+  
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  backdrop-filter: blur(40px) contrast(120%) brightness(108%);
+  -webkit-backdrop-filter: blur(40px) contrast(120%) brightness(108%);
+  
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.08),
+    0 8px 16px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 2px 6px rgba(255, 255, 255, 0.35),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 0 40px rgba(255, 255, 255, 0.06);
+}
+
+.experience-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 100%
+  );
+  border-radius: 24px 24px 0 0;
+  pointer-events: none;
+}
+
+.experience-card:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.12),
+    0 10px 20px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 2px 8px rgba(255, 255, 255, 0.4),
+    inset 0 -2px 8px rgba(0, 0, 0, 0.05),
+    0 0 0 1px rgba(255, 255, 255, 0.15),
+    0 0 60px rgba(255, 255, 255, 0.08);
 }
 
 .date {
   font-weight: bold;
   font-size: 1.2rem;
   margin-bottom: 1rem;
-  color: #555;
+  color: #3a3a3a;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
 }
 
 .experienceText {
   font-size: 1rem;
   line-height: 1.6;
-  color: #666;
+  color: #4a4a4a;
   margin-bottom: 1rem;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
 }
 
 .experienceTech {
@@ -125,20 +177,61 @@ export default defineComponent({
 }
 
 .technologie {
-  background: #f9f8f8;
-  border: 1px solid #f7f5f5;
-  border-radius: 0.5rem;
+  border-radius: 12px;
   padding: 0.5rem 1rem;
   font-size: 0.9rem;
-  color: #333;
-  box-shadow: 6px 6px 12px #efefef, -6px -6px 12px #ffffff;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
+  color: #3a3a3a;
+  transition: all 0.3s ease;
+  cursor: none;
+  position: relative;
+  
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
+.technologie::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    transparent 100%
+  );
+  border-radius: 12px 12px 0 0;
+  pointer-events: none;
 }
 
 .technologie:hover {
-  transform: translateY(-3px);
-  box-shadow: 8px 8px 16px #e0e0e0, -8px -8px 16px #ffffff;
+  transform: translateY(-2px) scale(1.05);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.28) 0%,
+    rgba(255, 255, 255, 0.18) 50%,
+    rgba(255, 255, 255, 0.28) 100%
+  );
+  box-shadow: 
+    0 6px 16px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.9);
 }
 
 /* Animations */
@@ -159,7 +252,7 @@ export default defineComponent({
     font-size: 2rem;
   }
 
-  .experienceItem {
+  .experience-card {
     padding: 1rem;
     width: 75%;
     margin: auto;

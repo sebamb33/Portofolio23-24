@@ -3,7 +3,7 @@
     <h1 class="technologyTitle">Technologies</h1>
     <div class="technology">
       <div
-        class="oneTechno"
+        class="tech-card"
         v-for="(tech, index) in technologies"
         :key="index"
         :style="{ animationDelay: `${index * 0.2}s` }"
@@ -124,18 +124,70 @@ export default {
 }
 
 /* Card Styles */
-.oneTechno {
+.tech-card {
   display: flex;
   flex-direction: column;
   max-width: 20rem;
   padding: 1.5rem;
-  border-radius: 15px;
-  background: white;
-  box-shadow: 6px 6px 12px #e0e0e0, -6px -6px 12px #ffffff;
+  border-radius: 24px;
   animation: fadeInUp 0.6s ease forwards;
   opacity: 0;
   transform: translateY(50px);
   visibility: hidden;
+  
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  backdrop-filter: blur(40px) contrast(120%) brightness(108%);
+  -webkit-backdrop-filter: blur(40px) contrast(120%) brightness(108%);
+  
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.08),
+    0 8px 16px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 2px 6px rgba(255, 255, 255, 0.35),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 0 40px rgba(255, 255, 255, 0.06);
+  
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.tech-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 100%
+  );
+  border-radius: 24px 24px 0 0;
+  pointer-events: none;
+}
+
+.tech-card:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.12),
+    0 10px 20px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 2px 8px rgba(255, 255, 255, 0.4),
+    inset 0 -2px 8px rgba(0, 0, 0, 0.05),
+    0 0 0 1px rgba(255, 255, 255, 0.15),
+    0 0 60px rgba(255, 255, 255, 0.08);
 }
 
 .technologyHeader {
@@ -151,7 +203,9 @@ export default {
 .technologyName {
   font-size: 1.5rem;
   margin-left: 1rem;
-  color: #333;
+  color: #3a3a3a;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
+  font-weight: 500;
 }
 
 /* Icon Styles */
@@ -190,7 +244,7 @@ export default {
     gap: 4rem;
   }
 
-  .oneTechno {
+  .tech-card {
     max-width: 100%;
   }
 }
