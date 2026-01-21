@@ -97,10 +97,4 @@ input,
 textarea {
   cursor: none !important;
 }
-.application {
-  max-width: 2000px;
-}
-.technology {
-  max-width: 1900px;
-}
 </style>

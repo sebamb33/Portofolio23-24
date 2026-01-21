@@ -508,9 +508,7 @@ export default defineComponent({
     cursor: not-allowed;
     transform: none;
 }
-*:onfocus {
-    outline: none;
-}
+
 
 @keyframes roadRunnerIn {
     0% {

@@ -233,9 +233,6 @@ export default {
   .technologyTitle {
     font-size: 2rem;
   }
-  .skill {
-    text-align: left;
-  }
   .technologySection {
     padding: 1rem;
   }

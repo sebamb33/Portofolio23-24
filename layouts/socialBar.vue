@@ -5,6 +5,7 @@
       target="_blank"
     >
       <img
+        class="social-icon"
         src="https://img.icons8.com/50/000000/linkedin.png"
         alt="Logo linkedin"
         title="Redirection vers mon Linkedin"
@@ -12,6 +13,7 @@
     </a>
     <a href="https://github.com/sebamb33" target="_blank">
       <img
+        class="social-icon"
         src="https://img.icons8.com/50/000000/github--v1.png"
         alt="logo github"
         title="Redirection vers mon github"
@@ -35,7 +37,7 @@
     display: none;
   }
 }
-img {
+.social-icon {
   color: white;
   padding: 8px;
   font-size: 12px;
@@ -69,7 +71,7 @@ img {
   position: relative;
 }
 
-img::before {
+.social-icon::before {
   content: '';
   position: absolute;
   top: 0;
@@ -85,7 +87,7 @@ img::before {
   pointer-events: none;
 }
 
-img:hover {
+.social-icon:hover {
   transform: translateY(-2px) scale(1.05);
   box-shadow: 
     0 25px 50px rgba(0, 0, 0, 0.12),
