@@ -62,6 +62,26 @@ body {
 }
 .principal {
   margin: auto;
+  max-width: 2000px;
+  padding: 0 20px;
+}
+
+@media (max-width: 1200px) {
+  .principal {
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .principal {
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .principal {
+    padding: 0 5px;
+  }
 }
 
 .navbar {

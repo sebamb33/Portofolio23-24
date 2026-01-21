@@ -260,14 +260,17 @@
     position: sticky;
     top: 0px;
     z-index: 100;
-    border-radius: 20px;
+    border-radius: 16px;
+    width: 98%;
+    height: 70px;
+    margin-top: 0.5em;
     
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.15) 0%,
-    rgba(255, 255, 255, 0.1) 50%,
-    rgba(255, 255, 255, 0.06) 100%
-  );
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0.06) 100%
+    );
     backdrop-filter: blur(35px) contrast(115%) brightness(108%);
     -webkit-backdrop-filter: blur(35px) contrast(115%) brightness(108%);
     border: 1px solid rgba(255, 255, 255, 0.22);
@@ -281,6 +284,40 @@
   }
   .burger-icon {
     display: block;
+    padding: 8px;
+  }
+  .burger-icon span {
+    width: 25px;
+    height: 2px;
+    margin: 4px;
+    background: #3a3a3a;
+  }
+}
+
+@media (max-width: 768px) {
+  .Navbar {
+    width: 95%;
+    height: 65px;
+    border-radius: 14px;
+  }
+  .burger-icon span {
+    width: 22px;
+    height: 2px;
+    margin: 3px;
+  }
+}
+
+@media (max-width: 480px) {
+  .Navbar {
+    width: 92%;
+    height: 60px;
+    margin-top: 0.3em;
+    border-radius: 12px;
+  }
+  .burger-icon span {
+    width: 20px;
+    height: 2px;
+    margin: 2px;
   }
 }
 </style>

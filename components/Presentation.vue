@@ -128,10 +128,56 @@ h1 {
     .description {
         margin: auto;
         width: 80%;
+        padding: 20px;
         .presentation {
             margin: 5%;
             margin-left: 0px;
         }
+    }
+    .buttonSend {
+        width: 100%;
+        max-width: 300px;
+        align-self: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .description {
+        width: 90%;
+        padding: 15px;
+    }
+    h1 {
+        font-size: 2.5em;
+        margin-top: 2em;
+    }
+    .typedText {
+        font-size: 1.3em;
+    }
+    .presentation {
+        font-size: 0.9em;
+        margin-top: 1.5em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .description {
+        width: 95%;
+        padding: 10px;
+    }
+    h1 {
+        font-size: 2em;
+        margin-top: 1.5em;
+    }
+    .typedText {
+        font-size: 1.1em;
+    }
+    .presentation {
+        font-size: 0.85em;
+        margin-top: 1em;
+    }
+    .buttonSend {
+        height: 2.5em;
+        font-size: 1em;
     }
 }
 </style>

@@ -134,7 +134,13 @@ export default defineComponent({
     align-items: center;
     z-index: 1000;
     transform: scale(0);
-    transition: transform 0s 0.5s;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    opacity: 0;
+}
+
+.modal-overlay.active {
+    transform: scale(1);
+    opacity: 1;
 }
 
 .modal-overlay.active {
@@ -158,8 +164,9 @@ export default defineComponent({
     position: relative;
     width: 500px;
     max-width: 90%;
-    transform: translateX(-1500px);
-    animation: roadRunnerIn 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    transform: scale(0.8) translateY(50px);
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     
     border: 1px solid rgba(255, 255, 255, 0.18);
     
@@ -173,6 +180,134 @@ export default defineComponent({
       inset 0 -2px 8px rgba(0, 0, 0, 0.03),
       0 0 0 1px rgba(255, 255, 255, 0.08),
       0 0 60px rgba(255, 255, 255, 0.1);
+}
+
+.modal-overlay.active .modal {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .modal {
+        width: calc(100% - 40px);
+        height: 85vh;
+        max-height: 700px;
+        padding: 50px 35px;
+        border-radius: 24px;
+        margin: 20px auto;
+        max-width: none;
+        backdrop-filter: blur(60px) saturate(220%) contrast(140%) brightness(115%);
+        -webkit-backdrop-filter: blur(60px) saturate(220%) contrast(140%) brightness(115%);
+        
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.06) 0%,
+          rgba(255, 255, 255, 0.03) 25%,
+          rgba(255, 255, 255, 0.01) 50%,
+          rgba(255, 255, 255, 0.03) 75%,
+          rgba(255, 255, 255, 0.06) 100%
+        );
+        
+        box-shadow: 
+          0 30px 60px rgba(0, 0, 0, 0.15),
+          0 15px 30px rgba(0, 0, 0, 0.1),
+          inset 0 1px 0 rgba(255, 255, 255, 0.3),
+          inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+          inset 0 2px 8px rgba(255, 255, 255, 0.2),
+          0 0 0 1px rgba(255, 255, 255, 0.05);
+    }
+    .close {
+        top: 30px;
+        right: 30px;
+        width: 55px;
+        height: 55px;
+        font-size: 30px;
+        z-index: 1000;
+        position: fixed;
+    }
+    .input-email,
+    .textarea-message {
+        width: calc(100% - 20px);
+        margin: 15px 10px;
+        padding: 16px 20px;
+        font-size: 16px;
+        border-radius: 20px;
+        backdrop-filter: blur(40px) saturate(180%);
+        -webkit-backdrop-filter: blur(40px) saturate(180%);
+        box-sizing: border-box;
+    }
+    .textarea-message {
+        height: 120px;
+    }
+    .buttonSend {
+        width: calc(100% - 20px);
+        margin: 20px 10px;
+        height: 3.2em;
+        font-size: 1.1em;
+        border-radius: 22px;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal {
+        width: calc(100% - 30px);
+        height: 80vh;
+        max-height: 600px;
+        padding: 40px 20px;
+        border-radius: 20px;
+        margin: 15px auto;
+        backdrop-filter: blur(60px) saturate(220%) contrast(140%) brightness(115%);
+        -webkit-backdrop-filter: blur(60px) saturate(220%) contrast(140%) brightness(115%);
+        
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.06) 0%,
+          rgba(255, 255, 255, 0.03) 25%,
+          rgba(255, 255, 255, 0.01) 50%,
+          rgba(255, 255, 255, 0.03) 75%,
+          rgba(255, 255, 255, 0.06) 100%
+        );
+        
+        box-shadow: 
+          0 30px 60px rgba(0, 0, 0, 0.15),
+          0 15px 30px rgba(0, 0, 0, 0.1),
+          inset 0 1px 0 rgba(255, 255, 255, 0.3),
+          inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+          inset 0 2px 8px rgba(255, 255, 255, 0.2),
+          0 0 0 1px rgba(255, 255, 255, 0.05);
+    }
+    .close {
+        top: 25px;
+        right: 25px;
+        width: 50px;
+        height: 50px;
+        font-size: 28px;
+        z-index: 1000;
+        position: fixed;
+    }
+    .input-email,
+    .textarea-message {
+        width: calc(100% - 20px);
+        margin: 12px 10px;
+        padding: 14px 15px;
+        font-size: 15px;
+        border-radius: 18px;
+        backdrop-filter: blur(40px) saturate(180%);
+        -webkit-backdrop-filter: blur(40px) saturate(180%);
+        box-sizing: border-box;
+    }
+    .textarea-message {
+        height: 100px;
+    }
+    .buttonSend {
+        width: calc(100% - 20px);
+        margin: 15px 10px;
+        height: 3em;
+        font-size: 1em;
+        border-radius: 20px;
+        box-sizing: border-box;
+    }
 }
 
 .modal.out {
