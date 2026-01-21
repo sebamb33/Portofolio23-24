@@ -57,9 +57,31 @@ body {
   font-family: "Fira Code", monospace;
   height: 70%;
   padding: 0;
+  background: linear-gradient(145deg, #f8f9fa 0%, #f5f6fa 50%, #f7f8f9 100%);
+  min-height: 100vh;
 }
 .principal {
   margin: auto;
+  max-width: 2000px;
+  padding: 0 20px;
+}
+
+@media (max-width: 1200px) {
+  .principal {
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .principal {
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .principal {
+    padding: 0 5px;
+  }
 }
 
 .navbar {
@@ -74,11 +96,5 @@ a,
 input,
 textarea {
   cursor: none !important;
-}
-.application {
-  max-width: 2000px;
-}
-.technology {
-  max-width: 1900px;
 }
 </style>

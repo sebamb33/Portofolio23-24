@@ -1,5 +1,5 @@
 <template>
-  <div class="TechnologiesPart">
+  <div class="technologies-container">
 
   </div>
 </template>
@@ -14,18 +14,14 @@ export default {
   }
 }
 </script>
-<style>
-.TechnologiesPart{
+<style scoped>
+.technologies-container {
   position: relative;
-  border: 1px solid black;
-  width: 12em;
-  margin-top: 7em;
-  border-radius: 1em;
-  background: #f5f5f5;
-  padding: 1em;
   width: 80%;
+  margin: 7em auto 0;
+  border-radius: 1em;
+  padding: 1em;
   display: flex;
   flex-direction: row;
-
 }
 </style>

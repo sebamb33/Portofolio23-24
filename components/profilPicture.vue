@@ -34,22 +34,70 @@ export default defineComponent({
 <style scoped>
 .ProfilPictureComponent {
   width: 25%;
-  background-color: white;
-  border: 10px solid black;
-  padding: 15px;
-
+  padding: 20px;
   text-align: center;
   margin: auto;
   margin-top: 5%;
   height: 80%;
-  border-radius: 15px;
-  background: #f9f8f8;
-  cursor: pointer;
-  border: 1px solid #e8e8e8;
-  transition: all 0.3s;
-  border-radius: 10px;
-  background: white;
-  box-shadow: 12px 12px 24px #f3f0f0, -12px -12px 24px #f2f2f2;
+  cursor: none;
+  border-radius: 32px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  position: relative;
+  
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.05) 25%,
+    rgba(255, 255, 255, 0.02) 50%,
+    rgba(255, 255, 255, 0.05) 75%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+  backdrop-filter: blur(50px) saturate(200%) contrast(130%) brightness(110%);
+  -webkit-backdrop-filter: blur(50px) saturate(200%) contrast(130%) brightness(110%);
+  
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  
+  box-shadow: 
+    0 30px 60px rgba(0, 0, 0, 0.15),
+    0 15px 30px rgba(0, 0, 0, 0.1),
+    0 6px 18px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 2px 8px rgba(255, 255, 255, 0.25),
+    inset 0 -2px 8px rgba(0, 0, 0, 0.03),
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 0 60px rgba(255, 255, 255, 0.1);
+}
+
+.ProfilPictureComponent::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 100%
+  );
+  border-radius: 32px 32px 0 0;
+  pointer-events: none;
+}
+
+.ProfilPictureComponent:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 40px 80px rgba(0, 0, 0, 0.18),
+    0 20px 40px rgba(0, 0, 0, 0.12),
+    0 8px 20px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 2px 10px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 10px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 0 80px rgba(255, 255, 255, 0.15);
 }
 
 .ProfilPictureComponent img {
@@ -61,8 +109,10 @@ export default defineComponent({
 
 .description p {
   margin: 5px 0;
-  color: black;
+  color: #3a3a3a;
   font-size: 18px;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
+  font-weight: 500;
 }
 
 @media screen and (max-width: 1200px) {

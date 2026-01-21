@@ -18,10 +18,7 @@ const props = defineProps({
 </script>
 
 <style scoped>
-html {
-  min-height: 100%;
-  background: white;
-}
+
 
 ul {
   display: flex;

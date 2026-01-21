@@ -1,77 +1,41 @@
-# Nuxt 3 Minimal Starter
+# Portfolio Sébastien Ambona
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Portfolio personnel développé avec Nuxt 3.
 
 ## Setup
 
-Make sure to install the dependencies:
+Installer les dépendances :
 
 ```bash
-# npm
-npm install
-
-# pnpm
 pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
+## Développement
 
-Start the development server on `http://localhost:3000`:
+Démarrer le serveur de développement sur `http://localhost:3001` :
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
 pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
 ## Production
 
-Build the application for production:
+Construire l'application pour la production :
 
 ```bash
-# npm
-npm run build
-
-# pnpm
 pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
 
-Locally preview production build:
+Aperçu local de la version de production :
 
 ```bash
-# npm
-npm run preview
-
-# pnpm
 pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Scripts disponibles
 
-# Portofolio23-24
+- `pnpm run dev` - Démarrer le serveur de développement
+- `pnpm run build` - Construire pour la production
+- `pnpm run generate` - Générer des fichiers statiques
+- `pnpm run preview` - Aperçu de la production
+- `pnpm run clean` - Nettoyer le dossier .output
