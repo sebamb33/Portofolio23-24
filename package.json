@@ -5,10 +5,10 @@
   "scripts": {
     "clean": "rm -rf .output",
     "build": "pnpm run clean && nuxt build",
-    "dev": "nuxt dev -p 3001",
+    "dev": "nuxt dev --host -p 3777",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "start": "PORT=3001 node .output/server/index.mjs",
+    "start": "HOST=0.0.0.0 PORT=3777 node .output/server/index.mjs",
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {

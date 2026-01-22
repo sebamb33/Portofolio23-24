@@ -73,6 +73,7 @@ export default defineComponent({
 /* General Styles */
 .experience {
   padding: 0.5rem;
+  padding-bottom: 5rem;
   max-width: 1200px;
   margin: 5rem auto;
   display: flex;
@@ -92,6 +93,7 @@ export default defineComponent({
   flex-direction: column;
   gap: 2rem;
   width: 100%;
+  padding-bottom: 50px;
 }
 
 /* Experience Item */
