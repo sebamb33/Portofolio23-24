@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div 
-      class="Navbar" 
+    <div
+      class="Navbar"
       v-if="!menuDisplay"
       v-motion
       :initial="{ opacity: 0, y: -50 }"
@@ -75,7 +75,7 @@
   margin: 0;
   padding: 0;
   outline: none;
-  color: #3a3a3a;
+  color: var(--text-color);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   padding: 10px 18px;
@@ -112,14 +112,14 @@
     rgba(255, 255, 255, 0.18) 50%,
     rgba(255, 255, 255, 0.28) 100%
   );
-  box-shadow: 
+  box-shadow:
     0 4px 12px rgba(0, 0, 0, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 .lien a {
   text-decoration: none;
-  color: #3a3a3a;
+  color: var(--text-color);
   font-weight: 500;
   text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
   transition: all 0.3s ease;
@@ -128,7 +128,7 @@
 }
 
 .lien:hover a {
-  color: #2a2a2a;
+  color: var(--text-color-hover);
   transform: translateY(-1px);
   text-shadow: 0 2px 4px rgba(255, 255, 255, 0.9);
 }
@@ -144,7 +144,8 @@
   margin-top: 1em;
   border-radius: 28px;
   overflow: hidden;
-  
+  position: relative;
+
   background: linear-gradient(
     135deg,
     rgba(255, 255, 255, 0.12) 0%,
@@ -155,10 +156,8 @@
   );
   backdrop-filter: blur(40px) contrast(120%) brightness(108%);
   -webkit-backdrop-filter: blur(40px) contrast(120%) brightness(108%);
-  
   border: 1px solid rgba(255, 255, 255, 0.25);
-  
-  box-shadow: 
+  box-shadow:
     0 20px 40px rgba(0, 0, 0, 0.08),
     0 8px 16px rgba(0, 0, 0, 0.05),
     inset 0 1px 0 rgba(255, 255, 255, 0.6),
@@ -167,8 +166,6 @@
     inset 0 -2px 6px rgba(0, 0, 0, 0.04),
     0 0 0 1px rgba(255, 255, 255, 0.1),
     0 0 40px rgba(255, 255, 255, 0.06);
-  
-  position: relative;
 }
 
 .Navbar::before {
@@ -187,6 +184,7 @@
     transparent
   );
   transition: left 1.2s ease;
+  pointer-events: none;
 }
 
 .Navbar::after {
@@ -211,7 +209,7 @@
 
 .Navbar:hover {
   transform: translateY(-2px) scale(1.005);
-  box-shadow: 
+  box-shadow:
     0 25px 50px rgba(0, 0, 0, 0.09),
     0 10px 20px rgba(0, 0, 0, 0.06),
     inset 0 1px 0 rgba(255, 255, 255, 0.7),

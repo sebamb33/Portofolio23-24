@@ -52,6 +52,31 @@ export default defineComponent({
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Fira+Code&display=swap");
+
+:root {
+  --glass-blur-std: 40px;
+  --glass-blur-heavy: 50px;
+  --glass-blur-mobile: 60px;
+  --glass-saturation-std: 120%;
+  --glass-saturation-heavy: 200%;
+  --glass-saturation-mobile: 220%;
+  --glass-contrast-std: 120%;
+  --glass-contrast-heavy: 130%;
+  --glass-contrast-mobile: 140%;
+  --glass-brightness-std: 108%;
+  --glass-brightness-heavy: 110%;
+  --glass-brightness-mobile: 115%;
+  --glass-bg-opacity-light: 0.12;
+  --glass-bg-opacity-medium: 0.08;
+  --glass-bg-opacity-heavy: 0.05;
+  --glass-border-opacity: 0.25;
+  --glass-border-opacity-light: 0.18;
+  --glass-border-radius: 24px;
+  --glass-border-radius-lg: 32px;
+  --text-color: #3a3a3a;
+  --text-color-hover: #2a2a2a;
+}
+
 body {
   cursor: none;
   font-family: "Fira Code", monospace;

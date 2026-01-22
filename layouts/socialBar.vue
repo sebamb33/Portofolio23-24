@@ -46,7 +46,8 @@
   transition: all 0.3s ease;
   width: 45px;
   height: 45px;
-  
+  position: relative;
+
   background: linear-gradient(
     135deg,
     rgba(255, 255, 255, 0.12) 0%,
@@ -55,10 +56,8 @@
   );
   backdrop-filter: blur(40px) contrast(120%) brightness(108%);
   -webkit-backdrop-filter: blur(40px) contrast(120%) brightness(108%);
-  
   border: 1px solid rgba(255, 255, 255, 0.25);
-  
-  box-shadow: 
+  box-shadow:
     0 20px 40px rgba(0, 0, 0, 0.08),
     0 8px 16px rgba(0, 0, 0, 0.05),
     inset 0 1px 0 rgba(255, 255, 255, 0.6),
@@ -67,8 +66,6 @@
     inset 0 -2px 6px rgba(0, 0, 0, 0.04),
     0 0 0 1px rgba(255, 255, 255, 0.1),
     0 0 40px rgba(255, 255, 255, 0.06);
-  
-  position: relative;
 }
 
 .social-icon::before {
@@ -89,7 +86,7 @@
 
 .social-icon:hover {
   transform: translateY(-2px) scale(1.05);
-  box-shadow: 
+  box-shadow:
     0 25px 50px rgba(0, 0, 0, 0.12),
     0 10px 20px rgba(0, 0, 0, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.7),

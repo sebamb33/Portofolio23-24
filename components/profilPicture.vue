@@ -44,7 +44,7 @@ export default defineComponent({
   overflow: hidden;
   transition: all 0.3s ease;
   position: relative;
-  
+
   background: linear-gradient(
     135deg,
     rgba(255, 255, 255, 0.08) 0%,
@@ -55,10 +55,8 @@ export default defineComponent({
   );
   backdrop-filter: blur(50px) saturate(200%) contrast(130%) brightness(110%);
   -webkit-backdrop-filter: blur(50px) saturate(200%) contrast(130%) brightness(110%);
-  
   border: 1px solid rgba(255, 255, 255, 0.18);
-  
-  box-shadow: 
+  box-shadow:
     0 30px 60px rgba(0, 0, 0, 0.15),
     0 15px 30px rgba(0, 0, 0, 0.1),
     0 6px 18px rgba(0, 0, 0, 0.08),
@@ -88,7 +86,7 @@ export default defineComponent({
 
 .ProfilPictureComponent:hover {
   transform: translateY(-5px);
-  box-shadow: 
+  box-shadow:
     0 40px 80px rgba(0, 0, 0, 0.18),
     0 20px 40px rgba(0, 0, 0, 0.12),
     0 8px 20px rgba(0, 0, 0, 0.08),
@@ -103,7 +101,6 @@ export default defineComponent({
 .ProfilPictureComponent img {
   width: 90%;
   height: 70%;
-  /* garde les proportions de l'image */
   margin-bottom: 20%;
 }
 

@@ -102,7 +102,7 @@ export default defineComponent({
   border-radius: 24px;
   position: relative;
   overflow: hidden;
-  
+
   background: linear-gradient(
     135deg,
     rgba(255, 255, 255, 0.12) 0%,
@@ -111,10 +111,8 @@ export default defineComponent({
   );
   backdrop-filter: blur(40px) contrast(120%) brightness(108%);
   -webkit-backdrop-filter: blur(40px) contrast(120%) brightness(108%);
-  
   border: 1px solid rgba(255, 255, 255, 0.25);
-  
-  box-shadow: 
+  box-shadow:
     0 20px 40px rgba(0, 0, 0, 0.08),
     0 8px 16px rgba(0, 0, 0, 0.05),
     inset 0 1px 0 rgba(255, 255, 255, 0.6),
@@ -143,7 +141,7 @@ export default defineComponent({
 
 .experience-card:hover {
   transform: translateY(-2px) scale(1.01);
-  box-shadow: 
+  box-shadow:
     0 25px 50px rgba(0, 0, 0, 0.12),
     0 10px 20px rgba(0, 0, 0, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.7),
@@ -180,11 +178,10 @@ export default defineComponent({
   border-radius: 12px;
   padding: 0.5rem 1rem;
   font-size: 0.9rem;
-  color: #3a3a3a;
+  color: var(--text-color);
   transition: all 0.3s ease;
   cursor: none;
   position: relative;
-  
   background: linear-gradient(
     135deg,
     rgba(255, 255, 255, 0.2) 0%,
@@ -193,31 +190,12 @@ export default defineComponent({
   );
   backdrop-filter: blur(20px) saturate(150%);
   -webkit-backdrop-filter: blur(20px) saturate(150%);
-  
   border: 1px solid rgba(255, 255, 255, 0.3);
-  
-  box-shadow: 
+  box-shadow:
     0 4px 12px rgba(0, 0, 0, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.4);
-  
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
   font-weight: 500;
-}
-
-.technologie::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 50%;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.15) 0%,
-    transparent 100%
-  );
-  border-radius: 12px 12px 0 0;
-  pointer-events: none;
 }
 
 .technologie:hover {
@@ -228,7 +206,7 @@ export default defineComponent({
     rgba(255, 255, 255, 0.18) 50%,
     rgba(255, 255, 255, 0.28) 100%
   );
-  box-shadow: 
+  box-shadow:
     0 6px 16px rgba(0, 0, 0, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.5);
   text-shadow: 0 2px 4px rgba(255, 255, 255, 0.9);

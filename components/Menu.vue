@@ -1,6 +1,6 @@
 <template>
   <div
-    class="menu_nav"
+    class="menu_nav glass-effect-heavy"
     :class="{ 'slide-in': menuOpen }"
     @animationend="onMenuAnimationEnd"
   >
@@ -92,7 +92,7 @@ export default {
   top: 0px;
   transform: translateX(-100%);
   animation: slide-out 0.5s forwards;
-  
+
   background: linear-gradient(
     135deg,
     rgba(255, 255, 255, 0.08) 0%,
@@ -103,10 +103,8 @@ export default {
   );
   backdrop-filter: blur(50px) saturate(200%) contrast(130%) brightness(110%);
   -webkit-backdrop-filter: blur(50px) saturate(200%) contrast(130%) brightness(110%);
-  
   border: 1px solid rgba(255, 255, 255, 0.18);
-  
-  box-shadow: 
+  box-shadow:
     0 30px 60px rgba(0, 0, 0, 0.15),
     0 15px 30px rgba(0, 0, 0, 0.1),
     0 6px 18px rgba(0, 0, 0, 0.08),
@@ -116,6 +114,21 @@ export default {
     inset 0 -2px 8px rgba(0, 0, 0, 0.03),
     0 0 0 1px rgba(255, 255, 255, 0.08),
     0 0 60px rgba(255, 255, 255, 0.1);
+}
+
+.menu_nav::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 100%
+  );
+  pointer-events: none;
 }
 
 .slide-in {
@@ -164,14 +177,14 @@ export default {
 
 .menu_link a {
   text-decoration: none;
-  color: #3a3a3a;
+  color: var(--text-color);
   font-family: "Fira Code", monospace;
   text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
   transition: all 0.3s ease;
 }
 
 .menu_link:hover a {
-  color: #2a2a2a;
+  color: var(--text-color-hover);
   transform: translateY(-2px);
   text-shadow: 0 2px 4px rgba(255, 255, 255, 0.9);
 }
@@ -188,24 +201,26 @@ export default {
   padding: 30px;
   margin-bottom: 50px;
   align-items: center;
+  position: relative;
 }
 
 .menu_top > div {
     position: absolute;
     top: 20px;
-    right: 20px;
+    right: 80px;
     font-size: 28px;
     cursor: none;
-    color: #3a3a3a;
+    color: var(--text-color);
     text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
     transition: all 0.3s ease;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    
+    z-index: 10;
+
     background: linear-gradient(
       135deg,
       rgba(255, 255, 255, 0.12) 0%,
@@ -215,60 +230,14 @@ export default {
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.25);
-    
-    box-shadow: 
+
+    box-shadow:
       0 8px 16px rgba(0, 0, 0, 0.08),
       inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 .menu_top > div:hover {
-    color: #2a2a2a;
-    transform: scale(1.1);
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.18) 0%,
-      rgba(255, 255, 255, 0.12) 50%,
-      rgba(255, 255, 255, 0.18) 100%
-    );
-}
-
-.menu_top img {
-    display: none;
-}
-
-.menu_top > div {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 28px;
-    cursor: none;
-    color: #3a3a3a;
-    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
-    transition: all 0.3s ease;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.12) 0%,
-      rgba(255, 255, 255, 0.08) 50%,
-      rgba(255, 255, 255, 0.05) 100%
-    );
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    
-    box-shadow: 
-      0 8px 16px rgba(0, 0, 0, 0.08),
-      inset 0 1px 0 rgba(255, 255, 255, 0.4);
-}
-
-.menu_top > div:hover {
-    color: #2a2a2a;
+    color: var(--text-color-hover);
     transform: scale(1.1);
     background: linear-gradient(
       135deg,
@@ -309,15 +278,11 @@ export default {
     margin-bottom: 30px;
   }
   .menu_top > div {
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
     font-size: 32px;
     top: 25px;
-    right: 50px;
-    border: 2px solid rgba(255, 255, 255, 0.35);
-    box-shadow: 
-      0 12px 24px rgba(0, 0, 0, 0.12),
-      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    right: 70px;
   }
 }
 
@@ -339,15 +304,11 @@ export default {
     margin-bottom: 20px;
   }
   .menu_top > div {
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
     font-size: 28px;
     top: 20px;
-    right: 45px;
-    border: 2px solid rgba(255, 255, 255, 0.35);
-    box-shadow: 
-      0 10px 20px rgba(0, 0, 0, 0.12),
-      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    right: 60px;
   }
 }
 </style>
