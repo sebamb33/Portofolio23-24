@@ -25,6 +25,32 @@ import { defineComponent, ref, onMounted } from "vue";
 
 export default defineComponent({
   setup() {
+    useHead({
+      title: "Expériences - Portfolio Ambona Sébastien",
+      meta: [
+        {
+          name: "description",
+          content: "Découvrez les expériences professionnelles d'Ambona Sébastien, développeur full stack. Alternances chez AgenceGW et IDCSOFT, expertise Symfony, Vue.js, Nuxt, Next.js, NestJS.",
+        },
+        {
+          name: "keywords",
+          content: "expériences, alternance, AgenceGW, IDCSOFT, Symfony, VueJs, Nuxt, Next, Nest, développeur, portfolio",
+        },
+        {
+          property: "og:title",
+          content: "Expériences - Portfolio Ambona Sébastien",
+        },
+        {
+          property: "og:description",
+          content: "Parcours professionnel d'Ambona Sébastien, développeur full stack basé à Bordeaux.",
+        },
+        {
+          property: "og:type",
+          content: "website",
+        },
+      ],
+    });
+
     const experiences = ref([
       {
         date: "Sept 2022 - Dec 2024",

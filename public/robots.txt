@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /api/
+Disallow: /_nuxt/
+Disallow: /.output/
+
+Sitemap: https://localhost:3777/sitemap.xml
