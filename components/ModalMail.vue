@@ -3,7 +3,7 @@
         <div class="modal meep-meep" @click.stop>
             <span class="close" @click="close">&times;</span>
             <h2>Contactez moi</h2>
-            <form @submit.prevent="submitForm">
+            <form @submit.prevent="submitForm" class="form-container">
                 <input
                     type="text"
                     v-model="email"
@@ -235,6 +235,7 @@ export default defineComponent({
         backdrop-filter: blur(40px) saturate(180%);
         -webkit-backdrop-filter: blur(40px) saturate(180%);
         box-sizing: border-box;
+        text-align: center;
     }
     .textarea-message {
         height: 120px;
@@ -296,6 +297,7 @@ export default defineComponent({
         backdrop-filter: blur(40px) saturate(180%);
         -webkit-backdrop-filter: blur(40px) saturate(180%);
         box-sizing: border-box;
+        text-align: center;
     }
     .textarea-message {
         height: 100px;
@@ -368,6 +370,7 @@ export default defineComponent({
     font-family: "Fira Code", monospace;
     font-size: 14px;
     color: #3a3a3a;
+    text-align: center;
     
     background: linear-gradient(
       135deg,
@@ -533,6 +536,12 @@ export default defineComponent({
         transform: translateX(1500px) skewX(30deg) scaleX(1.3);
     }
 }
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .hcaptcha {
     display: flex;
     margin-bottom: 20px;
