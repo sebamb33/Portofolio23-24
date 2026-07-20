@@ -1,6 +1,6 @@
 <template>
     <div :class="['modal-overlay', show ? 'active' : '']" @click="close">
-        <div class="modal glass-effect-heavy" @click.stop>
+        <div class="modal meep-meep" @click.stop>
             <span class="close" @click="close">&times;</span>
             <h2>Contactez moi</h2>
             <form @submit.prevent="submitForm" class="form-container">
@@ -8,13 +8,13 @@
                     type="text"
                     v-model="email"
                     placeholder="Votre email"
-                    class="input-email glass-input"
+                    class="input-email"
                 />
                 <textarea
                     v-model="message"
                     placeholder="Votre message"
                     required
-                    class="textarea-message glass-input"
+                    class="textarea-message"
                 />
                 <vue-hcaptcha
                     class="hcaptcha"
@@ -162,14 +162,29 @@ export default defineComponent({
       rgba(255, 255, 255, 0.05) 75%,
       rgba(255, 255, 255, 0.08) 100%
     );
+    backdrop-filter: blur(50px) saturate(200%) contrast(130%) brightness(110%);
+    -webkit-backdrop-filter: blur(50px) saturate(200%) contrast(130%) brightness(110%);
     padding: 60px;
-    border-radius: var(--glass-border-radius-lg);
+    border-radius: 32px;
     position: relative;
     width: 500px;
     max-width: 90%;
     transform: scale(0.8) translateY(50px);
     opacity: 0;
     transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    box-shadow:
+      0 30px 60px rgba(0, 0, 0, 0.15),
+      0 15px 30px rgba(0, 0, 0, 0.1),
+      0 6px 18px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.15),
+      inset 0 2px 8px rgba(255, 255, 255, 0.25),
+      inset 0 -2px 8px rgba(0, 0, 0, 0.03),
+      0 0 0 1px rgba(255, 255, 255, 0.08),
+      0 0 60px rgba(255, 255, 255, 0.1);
 }
 
 .modal-overlay.active .modal {
@@ -186,8 +201,8 @@ export default defineComponent({
         border-radius: 24px;
         margin: 20px auto;
         max-width: none;
-        backdrop-filter: blur(var(--glass-blur-mobile)) saturate(var(--glass-saturation-mobile)) contrast(var(--glass-contrast-mobile)) brightness(var(--glass-brightness-mobile));
-        -webkit-backdrop-filter: blur(var(--glass-blur-mobile)) saturate(var(--glass-saturation-mobile)) contrast(var(--glass-contrast-mobile)) brightness(var(--glass-brightness-mobile));
+        backdrop-filter: blur(60px) saturate(220%) contrast(140%) brightness(115%);
+        -webkit-backdrop-filter: blur(60px) saturate(220%) contrast(140%) brightness(115%);
 
         background: linear-gradient(
           135deg,
@@ -197,8 +212,8 @@ export default defineComponent({
           rgba(255, 255, 255, 0.03) 75%,
           rgba(255, 255, 255, 0.06) 100%
         );
-        
-        box-shadow: 
+
+        box-shadow:
           0 30px 60px rgba(0, 0, 0, 0.15),
           0 15px 30px rgba(0, 0, 0, 0.1),
           inset 0 1px 0 rgba(255, 255, 255, 0.3),
@@ -248,8 +263,8 @@ export default defineComponent({
         padding: 40px 20px;
         border-radius: 20px;
         margin: 15px auto;
-        backdrop-filter: blur(var(--glass-blur-mobile)) saturate(var(--glass-saturation-mobile)) contrast(var(--glass-contrast-mobile)) brightness(var(--glass-brightness-mobile));
-        -webkit-backdrop-filter: blur(var(--glass-blur-mobile)) saturate(var(--glass-saturation-mobile)) contrast(var(--glass-contrast-mobile)) brightness(var(--glass-brightness-mobile));
+        backdrop-filter: blur(60px) saturate(220%) contrast(140%) brightness(115%);
+        -webkit-backdrop-filter: blur(60px) saturate(220%) contrast(140%) brightness(115%);
 
         background: linear-gradient(
           135deg,
@@ -259,8 +274,8 @@ export default defineComponent({
           rgba(255, 255, 255, 0.03) 75%,
           rgba(255, 255, 255, 0.06) 100%
         );
-        
-        box-shadow: 
+
+        box-shadow:
           0 30px 60px rgba(0, 0, 0, 0.15),
           0 15px 30px rgba(0, 0, 0, 0.1),
           inset 0 1px 0 rgba(255, 255, 255, 0.3),
@@ -321,7 +336,7 @@ export default defineComponent({
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    
+
     background: linear-gradient(
       135deg,
       rgba(255, 255, 255, 0.12) 0%,
@@ -331,8 +346,8 @@ export default defineComponent({
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.25);
-    
-    box-shadow: 
+
+    box-shadow:
       0 8px 16px rgba(0, 0, 0, 0.08),
       inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
@@ -354,10 +369,31 @@ export default defineComponent({
     padding: 16px 20px;
     margin: 15px 0;
     border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    transition: all 0.3s ease;
     resize: none;
     font-family: "Fira Code", monospace;
     font-size: 14px;
+    color: #3a3a3a;
     text-align: center;
+
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.18) 0%,
+      rgba(255, 255, 255, 0.12) 50%,
+      rgba(255, 255, 255, 0.08) 100%
+    );
+    backdrop-filter: blur(30px) saturate(150%);
+    -webkit-backdrop-filter: blur(30px) saturate(150%);
+
+    box-shadow:
+      0 15px 30px rgba(0, 0, 0, 0.08),
+      0 6px 12px rgba(0, 0, 0, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.18),
+      inset 0 2px 6px rgba(255, 255, 255, 0.3),
+      inset 0 -2px 6px rgba(0, 0, 0, 0.03),
+      0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
 .input-email::placeholder,
@@ -368,12 +404,23 @@ export default defineComponent({
 
 .input-email:focus,
 .textarea-message:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.4);
     background: linear-gradient(
       135deg,
       rgba(255, 255, 255, 0.22) 0%,
       rgba(255, 255, 255, 0.16) 50%,
       rgba(255, 255, 255, 0.12) 100%
     );
+    transform: translateY(-2px);
+    box-shadow:
+      0 20px 40px rgba(0, 0, 0, 0.12),
+      0 8px 16px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.22),
+      inset 0 2px 8px rgba(255, 255, 255, 0.35),
+      inset 0 -2px 8px rgba(0, 0, 0, 0.04),
+      0 0 0 1px rgba(255, 255, 255, 0.12);
 }
 
 .textarea-message {
@@ -393,7 +440,7 @@ export default defineComponent({
     position: relative;
     display: inline-block;
     outline: none;
-    
+
     background: linear-gradient(
       135deg,
       rgba(255, 255, 255, 0.2) 0%,
@@ -402,10 +449,10 @@ export default defineComponent({
     );
     backdrop-filter: blur(35px) saturate(180%);
     -webkit-backdrop-filter: blur(35px) saturate(180%);
-    
+
     border: 1px solid rgba(255, 255, 255, 0.3);
-    
-    box-shadow: 
+
+    box-shadow:
       0 20px 40px rgba(0, 0, 0, 0.12),
       0 8px 16px rgba(0, 0, 0, 0.08),
       inset 0 1px 0 rgba(255, 255, 255, 0.6),
@@ -414,7 +461,7 @@ export default defineComponent({
       inset 0 -2px 8px rgba(0, 0, 0, 0.05),
       0 0 0 1px rgba(255, 255, 255, 0.15),
       0 0 40px rgba(255, 255, 255, 0.12);
-    
+
     transition: all 0.3s ease;
     text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
 }
@@ -448,7 +495,7 @@ export default defineComponent({
       rgba(255, 255, 255, 0.2) 50%,
       rgba(255, 255, 255, 0.15) 100%
     );
-    box-shadow: 
+    box-shadow:
       0 25px 50px rgba(0, 0, 0, 0.18),
       0 12px 25px rgba(0, 0, 0, 0.12),
       inset 0 1px 0 rgba(255, 255, 255, 0.7),
