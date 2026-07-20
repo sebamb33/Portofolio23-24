@@ -5,21 +5,6 @@
 <script lang="ts">
 export default {
     methods: {
-        clickCursor() {
-            const cursor = this.$refs.customCursor as HTMLElement;
-            cursor.classList.add("clicked");
-            setTimeout(() => cursor.classList.remove("clicked"), 200);
-        },
-    },
-    mounted() {
-        window.addEventListener("mousemove", this.moveCursor);
-        window.addEventListener("click", this.clickCursor);
-    },
-    beforeDestroy() {
-        window.removeEventListener("mousemove", this.moveCursor);
-        window.removeEventListener("click", this.clickCursor);
-    },
-    methods: {
         moveCursor(e) {
             const cursor = this.$refs.customCursor as HTMLElement;
             cursor.style.left = `${e.clientX - cursor.clientWidth / 2}px`;
@@ -30,6 +15,14 @@ export default {
             cursor.classList.add("clicked");
             setTimeout(() => cursor.classList.remove("clicked"), 200);
         },
+    },
+    mounted() {
+        window.addEventListener("mousemove", this.moveCursor);
+        window.addEventListener("click", this.clickCursor);
+    },
+    beforeUnmount() {
+        window.removeEventListener("mousemove", this.moveCursor);
+        window.removeEventListener("click", this.clickCursor);
     },
 };
 </script>

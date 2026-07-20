@@ -1,349 +1,228 @@
 <template>
-    <div class="experience">
-        <div class="date">Sept 2022 - Dec 2024</div>
-        <div class="date">Sept 2021 - Sept 2022</div>
-        <div class="experienceItem">
-            <p class="experienceText">
-                Lors de mon alternance chez AgenceGW, j’ai évolué dans un
-                environnement centré sur des technologies modernes,
-                principalement Symfony et Vue.js, pour la maintenance et le
-                développement d’applications web. En parallèle, j’ai enrichi mes
-                compétences en autodidacte et durant mes études avec des
-                frameworks avancés comme Nuxt.js, Next.js et NestJS, élargissant
-                mon champ d’expertise en développement full-stack. J’ai
-                également approfondi mes connaissances en Jest pour les tests
-                unitaires et en Cypress pour les tests end-to-end, utilisé en
-                entreprise. Chez AgenceGW, j’ai contribué à des projets
-                éco-conçus avec Kirby (PHP), en intégrant des pratiques de
-                développement durable et performantes. Cette expérience m’a
-                permis de développer de solides compétences techniques en
-                back-end avec Symfony, en front-end avec Vue.js et React, ainsi
-                qu’en gestion de projet et en collaboration d’équipe, renforcées
-                par des bonnes pratiques de développement pour assurer la
-                stabilité et l’évolutivité des applications.
-            </p>
-            <div class="experienceTech">
-                <div class="technologie">Symfony</div>
-                <div class="technologie">VueJs</div>
-                <div class="technologie">Nuxt</div>
-                <div class="technologie">Next</div>
-                <div class="technologie">Nest</div>
-                <div class="technologie">Jest</div>
-                <div class="technologie">Kirby</div>
-                <div class="technologie">Docker</div>
-            </div>
+  <section class="experience">
+    <h1 class="experienceTitle">Expériences</h1>
+    <div class="experienceContainer">
+      <article
+        class="experience-card glass-button"
+        v-for="(exp, index) in experiences"
+        :key="index"
+        v-motion
+        :initial="{ opacity: 0, y: 40 }"
+        :visible-once="{ opacity: 1, y: 0, transition: { duration: 500, delay: index * 100, type: 'spring' } }"
+      >
+        <h2 class="date">{{ exp.date }}</h2>
+        <p class="experienceText">{{ exp.description }}</p>
+        <div class="experienceTech">
+          <div v-for="tech in exp.technologies" :key="tech" class="technologie">
+            {{ tech }}
+          </div>
         </div>
-        <div class="experienceItem">
-            <p class="experienceText">
-                Durant mon alternance chez IDCSOFT, j’ai travaillé sur la
-                maintenance applicative d’une solution pour les gens du voyage,
-                développée avec WinDev. Cette mission m’a permis de m’adapter à
-                un environnement client diversifié avec des besoins spécifiques
-                et variés. En parallèle, mes cours m’ont permis d’approfondir
-                mes compétences techniques en utilisant des technologies telles
-                que Laravel, Vue.js, React et Docker. Cette année d’alternance a
-                consolidé mes compétences en gestion de projet, notamment dans
-                la planification et la communication avec les clients, tout en
-                renforçant ma capacité à cerner les attentes des utilisateurs et
-                à leur fournir des solutions sur mesure.
-            </p>
-            <div class="experienceTech">
-                <div class="technologie">Windev</div>
-                <div class="technologie">Laravel</div>
-                <div class="technologie">React</div>
-                <div class="technologie">Vue</div>
-                <div class="technologie">Docker</div>
-            </div>
-        </div>
+      </article>
     </div>
-    <div class="experienceResponsive" v-if="!isDesktop">
-        <div class="oneExprienceResponsive">
-            <div class="dateResponsive">Septembre/2022-Decembre/2024</div>
-            <div class="exprienceTextResponsive">
-                <p>
-                    Lors de mon alternance chez AgenceGW, j’ai évolué dans un
-                    environnement centré sur des technologies modernes,
-                    principalement Symfony et Vue.js, pour la maintenance et le
-                    développement d’applications web. En parallèle, j’ai enrichi
-                    mes compétences en autodidacte et durant mes études avec des
-                    frameworks avancés comme Nuxt.js, Next.js et NestJS,
-                    élargissant mon champ d’expertise en développement
-                    full-stack. J’ai également approfondi mes connaissances en
-                    Jest pour les tests unitaires et en Cypress pour les tests
-                    end-to-end, utilisé en entreprise. Chez AgenceGW, j’ai
-                    contribué à des projets éco-conçus avec Kirby (PHP), en
-                    intégrant des pratiques de développement durable et
-                    performantes. Cette expérience m’a permis de développer de
-                    solides compétences techniques en back-end avec Symfony, en
-                    front-end avec Vue.js et React, ainsi qu’en gestion de
-                    projet et en collaboration d’équipe, renforcées par des
-                    bonnes pratiques de développement pour assurer la stabilité
-                    et l’évolutivité des applications.
-                </p>
-            </div>
-            <ul>
-                <li>Symfony</li>
-                <li>VueJs</li>
-                <li>Nuxt</li>
-                <li>Next</li>
-                <li>Nest</li>
-                <li>Jest</li>
-                <li>Kirby</li>
-                <li>Docker</li>
-            </ul>
-        </div>
-
-        <div class="oneExprienceResponsive">
-            <div class="dateResponsive">Septembre/2021-Septembre/2022</div>
-            <div class="exprienceTextResponsive">
-                <p>
-                    Durant mon alternance chez IDCSOFT, j’ai travaillé sur la
-                    maintenance applicative d’une solution pour les gens du
-                    voyage, développée avec WinDev. Cette mission m’a permis de
-                    m’adapter à un environnement client diversifié avec des
-                    besoins spécifiques et variés. En parallèle, mes cours m’ont
-                    permis d’approfondir mes compétences techniques en utilisant
-                    des technologies telles que Laravel, Vue.js, React et
-                    Docker. Cette année d’alternance a consolidé mes compétences
-                    en gestion de projet, notamment dans la planification et la
-                    communication avec les clients, tout en renforçant ma
-                    capacité à cerner les attentes des utilisateurs et à leur
-                    fournir des solutions sur mesure.
-                </p>
-            </div>
-            <div class="exprienceTechResponsive">
-                <ul>
-                    <li>Windev</li>
-                    <li>Laravel</li>
-                    <li>React</li>
-                    <li>Vue</li>
-                    <li>Docker</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+  </section>
 </template>
+
 <script lang="ts">
-import {
-    defineComponent,
-    onMounted,
-    onBeforeUnmount,
-    ref,
-    computed,
-} from "vue";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
-    setup() {
-        const screenWidth = ref(0);
-        const handleResize = () => {
-            if (typeof window !== "undefined") {
-                screenWidth.value = window.innerWidth;
-            }
-        };
+  setup() {
+    useHead({
+      title: "Expériences - Portfolio Ambona Sébastien",
+      meta: [
+        {
+          name: "description",
+          content: "Découvrez les expériences professionnelles d'Ambona Sébastien, développeur full stack. Poste actuel à l'IRTS (Azure, Flutter, Python, PostgreSQL), alternances chez AgenceGW et IDCSOFT, expertise Symfony, Vue.js, Nuxt, Next.js, NestJS.",
+        },
+        {
+          name: "keywords",
+          content: "expériences, IRTS, Azure, Flutter, Python, PostgreSQL, alternance, AgenceGW, IDCSOFT, Symfony, VueJs, Nuxt, Next, Nest, développeur, portfolio",
+        },
+        {
+          property: "og:title",
+          content: "Expériences - Portfolio Ambona Sébastien",
+        },
+        {
+          property: "og:description",
+          content: "Parcours professionnel d'Ambona Sébastien, développeur full stack basé à Bordeaux.",
+        },
+        {
+          property: "og:type",
+          content: "website",
+        },
+      ],
+    });
 
-        onMounted(() => {
-            handleResize();
-            window.addEventListener("resize", handleResize);
-        });
+    const experiences = ref([
+      {
+        date: "Sept 2025 - Présent",
+        description:
+          "Depuis septembre 2025, j'occupe un poste de développeur au sein de l'IRTS, où je participe à la mise en œuvre de solutions permettant d'accompagner au mieux les équipes pédagogiques et de faire le lien entre l'établissement et ses prestataires. Je conçois des interfaces numériques pensées pour accompagner les usagers et s'adapter à leurs nouveaux besoins, et j'assure la mise en production des outils que je développe.",
+        technologies: ["Azure", "Flutter", "Python", "PostgreSQL"],
+      },
+      {
+        date: "Sept 2022 - Dec 2024",
+        description:
+          "Lors de mon alternance chez AgenceGW, j’ai évolué dans un environnement centré sur des technologies modernes, principalement Symfony et Vue.js, pour la maintenance et le développement d’applications web. En parallèle, j’ai enrichi mes compétences en autodidacte et durant mes études avec des frameworks avancés comme Nuxt.js, Next.js et NestJS, élargissant mon champ d’expertise en développement full-stack.",
+        technologies: [
+          "Symfony",
+          "VueJs",
+          "Nuxt",
+          "Next",
+          "Nest",
+          "Jest",
+          "Kirby",
+          "Docker",
+        ],
+      },
+      {
+        date: "Sept 2021 - Sept 2022",
+        description:
+          "Durant mon alternance chez IDCSOFT, j’ai travaillé sur la maintenance applicative d’une solution pour les gens du voyage, développée avec WinDev. Cette mission m’a permis de m’adapter à un environnement client diversifié avec des besoins spécifiques et variés.",
+        technologies: ["Windev", "Laravel", "React", "Vue", "Docker"],
+      },
+    ]);
 
-        onBeforeUnmount(() => {
-            window.removeEventListener("resize", handleResize);
-        });
-
-        const isDesktop = computed(() => screenWidth.value >= 1000);
-
-        return {
-            isDesktop,
-        };
-    },
+    return {
+      experiences,
+    };
+  },
 });
 </script>
-<style>
+
+<style scoped>
+/* General Styles */
 .experience {
-    position: relative;
-    display: grid;
-    grid-template-columns: 20rem 50rem;
-    row-gap: 2rem;
-    align-items: stretch;
-    margin: 10px auto;
-    max-height: 50vh;
+  padding: 0.5rem;
+  padding-bottom: 5rem;
+  max-width: 1200px;
+  margin: 5rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-@keyframes slideDown {
-    0% {
-        transform: translateY(-150px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
+.experienceTitle {
+  font-size: 2.5rem;
+  margin-bottom: 5rem;
+  text-align: center;
+  color: #333;
+}
+
+.experienceContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  padding-bottom: 50px;
+}
+
+/* Experience Item */
+.experience-card {
+  padding: 1.5rem;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.experience-card:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow:
+    0 25px 50px rgba(0, 0, 0, 0.12),
+    0 10px 20px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 2px 8px rgba(255, 255, 255, 0.4),
+    inset 0 -2px 8px rgba(0, 0, 0, 0.05),
+    0 0 0 1px rgba(255, 255, 255, 0.15),
+    0 0 60px rgba(255, 255, 255, 0.08);
 }
 
 .date {
-    font-weight: bold;
-    font-size: 1.2em;
-    grid-column: 1;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #3a3a3a;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
 }
 
-.experienceItem {
-    height: 90%;
-    grid-column: 2;
-    grid-row: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    margin-bottom: 4rem;
-    border-radius: 15px;
-    padding: 20px;
-    background: white;
-    box-shadow:
-        12px 12px 24px #f3f0f0,
-        -12px -12px 24px #f2f2f2;
-}
-.experienceItem:last-child {
-    grid-row: 2;
-}
-
-@keyframes slideUp {
-    0% {
-        transform: translateY(150px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-@keyframes blurIn {
-    0% {
-        filter: blur(5px);
-        opacity: 0;
-    }
-    100% {
-        filter: blur(0);
-        opacity: 1;
-    }
-}
-
-.experienceData:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.experienceData::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 3px;
-    bottom: 0;
-    left: 0;
-    background: linear-gradient(to right, #4e54c8, #8f94fb);
-    transform: scaleX(0);
-    transform-origin: bottom right;
-    transition: transform 0.3s ease-out;
-    z-index: 1;
-}
-
-.experienceData:hover::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
-}
-
-.experienceData .experienceTech {
-    will-change: transform, opacity;
-}
-
-@keyframes fadeIn {
-    0% {
-        transform: translateY(20px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-.experienceData:hover {
-    background-color: grey;
+.experienceText {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #4a4a4a;
+  margin-bottom: 1rem;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
 }
 
 .experienceTech {
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
-.experienceHistory {
-    display: grid;
+.technologie {
+  border-radius: 12px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  color: var(--text-color);
+  transition: all 0.3s ease;
+  cursor: none;
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  font-weight: 500;
 }
 
-.stop {
-    border: 2px solid black;
-    background: white;
-    z-index: 2;
-    width: 0.7rem;
-    height: 0.7rem;
-    position: absolute;
-    left: 0%;
-}
-.dateResponsive {
-    font-weight: bold;
-    font-size: 35px;
-}
-.experienceResponsive {
-    margin-left: 5%;
-    margin-right: 2%;
-    display: flex;
-    flex-direction: column;
-    margin-top: 2%;
-    justify-content: space-between;
-}
-.exprienceTechResponsive li {
-    list-style: square;
-}
-@media screen and (max-width: 1000px) {
-    .experience {
-        display: none;
-    }
-}
-@media screen and (max-width: 1200px) {
-    .experienceText {
-        width: 700px;
-    }
-    .experienceTech {
-        display: flex;
-        flex-wrap: wrap;
-        width: 500px;
-    }
-    .experience {
-        row-gap: 0px;
-        grid-template-columns: none;
-    }
-    .date {
-        width: 200px;
-        display: flex;
-        flex-direction: column;
-        padding: 30px;
-    }
+.technologie:hover {
+  transform: translateY(-2px) scale(1.05);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.28) 0%,
+    rgba(255, 255, 255, 0.18) 50%,
+    rgba(255, 255, 255, 0.28) 100%
+  );
+  box-shadow:
+    0 6px 16px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.9);
 }
 
-@media screen and (min-width: 1000px) {
-    .experienceResponsive {
-        display: none;
-    }
-}
-.experienceTech .technologie {
-    color: black;
-    padding: 1em 2em;
-    font-size: 12px;
-    border-radius: 0.5em;
-    background: #f9f8f8;
-    cursor: pointer;
-    border: 1px solid #f7f5f5;
-    transition: all 0.3s;
-    box-shadow:
-        6px 6px 12px #efefef,
-        -6px -6px 12px #ffffff;
+/* Responsive Design */
+@media (max-width: 768px) {
+  .experienceTitle {
+    font-size: 2rem;
+  }
+
+  .experience-card {
+    padding: 1rem;
+    width: 75%;
+    margin: auto;
+    gap: 4rem;
+  }
+
+  .date {
+    font-size: 1rem;
+  }
+
+  .experienceText {
+    font-size: 0.9rem;
+  }
+
+  .technologie {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
 }
 </style>

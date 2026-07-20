@@ -1,6 +1,6 @@
 <template>
-  <div class="body">
-    <div class="application">
+  <div class="home-container">
+    <div class="home-content">
       <presentation/>
       <profilPicture/>
     </div>
@@ -10,12 +10,12 @@
 
 export default {};
 </script>
-<style>
-.application {
+<style scoped>
+.home-content {
   display: flex;
   height: 90%;
 }
-.body{
-  margin:auto;
+.home-container {
+  margin: auto;
 }
 </style>

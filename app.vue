@@ -52,20 +52,61 @@ export default defineComponent({
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Fira+Code&display=swap");
+
+:root {
+  --glass-blur-std: 40px;
+  --glass-blur-heavy: 50px;
+  --glass-blur-mobile: 60px;
+  --glass-saturation-std: 120%;
+  --glass-saturation-heavy: 200%;
+  --glass-saturation-mobile: 220%;
+  --glass-contrast-std: 120%;
+  --glass-contrast-heavy: 130%;
+  --glass-contrast-mobile: 140%;
+  --glass-brightness-std: 108%;
+  --glass-brightness-heavy: 110%;
+  --glass-brightness-mobile: 115%;
+  --glass-bg-opacity-light: 0.12;
+  --glass-bg-opacity-medium: 0.08;
+  --glass-bg-opacity-heavy: 0.05;
+  --glass-border-opacity: 0.25;
+  --glass-border-opacity-light: 0.18;
+  --glass-border-radius: 24px;
+  --glass-border-radius-lg: 32px;
+  --text-color: #3a3a3a;
+  --text-color-hover: #2a2a2a;
+}
+
 body {
   cursor: none;
   font-family: "Fira Code", monospace;
   height: 70%;
   padding: 0;
+  background: linear-gradient(145deg, #f8f9fa 0%, #f5f6fa 50%, #f7f8f9 100%);
+  min-height: 100vh;
 }
 .principal {
   margin: auto;
+  max-width: 2000px;
+  padding: 0 20px;
 }
 
-.navbar {
-  position: absolute;
-  top: 40%;
-  left: 0;
+@media (max-width: 1200px) {
+  .principal {
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .principal {
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .principal {
+    padding: 0 5px;
+  }
 }
 
 *,
@@ -74,11 +115,5 @@ a,
 input,
 textarea {
   cursor: none !important;
-}
-.application {
-  max-width: 2000px;
-}
-.technology {
-  max-width: 1900px;
 }
 </style>
