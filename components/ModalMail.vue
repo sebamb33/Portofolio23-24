@@ -20,6 +20,7 @@
                     class="hcaptcha"
                     :sitekey="hcaptchaKey"
                     @verify="onVerify"
+                    @error="onCaptchaError"
                 ></vue-hcaptcha>
 
                 <button
@@ -75,8 +76,12 @@ export default defineComponent({
         };
 
         const onCaptchaError = () => {
-            console.log("Erreur captcha");
             verifyHcaptcha.value = false;
+            swal(
+                "Erreur captcha",
+                "Une erreur est survenue avec le captcha, veuillez réessayer.",
+                "error",
+            );
         };
 
         const close = () => {
@@ -133,19 +138,17 @@ export default defineComponent({
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    transform: scale(0);
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), visibility 0s linear 0.3s;
     opacity: 0;
 }
 
 .modal-overlay.active {
-    transform: scale(1);
+    visibility: visible;
+    pointer-events: auto;
     opacity: 1;
-}
-
-.modal-overlay.active {
-    transform: scale(1);
-    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: opacity 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .modal {
@@ -162,15 +165,17 @@ export default defineComponent({
     padding: 60px;
     border-radius: 32px;
     position: relative;
+    isolation: isolate;
+    z-index: 1;
     width: 500px;
     max-width: 90%;
     transform: scale(0.8) translateY(50px);
     opacity: 0;
     transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    
+
     border: 1px solid rgba(255, 255, 255, 0.18);
-    
-    box-shadow: 
+
+    box-shadow:
       0 30px 60px rgba(0, 0, 0, 0.15),
       0 15px 30px rgba(0, 0, 0, 0.1),
       0 6px 18px rgba(0, 0, 0, 0.08),
@@ -189,16 +194,17 @@ export default defineComponent({
 
 @media (max-width: 768px) {
     .modal {
+        box-sizing: border-box;
         width: calc(100% - 40px);
-        height: 85vh;
-        max-height: 700px;
+        max-height: min(85vh, 700px);
+        overflow-y: auto;
         padding: 50px 35px;
         border-radius: 24px;
         margin: 20px auto;
         max-width: none;
         backdrop-filter: blur(60px) saturate(220%) contrast(140%) brightness(115%);
         -webkit-backdrop-filter: blur(60px) saturate(220%) contrast(140%) brightness(115%);
-        
+
         background: linear-gradient(
           135deg,
           rgba(255, 255, 255, 0.06) 0%,
@@ -207,8 +213,8 @@ export default defineComponent({
           rgba(255, 255, 255, 0.03) 75%,
           rgba(255, 255, 255, 0.06) 100%
         );
-        
-        box-shadow: 
+
+        box-shadow:
           0 30px 60px rgba(0, 0, 0, 0.15),
           0 15px 30px rgba(0, 0, 0, 0.1),
           inset 0 1px 0 rgba(255, 255, 255, 0.3),
@@ -252,15 +258,16 @@ export default defineComponent({
 
 @media (max-width: 480px) {
     .modal {
+        box-sizing: border-box;
         width: calc(100% - 30px);
-        height: 80vh;
-        max-height: 600px;
+        max-height: min(80vh, 600px);
+        overflow-y: auto;
         padding: 40px 20px;
         border-radius: 20px;
         margin: 15px auto;
         backdrop-filter: blur(60px) saturate(220%) contrast(140%) brightness(115%);
         -webkit-backdrop-filter: blur(60px) saturate(220%) contrast(140%) brightness(115%);
-        
+
         background: linear-gradient(
           135deg,
           rgba(255, 255, 255, 0.06) 0%,
@@ -269,8 +276,8 @@ export default defineComponent({
           rgba(255, 255, 255, 0.03) 75%,
           rgba(255, 255, 255, 0.06) 100%
         );
-        
-        box-shadow: 
+
+        box-shadow:
           0 30px 60px rgba(0, 0, 0, 0.15),
           0 15px 30px rgba(0, 0, 0, 0.1),
           inset 0 1px 0 rgba(255, 255, 255, 0.3),
@@ -331,7 +338,7 @@ export default defineComponent({
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    
+
     background: linear-gradient(
       135deg,
       rgba(255, 255, 255, 0.12) 0%,
@@ -341,8 +348,8 @@ export default defineComponent({
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.25);
-    
-    box-shadow: 
+
+    box-shadow:
       0 8px 16px rgba(0, 0, 0, 0.08),
       inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
@@ -371,7 +378,7 @@ export default defineComponent({
     font-size: 14px;
     color: #3a3a3a;
     text-align: center;
-    
+
     background: linear-gradient(
       135deg,
       rgba(255, 255, 255, 0.18) 0%,
@@ -380,8 +387,8 @@ export default defineComponent({
     );
     backdrop-filter: blur(30px) saturate(150%);
     -webkit-backdrop-filter: blur(30px) saturate(150%);
-    
-    box-shadow: 
+
+    box-shadow:
       0 15px 30px rgba(0, 0, 0, 0.08),
       0 6px 12px rgba(0, 0, 0, 0.05),
       inset 0 1px 0 rgba(255, 255, 255, 0.5),
@@ -408,7 +415,7 @@ export default defineComponent({
       rgba(255, 255, 255, 0.12) 100%
     );
     transform: translateY(-2px);
-    box-shadow: 
+    box-shadow:
       0 20px 40px rgba(0, 0, 0, 0.12),
       0 8px 16px rgba(0, 0, 0, 0.08),
       inset 0 1px 0 rgba(255, 255, 255, 0.6),
@@ -435,7 +442,7 @@ export default defineComponent({
     position: relative;
     display: inline-block;
     outline: none;
-    
+
     background: linear-gradient(
       135deg,
       rgba(255, 255, 255, 0.2) 0%,
@@ -444,10 +451,10 @@ export default defineComponent({
     );
     backdrop-filter: blur(35px) saturate(180%);
     -webkit-backdrop-filter: blur(35px) saturate(180%);
-    
+
     border: 1px solid rgba(255, 255, 255, 0.3);
-    
-    box-shadow: 
+
+    box-shadow:
       0 20px 40px rgba(0, 0, 0, 0.12),
       0 8px 16px rgba(0, 0, 0, 0.08),
       inset 0 1px 0 rgba(255, 255, 255, 0.6),
@@ -456,7 +463,7 @@ export default defineComponent({
       inset 0 -2px 8px rgba(0, 0, 0, 0.05),
       0 0 0 1px rgba(255, 255, 255, 0.15),
       0 0 40px rgba(255, 255, 255, 0.12);
-    
+
     transition: all 0.3s ease;
     text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
 }
@@ -490,7 +497,7 @@ export default defineComponent({
       rgba(255, 255, 255, 0.2) 50%,
       rgba(255, 255, 255, 0.15) 100%
     );
-    box-shadow: 
+    box-shadow:
       0 25px 50px rgba(0, 0, 0, 0.18),
       0 12px 25px rgba(0, 0, 0, 0.12),
       inset 0 1px 0 rgba(255, 255, 255, 0.7),

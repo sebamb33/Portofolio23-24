@@ -17,12 +17,9 @@
 <script setup lang="ts">
 import CustomCursor from "~/components/CustomCursor.vue";
 
-const props = defineProps({
+defineProps({
   error: Object as () => { statusCode: number; message: string; url: string },
 });
-
-const errorTitle = computed(() => props.error?.statusCode || "Erreur");
-const errorMessage = computed(() => props.error?.message || "Une erreur est survenue");
 </script>
 
 <style scoped>

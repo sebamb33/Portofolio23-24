@@ -2,6 +2,7 @@
   <div>
     <div
       class="Navbar"
+      :class="{ scrolled: scrolled }"
       v-if="!menuDisplay"
       v-motion
       :initial="{ opacity: 0, y: -50 }"
@@ -219,6 +220,30 @@
     0 0 0 1px rgba(255, 255, 255, 0.15),
     0 0 60px rgba(255, 255, 255, 0.08);
 }
+
+.Navbar {
+  transition: box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.Navbar.scrolled {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0.13) 25%,
+    rgba(255, 255, 255, 0.09) 50%,
+    rgba(255, 255, 255, 0.13) 75%,
+    rgba(255, 255, 255, 0.18) 100%
+  );
+  box-shadow:
+    0 22px 44px rgba(0, 0, 0, 0.1),
+    0 9px 18px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 2px 6px rgba(255, 255, 255, 0.35),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 0 44px rgba(255, 255, 255, 0.08);
+}
 .burger-icon {
   display: none;
   background: none;
@@ -256,7 +281,7 @@
   .Navbar {
     justify-content: space-between;
     position: sticky;
-    top: 0px;
+    top: 0.5em;
     z-index: 100;
     border-radius: 16px;
     width: 98%;
@@ -310,6 +335,7 @@
     width: 92%;
     height: 60px;
     margin-top: 0.3em;
+    top: 0.3em;
     border-radius: 12px;
   }
   .burger-icon span {
@@ -333,13 +359,23 @@ export default {
     closeMenu() {
       this.menuDisplay = false;
     },
+    handleScroll() {
+      this.scrolled = window.scrollY > 20;
+    },
   },
   data() {
     return {
       logoUrl: "/assets/LogoPortofolio.svg",
       menu: false,
       menuDisplay: false,
+      scrolled: false,
     };
+  },
+  mounted() {
+    window.addEventListener("scroll", this.handleScroll, { passive: true });
+  },
+  unmounted() {
+    window.removeEventListener("scroll", this.handleScroll);
   },
 };
 </script>

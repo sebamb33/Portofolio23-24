@@ -1,12 +1,32 @@
 <template>
     <div class="description">
-        <h1>Ambona Sébastien</h1>
-        <p class="typedText">Développeur web.</p>
-        <p class="presentation">
+        <h1
+          v-motion
+          :initial="{ opacity: 0, y: 20 }"
+          :enter="{ opacity: 1, y: 0, transition: { duration: 600, type: 'spring' } }"
+        >Ambona Sébastien</h1>
+        <p
+          class="typedText"
+          v-motion
+          :initial="{ opacity: 0, y: 20 }"
+          :enter="{ opacity: 1, y: 0, transition: { duration: 600, delay: 150, type: 'spring' } }"
+        >Développeur web.</p>
+        <p
+          class="presentation"
+          v-motion
+          :initial="{ opacity: 0, y: 20 }"
+          :enter="{ opacity: 1, y: 0, transition: { duration: 600, delay: 300, type: 'spring' } }"
+        >
             Je suis un développeur web et passionné par les nouvelles
             technologies et l'innovation. Diplômé du campus Ynov de Bordeaux.
         </p>
-        <button class="buttonSend glass-button" @click="mailToModal">Me contacter</button>
+        <button
+          class="buttonSend glass-button"
+          @click="mailToModal"
+          v-motion
+          :initial="{ opacity: 0, y: 20 }"
+          :enter="{ opacity: 1, y: 0, transition: { duration: 600, delay: 450, type: 'spring' } }"
+        >Me contacter</button>
     </div>
     <ModalMail v-if="modalOpen" :show="modalOpen" @close="modalOpen = false" />
 </template>
@@ -180,7 +200,6 @@ h1 {
 </style>
 <script setup lang="ts">
 import { ref } from "vue";
-import { useRouter } from "vue-router";
 const modalOpen = ref(false);
 const mailToModal = () => {
     modalOpen.value = true;

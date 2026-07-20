@@ -3,10 +3,12 @@
     <h1 class="technologyTitle">Technologies</h1>
     <div class="technology">
       <div
-        class="tech-card"
+        class="tech-card glass-button"
         v-for="(tech, index) in technologies"
         :key="index"
-        :style="{ animationDelay: `${index * 0.2}s` }"
+        v-motion
+        :initial="{ opacity: 0, y: 40 }"
+        :visible-once="{ opacity: 1, y: 0, transition: { duration: 500, delay: index * 80, type: 'spring' } }"
       >
         <div class="technoData">
           <div class="technologyHeader">
@@ -35,6 +37,10 @@ export default {
           icon: "uil:react",
         },
         {
+          name: "NextJs",
+          icon: "simple-icons:nextdotjs",
+        },
+        {
           name: "Express",
           icon: "devicon:express",
         },
@@ -47,10 +53,6 @@ export default {
           icon: "simple-icons:jest",
         },
         {
-          name: "Symfony",
-          icon: "logos:symfony",
-        },
-        {
           name: "Cypress",
           icon: "logos:cypress",
         },
@@ -59,16 +61,20 @@ export default {
           icon: "la:docker",
         },
         {
-          name: "Kirby",
-          icon: "logos:kirby-icon",
+          name: "Azure",
+          icon: "simple-icons:microsoftazure",
         },
         {
-          name: "Hono",
-          icon: "simple-icons:hono",
+          name: "Flutter",
+          icon: "simple-icons:flutter",
         },
         {
-          name: "Drizzle",
-          icon: "lineicons:drizzle",
+          name: "Python",
+          icon: "simple-icons:python",
+        },
+        {
+          name: "PostgreSQL",
+          icon: "simple-icons:postgresql",
         },
       ],
     };
@@ -80,12 +86,12 @@ export default {
         {
           name: "description",
           content:
-            "Découvrez les technologies que j'ai utilisées et maîtrisées, comme VueJs, React, Docker, et bien d'autres.",
+            "Découvrez les technologies que j'ai utilisées et maîtrisées, comme VueJs, React, NextJs, Docker, Azure, Flutter, Python, PostgreSQL, et bien d'autres.",
         },
         {
           name: "keywords",
           content:
-            "VueJs, React, Docker, Cypress, Prisma, Symfony, Jest, Hono, Drizzle, Portfolio",
+            "VueJs, React, NextJs, Docker, Cypress, Prisma, Jest, Azure, Flutter, Python, PostgreSQL, Portfolio",
         },
         { name: "author", content: "Seb" },
       ],
@@ -130,48 +136,9 @@ export default {
   max-width: 20rem;
   padding: 1.5rem;
   border-radius: 24px;
-  animation: fadeInUp 0.6s ease forwards;
-  opacity: 0;
-  transform: translateY(50px);
-  visibility: hidden;
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
-
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.12) 0%,
-    rgba(255, 255, 255, 0.08) 50%,
-    rgba(255, 255, 255, 0.05) 100%
-  );
-  backdrop-filter: blur(40px) contrast(120%) brightness(108%);
-  -webkit-backdrop-filter: blur(40px) contrast(120%) brightness(108%);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.08),
-    0 8px 16px rgba(0, 0, 0, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.2),
-    inset 0 2px 6px rgba(255, 255, 255, 0.35),
-    inset 0 -2px 6px rgba(0, 0, 0, 0.04),
-    0 0 0 1px rgba(255, 255, 255, 0.1),
-    0 0 40px rgba(255, 255, 255, 0.06);
-}
-
-.tech-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 50%;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.1) 0%,
-    transparent 100%
-  );
-  border-radius: 24px 24px 0 0;
-  pointer-events: none;
 }
 
 .tech-card:hover {
@@ -209,20 +176,6 @@ export default {
 .technologyIcon {
   width: 3rem;
   height: 3rem;
-}
-
-/* Animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-    visibility: hidden; /* Ensure the card remains hidden */
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-    visibility: visible;
-  }
 }
 
 /* Responsive Design */

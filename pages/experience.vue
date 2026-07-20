@@ -3,10 +3,12 @@
     <h1 class="experienceTitle">Expériences</h1>
     <div class="experienceContainer">
       <article
-        class="experience-card"
+        class="experience-card glass-button"
         v-for="(exp, index) in experiences"
         :key="index"
-        :style="{ animationDelay: `${index * 0.3}s` }"
+        v-motion
+        :initial="{ opacity: 0, y: 40 }"
+        :visible-once="{ opacity: 1, y: 0, transition: { duration: 500, delay: index * 100, type: 'spring' } }"
       >
         <h2 class="date">{{ exp.date }}</h2>
         <p class="experienceText">{{ exp.description }}</p>
@@ -21,7 +23,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from "vue";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   setup() {
@@ -30,11 +32,11 @@ export default defineComponent({
       meta: [
         {
           name: "description",
-          content: "Découvrez les expériences professionnelles d'Ambona Sébastien, développeur full stack. Alternances chez AgenceGW et IDCSOFT, expertise Symfony, Vue.js, Nuxt, Next.js, NestJS.",
+          content: "Découvrez les expériences professionnelles d'Ambona Sébastien, développeur full stack. Poste actuel à l'IRTS (Azure, Flutter, Python, PostgreSQL), alternances chez AgenceGW et IDCSOFT, expertise Symfony, Vue.js, Nuxt, Next.js, NestJS.",
         },
         {
           name: "keywords",
-          content: "expériences, alternance, AgenceGW, IDCSOFT, Symfony, VueJs, Nuxt, Next, Nest, développeur, portfolio",
+          content: "expériences, IRTS, Azure, Flutter, Python, PostgreSQL, alternance, AgenceGW, IDCSOFT, Symfony, VueJs, Nuxt, Next, Nest, développeur, portfolio",
         },
         {
           property: "og:title",
@@ -52,6 +54,12 @@ export default defineComponent({
     });
 
     const experiences = ref([
+      {
+        date: "Sept 2025 - Présent",
+        description:
+          "Depuis septembre 2025, j'occupe un poste de développeur au sein de l'IRTS, où je participe à la mise en œuvre de solutions permettant d'accompagner au mieux les équipes pédagogiques et de faire le lien entre l'établissement et ses prestataires. Je conçois des interfaces numériques pensées pour accompagner les usagers et s'adapter à leurs nouveaux besoins, et j'assure la mise en production des outils que je développe.",
+        technologies: ["Azure", "Flutter", "Python", "PostgreSQL"],
+      },
       {
         date: "Sept 2022 - Dec 2024",
         description:
@@ -74,19 +82,6 @@ export default defineComponent({
         technologies: ["Windev", "Laravel", "React", "Vue", "Docker"],
       },
     ]);
-
-    onMounted(() => {
-      const items = document.querySelectorAll(".experience-card");
-      items.forEach((item) => {
-        const element = item as HTMLElement; // Cast explicit
-        element.style.opacity = "0";
-        element.style.transform = "translateY(50px)";
-        setTimeout(() => {
-          element.style.opacity = "1";
-          element.style.transform = "translateY(0)";
-        }, 300);
-      });
-    });
 
     return {
       experiences,
@@ -126,45 +121,9 @@ export default defineComponent({
 .experience-card {
   padding: 1.5rem;
   transition: transform 0.3s ease, opacity 0.3s ease;
-  animation: fadeIn 0.6s ease forwards;
   border-radius: 24px;
   position: relative;
   overflow: hidden;
-
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.12) 0%,
-    rgba(255, 255, 255, 0.08) 50%,
-    rgba(255, 255, 255, 0.05) 100%
-  );
-  backdrop-filter: blur(40px) contrast(120%) brightness(108%);
-  -webkit-backdrop-filter: blur(40px) contrast(120%) brightness(108%);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.08),
-    0 8px 16px rgba(0, 0, 0, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.2),
-    inset 0 2px 6px rgba(255, 255, 255, 0.35),
-    inset 0 -2px 6px rgba(0, 0, 0, 0.04),
-    0 0 0 1px rgba(255, 255, 255, 0.1),
-    0 0 40px rgba(255, 255, 255, 0.06);
-}
-
-.experience-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 50%;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.1) 0%,
-    transparent 100%
-  );
-  border-radius: 24px 24px 0 0;
-  pointer-events: none;
 }
 
 .experience-card:hover {
@@ -238,18 +197,6 @@ export default defineComponent({
     0 6px 16px rgba(0, 0, 0, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.5);
   text-shadow: 0 2px 4px rgba(255, 255, 255, 0.9);
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 /* Responsive Design */
