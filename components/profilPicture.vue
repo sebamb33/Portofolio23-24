@@ -1,5 +1,10 @@
 <template>
-  <div class="ProfilPictureComponent">
+  <div
+    class="ProfilPictureComponent"
+    v-motion
+    :initial="{ opacity: 0, x: 30 }"
+    :enter="{ opacity: 1, x: 0, transition: { duration: 700, delay: 300, type: 'spring' } }"
+  >
     <img
       src="/assets/LogoPortofolio.svg"
       alt="Logo ambona Sébastien"

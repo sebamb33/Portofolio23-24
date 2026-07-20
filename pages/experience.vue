@@ -6,7 +6,9 @@
         class="experience-card glass-button"
         v-for="(exp, index) in experiences"
         :key="index"
-        :style="{ animationDelay: `${index * 0.3}s` }"
+        v-motion
+        :initial="{ opacity: 0, y: 40 }"
+        :visible-once="{ opacity: 1, y: 0, transition: { duration: 500, delay: index * 100, type: 'spring' } }"
       >
         <h2 class="date">{{ exp.date }}</h2>
         <p class="experienceText">{{ exp.description }}</p>
@@ -21,7 +23,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from "vue";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   setup() {
@@ -81,19 +83,6 @@ export default defineComponent({
       },
     ]);
 
-    onMounted(() => {
-      const items = document.querySelectorAll(".experience-card");
-      items.forEach((item) => {
-        const element = item as HTMLElement; // Cast explicit
-        element.style.opacity = "0";
-        element.style.transform = "translateY(50px)";
-        setTimeout(() => {
-          element.style.opacity = "1";
-          element.style.transform = "translateY(0)";
-        }, 300);
-      });
-    });
-
     return {
       experiences,
     };
@@ -132,7 +121,6 @@ export default defineComponent({
 .experience-card {
   padding: 1.5rem;
   transition: transform 0.3s ease, opacity 0.3s ease;
-  animation: fadeIn 0.6s ease forwards;
   border-radius: 24px;
   position: relative;
   overflow: hidden;
@@ -209,18 +197,6 @@ export default defineComponent({
     0 6px 16px rgba(0, 0, 0, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.5);
   text-shadow: 0 2px 4px rgba(255, 255, 255, 0.9);
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 /* Responsive Design */

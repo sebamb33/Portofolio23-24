@@ -138,19 +138,17 @@ export default defineComponent({
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    transform: scale(0);
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), visibility 0s linear 0.3s;
     opacity: 0;
 }
 
 .modal-overlay.active {
-    transform: scale(1);
+    visibility: visible;
+    pointer-events: auto;
     opacity: 1;
-}
-
-.modal-overlay.active {
-    transform: scale(1);
-    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: opacity 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .modal {
@@ -167,6 +165,8 @@ export default defineComponent({
     padding: 60px;
     border-radius: 32px;
     position: relative;
+    isolation: isolate;
+    z-index: 1;
     width: 500px;
     max-width: 90%;
     transform: scale(0.8) translateY(50px);
@@ -194,9 +194,10 @@ export default defineComponent({
 
 @media (max-width: 768px) {
     .modal {
+        box-sizing: border-box;
         width: calc(100% - 40px);
-        height: 85vh;
-        max-height: 700px;
+        max-height: min(85vh, 700px);
+        overflow-y: auto;
         padding: 50px 35px;
         border-radius: 24px;
         margin: 20px auto;
@@ -257,9 +258,10 @@ export default defineComponent({
 
 @media (max-width: 480px) {
     .modal {
+        box-sizing: border-box;
         width: calc(100% - 30px);
-        height: 80vh;
-        max-height: 600px;
+        max-height: min(80vh, 600px);
+        overflow-y: auto;
         padding: 40px 20px;
         border-radius: 20px;
         margin: 15px auto;

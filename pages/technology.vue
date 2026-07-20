@@ -6,7 +6,9 @@
         class="tech-card glass-button"
         v-for="(tech, index) in technologies"
         :key="index"
-        :style="{ animationDelay: `${index * 0.2}s` }"
+        v-motion
+        :initial="{ opacity: 0, y: 40 }"
+        :visible-once="{ opacity: 1, y: 0, transition: { duration: 500, delay: index * 80, type: 'spring' } }"
       >
         <div class="technoData">
           <div class="technologyHeader">
@@ -134,10 +136,6 @@ export default {
   max-width: 20rem;
   padding: 1.5rem;
   border-radius: 24px;
-  animation: fadeInUp 0.6s ease forwards;
-  opacity: 0;
-  transform: translateY(50px);
-  visibility: hidden;
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
@@ -178,20 +176,6 @@ export default {
 .technologyIcon {
   width: 3rem;
   height: 3rem;
-}
-
-/* Animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-    visibility: hidden; /* Ensure the card remains hidden */
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-    visibility: visible;
-  }
 }
 
 /* Responsive Design */
