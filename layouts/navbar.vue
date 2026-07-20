@@ -256,7 +256,7 @@
   .Navbar {
     justify-content: space-between;
     position: sticky;
-    top: 0px;
+    top: 0.5em;
     z-index: 100;
     border-radius: 16px;
     width: 98%;
@@ -310,6 +310,7 @@
     width: 92%;
     height: 60px;
     margin-top: 0.3em;
+    top: 0.3em;
     border-radius: 12px;
   }
   .burger-icon span {

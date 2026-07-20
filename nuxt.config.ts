@@ -8,8 +8,6 @@ export default defineNuxtConfig({
     RESEND_API_KEY: process.env.RESEND_API_KEY,
     public: {
       port: 3777,
-      VITE_RESEND_API_KEY: process.env.VITE_RESEND_API_KEY,
-      VITE_MAIL_RECIPIENT: process.env.VITE_MAIL_RECIPIENT,
     },
   },
 

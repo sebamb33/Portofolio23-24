@@ -109,12 +109,6 @@ body {
   }
 }
 
-.navbar {
-  position: absolute;
-  top: 40%;
-  left: 0;
-}
-
 *,
 button,
 a,
