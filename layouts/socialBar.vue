@@ -3,21 +3,20 @@
     <a
       href="https://www.linkedin.com/in/s%C3%A9bastien-ambona-931306218/"
       target="_blank"
+      rel="noopener noreferrer"
+      aria-label="LinkedIn"
+      title="Redirection vers mon LinkedIn"
     >
-      <img
-        class="social-icon"
-        src="https://img.icons8.com/50/000000/linkedin.png"
-        alt="Logo linkedin"
-        title="Redirection vers mon Linkedin"
-      />
+      <Icon name="simple-icons:linkedin" color="black" class="social-icon" />
     </a>
-    <a href="https://github.com/sebamb33" target="_blank">
-      <img
-        class="social-icon"
-        src="https://img.icons8.com/50/000000/github--v1.png"
-        alt="logo github"
-        title="Redirection vers mon github"
-      />
+    <a
+      href="https://github.com/sebamb33"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="GitHub"
+      title="Redirection vers mon GitHub"
+    >
+      <Icon name="simple-icons:github" color="black" class="social-icon" />
     </a>
   </div>
 </template>
@@ -25,8 +24,11 @@
 .social-bar {
   display: flex;
   flex-direction: column;
-  margin: auto 0;
-  margin-left: 13px;
+  /* reste centré à l'écran même sur les pages longues */
+  position: sticky;
+  top: calc(50vh - 60px);
+  align-self: flex-start;
+  margin: 0 0 0 13px;
 }
 .social-bar a {
   margin-top: 5%;
@@ -38,11 +40,8 @@
   }
 }
 .social-icon {
-  color: white;
   padding: 8px;
-  font-size: 12px;
   border-radius: 16px;
-  cursor: pointer;
   transition: all 0.3s ease;
   width: 45px;
   height: 45px;

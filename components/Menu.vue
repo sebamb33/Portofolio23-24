@@ -2,16 +2,12 @@
   <div
     class="menu_nav glass-effect-heavy"
     :class="{ 'slide-in': menuOpen }"
+    role="dialog"
+    aria-label="Menu de navigation"
     @animationend="onMenuAnimationEnd"
   >
 <div class="menu_top" @click="closeMenu">
       <div>&times;</div>
-      <img
-        src="https://img.icons8.com/ios-glyphs/30/000000/delete-sign.png"
-        height="30"
-        alt="close menu"
-        title="Cross to close menu"
-      />
     </div>
     <div class="menu_router">
       <div
@@ -19,6 +15,7 @@
         v-for="(link, index) in links"
         :key="index"
         :class="{ 'slide-in-link': menuOpen && linksAnimated }"
+        :style="{ transitionDelay: `${index * 0.08}s` }"
       >
         <NuxtLink :to="link.to" @click="closeMenu">
           {{ link.label }}
@@ -29,19 +26,20 @@
       <a
         href="https://www.linkedin.com/in/s%C3%A9bastien-ambona-931306218/"
         target="_blank"
+        rel="noopener noreferrer"
+        aria-label="LinkedIn"
+        title="Redirection vers mon LinkedIn"
       >
-        <img
-          src="https://img.icons8.com/50/000000/linkedin.png"
-          alt="logo linkedin"
-          title="Redirection vers mon linkedin"
-        />
+        <Icon name="simple-icons:linkedin" color="black" class="menu_icon" />
       </a>
-      <a href="https://github.com/sebamb33" target="_blank">
-        <img
-          src="https://img.icons8.com/50/000000/github--v1.png"
-          alt="Logo Github"
-          title="Redirection vers mon Github"
-        />
+      <a
+        href="https://github.com/sebamb33"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="GitHub"
+        title="Redirection vers mon GitHub"
+      >
+        <Icon name="simple-icons:github" color="black" class="menu_icon" />
       </a>
     </div>
   </div>
@@ -49,9 +47,9 @@
 
 <script lang="ts">
 export default {
+  emits: ["closeMenu", "opened"],
   data() {
     return {
-      logoUrl: "/assets/LogoPortofolio.svg",
       menuOpen: true,
       linksAnimated: false,
       links: [
@@ -66,12 +64,11 @@ export default {
       this.menuOpen = false;
       this.linksAnimated = false;
       this.$emit("closeMenu");
-      document.querySelector(".app").style.display = "flex";
     },
     onMenuAnimationEnd() {
       if (this.menuOpen) {
         this.linksAnimated = true;
-        document.querySelector(".app").style.display = "none";
+        this.$emit("opened");
       }
     },
   },
@@ -189,12 +186,6 @@ export default {
   text-shadow: 0 2px 4px rgba(255, 255, 255, 0.9);
 }
 
-.menu_link:hover a {
-  color: #2a2a2a;
-  transform: translateY(-2px);
-  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.9);
-}
-
 .menu_top {
   display: flex;
   justify-content: flex-end;
@@ -247,8 +238,18 @@ export default {
     );
 }
 
-.menu_top img {
-    display: none;
+.menu_logo {
+  display: flex;
+  gap: 20px;
+  padding: 0 30px;
+}
+.menu_icon {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.3s ease;
+}
+.menu_logo a:hover .menu_icon {
+  transform: translateY(-3px) scale(1.1);
 }
 @media screen and (max-width: 1000px) {
   .menu_link {

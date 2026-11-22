@@ -1,23 +1,71 @@
 import { H3Event, readBody } from "h3";
 import { Resend } from "resend";
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+async function verifyCaptcha(token: string, secret: string): Promise<boolean> {
+  const response = await $fetch<{ success: boolean }>(
+    "https://api.hcaptcha.com/siteverify",
+    {
+      method: "POST",
+      body: new URLSearchParams({ secret, response: token }),
+    },
+  );
+  return response.success === true;
+}
+
 export default defineEventHandler(async (event: H3Event) => {
   const config = useRuntimeConfig();
   const body = await readBody(event);
-  const { email, message } = body;
+  const email = String(body?.email ?? "").trim();
+  const message = String(body?.message ?? "").trim();
+  const captchaToken = String(body?.captchaToken ?? "");
 
   if (!email || !message) {
-    return {
-      success: false,
-      message: "Email et message sont requis.",
-    };
+    throw createError({
+      statusCode: 400,
+      statusMessage: "Email et message sont requis.",
+    });
   }
+  if (!EMAIL_REGEX.test(email) || email.length > 254 || message.length > 5000) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: "Email ou message invalide.",
+    });
+  }
+
+  if (config.HCAPTCHA_SECRET) {
+    const valid = captchaToken
+      ? await verifyCaptcha(captchaToken, config.HCAPTCHA_SECRET).catch(
+          () => false,
+        )
+      : false;
+    if (!valid) {
+      throw createError({
+        statusCode: 403,
+        statusMessage: "Captcha invalide.",
+      });
+    }
+  } else {
+    console.warn("HCAPTCHA_SECRET manquant : captcha non vérifié côté serveur.");
+  }
+
   const resend = new Resend(config.RESEND_API_KEY);
   try {
     // Email pour moi
     const dataAdmin = await resend.emails.send({
       from: "Portfolio <portofolio@contact.sebastienambona.fr>",
       to: ["sebastien@ambona.fr"],
+      replyTo: email,
       subject: "Nouveau message depuis votre portfolio",
       html: generateEmailHtml(email, message),
     });
@@ -25,7 +73,7 @@ export default defineEventHandler(async (event: H3Event) => {
     // Email de confirmation pour l'utilisateur
     const dataUser = await resend.emails.send({
       from: "Sébastien Ambona <portofolio@contact.sebastienambona.fr>",
-      to: [email.toString()],
+      to: [email],
       subject: "Merci pour votre message",
       html: generateConfirmationEmailHtml(),
     });
@@ -37,11 +85,10 @@ export default defineEventHandler(async (event: H3Event) => {
     };
   } catch (error) {
     console.error("Erreur lors de l'envoi des emails:", error);
-    return {
-      success: false,
-      message: "Erreur lors de l'envoi des emails.",
-      error: error instanceof Error ? error.message : String(error),
-    };
+    throw createError({
+      statusCode: 500,
+      statusMessage: "Erreur lors de l'envoi des emails.",
+    });
   }
 });
 
@@ -115,7 +162,7 @@ function generateConfirmationEmailHtml(): string {
           </div>
         </div>
         <div class="footer">
-          © 2025 Sébastien Ambona. Tous droits réservés.
+          © ${new Date().getFullYear()} Sébastien Ambona. Tous droits réservés.
         </div>
       </div>
     </body>
@@ -123,6 +170,8 @@ function generateConfirmationEmailHtml(): string {
   `;
 }
 function generateEmailHtml(userEmail: string, userMessage: string): string {
+  const safeEmail = escapeHtml(userEmail);
+  const safeMessage = escapeHtml(userMessage).replace(/\r?\n/g, "<br>");
   return `
     <!DOCTYPE html>
     <html lang="fr">
@@ -166,13 +215,13 @@ function generateEmailHtml(userEmail: string, userMessage: string): string {
         </div>
         <div class="content">
           <p>
-            Vous avez reçu un nouveau message de <strong>${userEmail}</strong>:
+            Vous avez reçu un nouveau message de <strong>${safeEmail}</strong>:
           </p>
-          <p>${userMessage}</p>
-          <a href="mailto:${userEmail}">Répondre</a>
+          <p>${safeMessage}</p>
+          <a href="mailto:${safeEmail}">Répondre</a>
         </div>
         <div class="footer">
-          <p>&copy; 2025 Ambona Sébastien, Bordeaux. Tous droits réservés.</p>
+          <p>&copy; ${new Date().getFullYear()} Ambona Sébastien, Bordeaux. Tous droits réservés.</p>
         </div>
       </div>
     </body>

@@ -1,24 +1,27 @@
 <template>
   <NavBarComponent />
 
-  <div class="app">
-    <socialBarComponent />
+  <div class="app" :class="{ 'app--hidden': menuOpen }">
+    <SocialBarComponent />
     <slot />
   </div>
 </template>
 
-<script>
+<script setup>
 import SocialBarComponent from "~/layouts/socialBar.vue";
 import NavBarComponent from "~/layouts/navbar.vue";
 
-export default {
-  components: { NavBarComponent, SocialBarComponent },
-};
+const menuOpen = useState("menuOpen", () => false);
 </script>
 <style>
 .app {
   display: flex;
   flex-direction: row;
-  height: 80vh;
+  /* min-height (et non height) : la page peut grandir, sinon le scroll
+     se bloquait avant le bas sur les pages longues */
+  min-height: 80vh;
+}
+.app--hidden {
+  display: none;
 }
 </style>

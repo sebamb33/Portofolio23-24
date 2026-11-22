@@ -2,12 +2,14 @@
     <div :class="['modal-overlay', show ? 'active' : '']" @click="close">
         <div class="modal meep-meep" @click.stop>
             <span class="close" @click="close">&times;</span>
-            <h2>Contactez moi</h2>
+            <h2>Contactez-moi</h2>
             <form @submit.prevent="submitForm" class="form-container">
                 <input
-                    type="text"
+                    type="email"
                     v-model="email"
                     placeholder="Votre email"
+                    required
+                    autocomplete="email"
                     class="input-email"
                 />
                 <textarea
@@ -20,16 +22,17 @@
                     class="hcaptcha"
                     :sitekey="hcaptchaKey"
                     @verify="onVerify"
+                    @expired="onCaptchaExpired"
                     @error="onCaptchaError"
                 ></vue-hcaptcha>
 
                 <button
                     type="submit"
                     class="buttonSend"
-                    @click="verifyEmail"
+                    :disabled="sending"
                     v-if="verifyHcaptcha"
                 >
-                    Envoyer
+                    {{ sending ? "Envoi..." : "Envoyer" }}
                 </button>
             </form>
         </div>
@@ -41,6 +44,9 @@ import { defineComponent, ref } from "vue";
 import VueHcaptcha from "@hcaptcha/vue3-hcaptcha";
 import SendEmail from "../services/servicesMail";
 import swal from "sweetalert";
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export default defineComponent({
     components: {
         VueHcaptcha,
@@ -52,31 +58,26 @@ export default defineComponent({
         },
     },
     emits: ["close"],
-    setup(props, { emit }) {
+    setup(_props, { emit }) {
         const email = ref("");
         const message = ref("");
+        const sending = ref(false);
         const verifyHcaptcha = ref(false);
         const captchaToken = ref("");
         const hcaptchaKey = import.meta.env.VITE_HCAPTCHA_SITE_KEY;
-        const submitForm = () => {
-            if (!verifyHcaptcha.value) {
-                swal(
-                    "Attention",
-                    "Veuillez compléter le captcha avant d'envoyer le formulaire.",
-                    "warning",
-                );
-                return;
-            }
-            emit("close");
-        };
 
         const onVerify = (token: string) => {
             captchaToken.value = token;
             verifyHcaptcha.value = true;
         };
 
-        const onCaptchaError = () => {
+        const onCaptchaExpired = () => {
+            captchaToken.value = "";
             verifyHcaptcha.value = false;
+        };
+
+        const onCaptchaError = () => {
+            onCaptchaExpired();
             swal(
                 "Erreur captcha",
                 "Une erreur est survenue avec le captcha, veuillez réessayer.",
@@ -88,24 +89,43 @@ export default defineComponent({
             emit("close");
         };
 
-        const verifyEmail = async () => {
-            //Verify if is a real mail adress
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (email.value && message.value && emailRegex.test(email.value)) {
-                try {
-                    await SendEmail(email.value, message.value);
-                    swal(
-                        "Email envoyé",
-                        "Votre e-mail a bien été envoyé, je vous répondrai dans les plus brefs délais.",
-                        "success",
-                    );
-                } catch (error) {
-                    alert("Erreur lors de l'envoi de l'email");
-                }
-            } else {
+        const submitForm = async () => {
+            if (!verifyHcaptcha.value) {
+                swal(
+                    "Attention",
+                    "Veuillez compléter le captcha avant d'envoyer le formulaire.",
+                    "warning",
+                );
+                return;
+            }
+            if (!email.value || !message.value || !EMAIL_REGEX.test(email.value)) {
                 swal(
                     "Email non expédié",
                     "Assurez-vous que tous les champs sont remplis et que l'adresse email est au bon format.",
+                    "error",
+                );
+                return;
+            }
+
+            sending.value = true;
+            const result = await SendEmail(
+                email.value,
+                message.value,
+                captchaToken.value,
+            );
+            sending.value = false;
+
+            if (result.success) {
+                emit("close");
+                swal(
+                    "Email envoyé",
+                    "Votre e-mail a bien été envoyé, je vous répondrai dans les plus brefs délais.",
+                    "success",
+                );
+            } else {
+                swal(
+                    "Erreur",
+                    "L'email n'a pas pu être envoyé. Veuillez réessayer plus tard.",
                     "error",
                 );
             }
@@ -114,14 +134,14 @@ export default defineComponent({
         return {
             email,
             message,
+            sending,
             submitForm,
             close,
             verifyHcaptcha,
-            captchaToken,
             onVerify,
+            onCaptchaExpired,
             onCaptchaError,
             hcaptchaKey,
-            verifyEmail,
         };
     },
 });

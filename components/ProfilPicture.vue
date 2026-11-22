@@ -7,8 +7,8 @@
   >
     <img
       src="/assets/LogoPortofolio.svg"
-      alt="Logo ambona Sébastien"
-      title="Logo reprsentant le A de ambona"
+      alt="Logo de Ambona Sébastien"
+      title="Logo représentant le A de Ambona"
     />
     <div class="description">
       <p>Développeur Full-Stack</p>
@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "ProfilPictureComponent",
@@ -29,21 +29,34 @@ export default defineComponent({
   },
   computed: {
     ageInfo() {
-      const diff = Date.now() - this.dateNaissance.getTime();
-      const age = new Date(diff);
-      return Math.abs(age.getUTCFullYear() - 1970);
+      const today = new Date();
+      let age = today.getFullYear() - this.dateNaissance.getFullYear();
+      const birthdayPassed =
+        today.getMonth() > this.dateNaissance.getMonth() ||
+        (today.getMonth() === this.dateNaissance.getMonth() &&
+          today.getDate() >= this.dateNaissance.getDate());
+      if (!birthdayPassed) age--;
+      return age;
     },
   },
 });
 </script>
 <style scoped>
 .ProfilPictureComponent {
-  width: 25%;
-  padding: 20px;
+  width: clamp(340px, 28%, 420px);
+  flex-shrink: 0;
+  /* carte presque carrée au lieu d'une colonne étirée */
+  aspect-ratio: 1 / 1.08;
+  height: auto;
+  box-sizing: border-box;
+  padding: 2.25rem 1.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
   text-align: center;
   margin: auto;
-  margin-top: 5%;
-  height: 80%;
   cursor: none;
   border-radius: 32px;
   overflow: hidden;
@@ -104,15 +117,16 @@ export default defineComponent({
 }
 
 .ProfilPictureComponent img {
-  width: 90%;
-  height: 70%;
-  margin-bottom: 20%;
+  width: 48%;
+  height: auto;
+  margin-bottom: 2rem;
 }
 
 .description p {
   margin: 5px 0;
   color: #3a3a3a;
-  font-size: 18px;
+  font-size: 15px;
+  white-space: nowrap;
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
   font-weight: 500;
 }
