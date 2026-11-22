@@ -18,20 +18,23 @@
                     required
                     class="textarea-message"
                 />
-                <vue-hcaptcha
-                    class="hcaptcha"
-                    :sitekey="hcaptchaKey"
-                    @verify="onVerify"
-                    @expired="onCaptchaExpired"
-                    @error="onCaptchaError"
-                ></vue-hcaptcha>
+                <!-- Pot de miel : invisible pour un humain, rempli par les robots -->
+                <div class="hp-field" aria-hidden="true">
+                    <label>
+                        Ne pas remplir
+                        <input
+                            v-model="website"
+                            type="text"
+                            name="website"
+                            tabindex="-1"
+                            autocomplete="off"
+                        />
+                    </label>
+                </div>
 
-                <button
-                    type="submit"
-                    class="buttonSend"
-                    :disabled="sending"
-                    v-if="verifyHcaptcha"
-                >
+                <div ref="turnstileEl" class="turnstile"></div>
+
+                <button type="submit" class="buttonSend" :disabled="sending">
                     {{ sending ? "Envoi..." : "Envoyer" }}
                 </button>
             </form>
@@ -40,17 +43,45 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import VueHcaptcha from "@hcaptcha/vue3-hcaptcha";
+import { defineComponent, onBeforeUnmount, onMounted, ref } from "vue";
 import SendEmail from "../services/servicesMail";
 import swal from "sweetalert";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// Clé de test Cloudflare (passe toujours) : utilisée seulement en dev sans clé configurée
+const TURNSTILE_TEST_SITE_KEY = "1x00000000000000000000AA";
+
+interface TurnstileApi {
+    render: (el: HTMLElement, opts: Record<string, unknown>) => string;
+    reset: (id?: string) => void;
+    remove: (id?: string) => void;
+}
+declare global {
+    interface Window {
+        turnstile?: TurnstileApi;
+    }
+}
+
+let turnstileScript: Promise<TurnstileApi> | null = null;
+function loadTurnstile(): Promise<TurnstileApi> {
+    if (window.turnstile) return Promise.resolve(window.turnstile);
+    turnstileScript ??= new Promise((resolve, reject) => {
+        const script = document.createElement("script");
+        script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+        script.async = true;
+        script.defer = true;
+        script.onload = () =>
+            window.turnstile ? resolve(window.turnstile) : reject(new Error("Turnstile indisponible"));
+        script.onerror = () => {
+            turnstileScript = null;
+            reject(new Error("Turnstile indisponible"));
+        };
+        document.head.appendChild(script);
+    });
+    return turnstileScript;
+}
 
 export default defineComponent({
-    components: {
-        VueHcaptcha,
-    },
     props: {
         show: {
             type: Boolean,
@@ -61,43 +92,48 @@ export default defineComponent({
     setup(_props, { emit }) {
         const email = ref("");
         const message = ref("");
+        const website = ref(""); // pot de miel
         const sending = ref(false);
-        const verifyHcaptcha = ref(false);
         const captchaToken = ref("");
-        const hcaptchaKey = import.meta.env.VITE_HCAPTCHA_SITE_KEY;
+        const turnstileEl = ref<HTMLElement | null>(null);
+        const openedAt = Date.now();
+        let widgetId: string | undefined;
+        let api: TurnstileApi | undefined;
 
-        const onVerify = (token: string) => {
-            captchaToken.value = token;
-            verifyHcaptcha.value = true;
-        };
+        const siteKey =
+            (useRuntimeConfig().public.turnstileSiteKey as string) ||
+            (import.meta.dev ? TURNSTILE_TEST_SITE_KEY : "");
 
-        const onCaptchaExpired = () => {
-            captchaToken.value = "";
-            verifyHcaptcha.value = false;
-        };
+        onMounted(async () => {
+            if (!turnstileEl.value || !siteKey) return;
+            try {
+                api = await loadTurnstile();
+                widgetId = api.render(turnstileEl.value, {
+                    sitekey: siteKey,
+                    theme: "light",
+                    language: "fr",
+                    // reste invisible sauf si Cloudflare a besoin d'une interaction
+                    appearance: "interaction-only",
+                    callback: (token: string) => (captchaToken.value = token),
+                    "expired-callback": () => (captchaToken.value = ""),
+                    "error-callback": () => {
+                        captchaToken.value = "";
+                    },
+                });
+            } catch {
+                captchaToken.value = "";
+            }
+        });
 
-        const onCaptchaError = () => {
-            onCaptchaExpired();
-            swal(
-                "Erreur captcha",
-                "Une erreur est survenue avec le captcha, veuillez réessayer.",
-                "error",
-            );
-        };
+        onBeforeUnmount(() => {
+            if (api && widgetId) api.remove(widgetId);
+        });
 
         const close = () => {
             emit("close");
         };
 
         const submitForm = async () => {
-            if (!verifyHcaptcha.value) {
-                swal(
-                    "Attention",
-                    "Veuillez compléter le captcha avant d'envoyer le formulaire.",
-                    "warning",
-                );
-                return;
-            }
             if (!email.value || !message.value || !EMAIL_REGEX.test(email.value)) {
                 swal(
                     "Email non expédié",
@@ -106,13 +142,23 @@ export default defineComponent({
                 );
                 return;
             }
+            if (!captchaToken.value) {
+                swal(
+                    "Un instant",
+                    "La vérification anti-spam est en cours, réessayez dans quelques secondes.",
+                    "info",
+                );
+                return;
+            }
 
             sending.value = true;
-            const result = await SendEmail(
-                email.value,
-                message.value,
-                captchaToken.value,
-            );
+            const result = await SendEmail({
+                email: email.value,
+                message: message.value,
+                captchaToken: captchaToken.value,
+                website: website.value,
+                elapsedMs: Date.now() - openedAt,
+            });
             sending.value = false;
 
             if (result.success) {
@@ -123,6 +169,9 @@ export default defineComponent({
                     "success",
                 );
             } else {
+                // un jeton Turnstile ne sert qu'une fois : on en redemande un
+                captchaToken.value = "";
+                if (api && widgetId) api.reset(widgetId);
                 swal(
                     "Erreur",
                     "L'email n'a pas pu être envoyé. Veuillez réessayer plus tard.",
@@ -134,14 +183,11 @@ export default defineComponent({
         return {
             email,
             message,
+            website,
             sending,
             submitForm,
             close,
-            verifyHcaptcha,
-            onVerify,
-            onCaptchaExpired,
-            onCaptchaError,
-            hcaptchaKey,
+            turnstileEl,
         };
     },
 });
@@ -569,9 +615,22 @@ export default defineComponent({
     align-items: center;
 }
 
-.hcaptcha {
+.turnstile {
     display: flex;
-    margin-bottom: 20px;
     justify-content: center;
+    margin-bottom: 20px;
+}
+
+.turnstile:empty {
+    margin-bottom: 0;
+}
+
+/* pot de miel : hors écran, jamais visible ni focusable au clavier */
+.hp-field {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
 }
 </style>

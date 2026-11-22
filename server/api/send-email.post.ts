@@ -1,4 +1,4 @@
-import { H3Event, readBody } from "h3";
+import { H3Event, getRequestIP, readBody } from "h3";
 import { Resend } from "resend";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -12,13 +12,21 @@ function escapeHtml(value: string): string {
     .replace(/'/g, "&#39;");
 }
 
-async function verifyCaptcha(token: string, secret: string): Promise<boolean> {
+/** Délai minimum entre l'ouverture du formulaire et l'envoi : un humain ne va pas plus vite. */
+const MIN_FILL_TIME_MS = 3000;
+// Clé secrète de test Cloudflare (valide tout jeton de test) : utilisée seulement en dev
+const TURNSTILE_TEST_SECRET = "1x0000000000000000000000000000000AA";
+
+async function verifyTurnstile(
+  token: string,
+  secret: string,
+  remoteip?: string,
+): Promise<boolean> {
+  const body = new URLSearchParams({ secret, response: token });
+  if (remoteip) body.set("remoteip", remoteip);
   const response = await $fetch<{ success: boolean }>(
-    "https://api.hcaptcha.com/siteverify",
-    {
-      method: "POST",
-      body: new URLSearchParams({ secret, response: token }),
-    },
+    "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+    { method: "POST", body },
   );
   return response.success === true;
 }
@@ -29,6 +37,14 @@ export default defineEventHandler(async (event: H3Event) => {
   const email = String(body?.email ?? "").trim();
   const message = String(body?.message ?? "").trim();
   const captchaToken = String(body?.captchaToken ?? "");
+  const honeypot = String(body?.website ?? "");
+  const elapsedMs = Number(body?.elapsedMs ?? 0);
+
+  // Pot de miel rempli ou envoi trop rapide : c'est un robot. On répond « OK »
+  // sans rien envoyer, pour ne pas lui indiquer qu'il a été repéré.
+  if (honeypot || !Number.isFinite(elapsedMs) || elapsedMs < MIN_FILL_TIME_MS) {
+    return { success: true, message: "Emails envoyés avec succès." };
+  }
 
   if (!email || !message) {
     throw createError({
@@ -43,20 +59,24 @@ export default defineEventHandler(async (event: H3Event) => {
     });
   }
 
-  if (config.HCAPTCHA_SECRET) {
+  const secret =
+    config.TURNSTILE_SECRET_KEY || (import.meta.dev ? TURNSTILE_TEST_SECRET : "");
+  if (secret) {
     const valid = captchaToken
-      ? await verifyCaptcha(captchaToken, config.HCAPTCHA_SECRET).catch(
-          () => false,
-        )
+      ? await verifyTurnstile(
+          captchaToken,
+          secret,
+          getRequestIP(event, { xForwardedFor: true }),
+        ).catch(() => false)
       : false;
     if (!valid) {
       throw createError({
         statusCode: 403,
-        statusMessage: "Captcha invalide.",
+        statusMessage: "Vérification anti-spam invalide.",
       });
     }
   } else {
-    console.warn("HCAPTCHA_SECRET manquant : captcha non vérifié côté serveur.");
+    console.warn("TURNSTILE_SECRET_KEY manquant : anti-spam non vérifié côté serveur.");
   }
 
   const resend = new Resend(config.RESEND_API_KEY);

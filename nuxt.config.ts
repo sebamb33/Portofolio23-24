@@ -2,10 +2,10 @@
 export default defineNuxtConfig({
   runtimeConfig: {
     RESEND_API_KEY: process.env.RESEND_API_KEY,
-    HCAPTCHA_SECRET: process.env.HCAPTCHA_SECRET,
+    TURNSTILE_SECRET_KEY: process.env.TURNSTILE_SECRET_KEY,
     public: {
       port: 3777,
-      hcaptchaSiteKey: process.env.VITE_HCAPTCHA_SITE_KEY,
+      turnstileSiteKey: process.env.TURNSTILE_SITE_KEY,
     },
   },
 
