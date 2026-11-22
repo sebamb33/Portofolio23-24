@@ -10,6 +10,7 @@ export default {
     useHead({
       title: "Projets - Portfolio Ambona Sébastien",
       meta: [
+        { name: "robots", content: "noindex, follow" },
         {
           name: "description",
           content: "Découvrez les projets réalisés par Ambona Sébastien, développeur full stack. Applications web, projets personnels et réalisations professionnelles.",

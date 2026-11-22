@@ -2,10 +2,16 @@
   <div class="error-container">
     <CustomCursor />
     <div class="error-content glass-effect">
-      <h1 class="error-title">404</h1>
-      <p class="error-message">Oups ! Page non trouvée</p>
+      <h1 class="error-title">{{ statusCode }}</h1>
+      <p class="error-message">
+        {{ isNotFound ? "Oups ! Page non trouvée" : "Oups ! Une erreur est survenue" }}
+      </p>
       <p class="error-description">
-        La page que vous recherchez n'existe pas ou a été déplacée.
+        {{
+          isNotFound
+            ? "La page que vous recherchez n'existe pas ou a été déplacée."
+            : "Un problème est survenu de notre côté. Veuillez réessayer plus tard."
+        }}
       </p>
       <NuxtLink to="/" class="buttonHome glass-button">
         Retour à l'accueil
@@ -15,11 +21,15 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
 import CustomCursor from "~/components/CustomCursor.vue";
 
-defineProps({
+const props = defineProps({
   error: Object as () => { statusCode: number; message: string; url: string },
 });
+
+const statusCode = computed(() => props.error?.statusCode ?? 500);
+const isNotFound = computed(() => statusCode.value === 404);
 </script>
 
 <style scoped>

@@ -1,34 +1,33 @@
 <template>
-    <div class="description">
-        <h1
-          v-motion
-          :initial="{ opacity: 0, y: 20 }"
-          :enter="{ opacity: 1, y: 0, transition: { duration: 600, type: 'spring' } }"
-        >Ambona Sébastien</h1>
+    <div ref="root" class="description">
+        <h1 ref="title" class="reveal-pending">Ambona Sébastien</h1>
         <p
           class="typedText"
           v-motion
           :initial="{ opacity: 0, y: 20 }"
           :enter="{ opacity: 1, y: 0, transition: { duration: 600, delay: 150, type: 'spring' } }"
-        >Développeur web.</p>
+        >Développeur Full-Stack.</p>
         <p
           class="presentation"
           v-motion
           :initial="{ opacity: 0, y: 20 }"
           :enter="{ opacity: 1, y: 0, transition: { duration: 600, delay: 300, type: 'spring' } }"
         >
-            Je suis un développeur web et passionné par les nouvelles
-            technologies et l'innovation. Diplômé du campus Ynov de Bordeaux.
+            Développeur web passionné par les nouvelles technologies et
+            l'innovation. Diplômé d'un Master du campus Ynov de Bordeaux.
         </p>
-        <button
-          class="buttonSend glass-button"
-          @click="mailToModal"
+        <div
+          class="buttonWrapper"
           v-motion
           :initial="{ opacity: 0, y: 20 }"
           :enter="{ opacity: 1, y: 0, transition: { duration: 600, delay: 450, type: 'spring' } }"
-        >Me contacter</button>
+        >
+            <button class="buttonSend glass-button" v-magnetic @click="mailToModal">
+                Me contacter
+            </button>
+        </div>
     </div>
-    <ModalMail v-if="modalOpen" :show="modalOpen" @close="modalOpen = false" />
+    <LazyModalMail v-if="modalOpen" :show="modalOpen" @close="modalOpen = false" />
 </template>
 <style scoped>
 .description {
@@ -42,10 +41,13 @@ h1 {
     margin-top: 2.5em;
 }
 .typedText {
-    width: 10em;
+    /* 23 caractères en police mono : la largeur colle exactement au texte,
+       le curseur ne mord plus sur la dernière lettre */
+    width: 23ch;
+    padding-right: 0.12em;
     min-height: 30px;
     animation:
-        typing 1s steps(15, end) 1s forwards,
+        typing 1.1s steps(23, end) 1s forwards,
         blink 0.6s step-end infinite 3s;
     white-space: nowrap;
     overflow: hidden;
@@ -54,6 +56,13 @@ h1 {
 }
 .presentation {
     margin-top: 2em;
+}
+.reveal-pending {
+    opacity: 0;
+}
+.buttonWrapper {
+    display: flex;
+    flex-direction: column;
 }
 
 @keyframes typing {
@@ -154,7 +163,9 @@ h1 {
     .buttonSend {
         width: 100%;
         max-width: 300px;
-        align-self: center;
+    }
+    .buttonWrapper {
+        align-items: center;
     }
 }
 
@@ -200,6 +211,13 @@ h1 {
 </style>
 <script setup lang="ts">
 import { ref } from "vue";
+
+const root = ref<HTMLElement | null>(null);
+const title = ref<HTMLElement | null>(null);
+useGsap(root, ({ revealTitle }) => {
+    revealTitle(title.value, { scrollTrigger: false });
+});
+
 const modalOpen = ref(false);
 const mailToModal = () => {
     modalOpen.value = true;

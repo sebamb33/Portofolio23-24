@@ -1,23 +1,91 @@
-import { H3Event, readBody } from "h3";
+import { H3Event, getRequestIP, readBody } from "h3";
 import { Resend } from "resend";
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+/** Délai minimum entre l'ouverture du formulaire et l'envoi : un humain ne va pas plus vite. */
+const MIN_FILL_TIME_MS = 3000;
+// Clé secrète de test Cloudflare (valide tout jeton de test) : utilisée seulement en dev
+const TURNSTILE_TEST_SECRET = "1x0000000000000000000000000000000AA";
+
+async function verifyTurnstile(
+  token: string,
+  secret: string,
+  remoteip?: string,
+): Promise<boolean> {
+  const body = new URLSearchParams({ secret, response: token });
+  if (remoteip) body.set("remoteip", remoteip);
+  const response = await $fetch<{ success: boolean }>(
+    "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+    { method: "POST", body },
+  );
+  return response.success === true;
+}
 
 export default defineEventHandler(async (event: H3Event) => {
   const config = useRuntimeConfig();
   const body = await readBody(event);
-  const { email, message } = body;
+  const email = String(body?.email ?? "").trim();
+  const message = String(body?.message ?? "").trim();
+  const captchaToken = String(body?.captchaToken ?? "");
+  const honeypot = String(body?.website ?? "");
+  const elapsedMs = Number(body?.elapsedMs ?? 0);
+
+  // Pot de miel rempli ou envoi trop rapide : c'est un robot. On répond « OK »
+  // sans rien envoyer, pour ne pas lui indiquer qu'il a été repéré.
+  if (honeypot || !Number.isFinite(elapsedMs) || elapsedMs < MIN_FILL_TIME_MS) {
+    return { success: true, message: "Emails envoyés avec succès." };
+  }
 
   if (!email || !message) {
-    return {
-      success: false,
-      message: "Email et message sont requis.",
-    };
+    throw createError({
+      statusCode: 400,
+      statusMessage: "Email et message sont requis.",
+    });
   }
+  if (!EMAIL_REGEX.test(email) || email.length > 254 || message.length > 5000) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: "Email ou message invalide.",
+    });
+  }
+
+  const secret =
+    config.TURNSTILE_SECRET_KEY || (import.meta.dev ? TURNSTILE_TEST_SECRET : "");
+  if (secret) {
+    const valid = captchaToken
+      ? await verifyTurnstile(
+          captchaToken,
+          secret,
+          getRequestIP(event, { xForwardedFor: true }),
+        ).catch(() => false)
+      : false;
+    if (!valid) {
+      throw createError({
+        statusCode: 403,
+        statusMessage: "Vérification anti-spam invalide.",
+      });
+    }
+  } else {
+    console.warn("TURNSTILE_SECRET_KEY manquant : anti-spam non vérifié côté serveur.");
+  }
+
   const resend = new Resend(config.RESEND_API_KEY);
   try {
     // Email pour moi
     const dataAdmin = await resend.emails.send({
       from: "Portfolio <portofolio@contact.sebastienambona.fr>",
       to: ["sebastien@ambona.fr"],
+      replyTo: email,
       subject: "Nouveau message depuis votre portfolio",
       html: generateEmailHtml(email, message),
     });
@@ -25,7 +93,7 @@ export default defineEventHandler(async (event: H3Event) => {
     // Email de confirmation pour l'utilisateur
     const dataUser = await resend.emails.send({
       from: "Sébastien Ambona <portofolio@contact.sebastienambona.fr>",
-      to: [email.toString()],
+      to: [email],
       subject: "Merci pour votre message",
       html: generateConfirmationEmailHtml(),
     });
@@ -37,11 +105,10 @@ export default defineEventHandler(async (event: H3Event) => {
     };
   } catch (error) {
     console.error("Erreur lors de l'envoi des emails:", error);
-    return {
-      success: false,
-      message: "Erreur lors de l'envoi des emails.",
-      error: error instanceof Error ? error.message : String(error),
-    };
+    throw createError({
+      statusCode: 500,
+      statusMessage: "Erreur lors de l'envoi des emails.",
+    });
   }
 });
 
@@ -115,7 +182,7 @@ function generateConfirmationEmailHtml(): string {
           </div>
         </div>
         <div class="footer">
-          © 2025 Sébastien Ambona. Tous droits réservés.
+          © ${new Date().getFullYear()} Sébastien Ambona. Tous droits réservés.
         </div>
       </div>
     </body>
@@ -123,6 +190,8 @@ function generateConfirmationEmailHtml(): string {
   `;
 }
 function generateEmailHtml(userEmail: string, userMessage: string): string {
+  const safeEmail = escapeHtml(userEmail);
+  const safeMessage = escapeHtml(userMessage).replace(/\r?\n/g, "<br>");
   return `
     <!DOCTYPE html>
     <html lang="fr">
@@ -166,13 +235,13 @@ function generateEmailHtml(userEmail: string, userMessage: string): string {
         </div>
         <div class="content">
           <p>
-            Vous avez reçu un nouveau message de <strong>${userEmail}</strong>:
+            Vous avez reçu un nouveau message de <strong>${safeEmail}</strong>:
           </p>
-          <p>${userMessage}</p>
-          <a href="mailto:${userEmail}">Répondre</a>
+          <p>${safeMessage}</p>
+          <a href="mailto:${safeEmail}">Répondre</a>
         </div>
         <div class="footer">
-          <p>&copy; 2025 Ambona Sébastien, Bordeaux. Tous droits réservés.</p>
+          <p>&copy; ${new Date().getFullYear()} Ambona Sébastien, Bordeaux. Tous droits réservés.</p>
         </div>
       </div>
     </body>

@@ -23,7 +23,7 @@
           height="70"
         />
       </NuxtLink>
-      <div class="button-container" onclick="menu=!menu">
+      <div class="button-container">
         <div 
           class="lien"
           v-motion
@@ -58,7 +58,7 @@
         <span></span>
       </button>
     </div>
-    <Menu v-if="menuDisplay" @closeMenu="closeMenu" />
+    <Menu v-if="menuDisplay" @closeMenu="closeMenu" @opened="menuLocked = true" />
   </div>
 </template>
 
@@ -74,7 +74,6 @@
   border: none;
   font-size: 1em;
   margin: 0;
-  padding: 0;
   outline: none;
   color: var(--text-color);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -128,6 +127,11 @@
   z-index: 1;
 }
 
+.lien a.router-link-active {
+  font-weight: 700;
+  color: var(--text-color-hover);
+}
+
 .lien:hover a {
   color: var(--text-color-hover);
   transform: translateY(-1px);
@@ -139,7 +143,6 @@
   align-items: center;
   justify-content: space-between;
   margin: auto;
-  position: relative;
   width: 95%;
   height: 80px;
   margin-top: 1em;
@@ -222,7 +225,10 @@
 }
 
 .Navbar {
-  transition: box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition:
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .Navbar.scrolled {
@@ -257,22 +263,6 @@
   background: black;
   margin: 5px;
   transition: 0.4s;
-}
-.menu {
-  display: none;
-}
-.menu ul {
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  background: white;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 @media (max-width: 1080px) {
   .button-container {
@@ -346,36 +336,40 @@
 }
 </style>
 <script>
-import Menu from "../components/Menu.vue";
 export default {
   name: "NavBarComponent",
+  data() {
+    return {
+      logoUrl: "/assets/LogoPortofolio.svg",
+      menuDisplay: false,
+      scrolled: false,
+    };
+  },
+  computed: {
+    menuLocked: {
+      get() {
+        return useState("menuOpen").value;
+      },
+      set(value) {
+        useState("menuOpen").value = value;
+      },
+    },
+  },
   methods: {
-    showComponent(componentName) {
-      this.$emit("showComponent", componentName);
-    },
-    showMenu() {
-      this.menuDisplay = true;
-    },
     closeMenu() {
       this.menuDisplay = false;
+      this.menuLocked = false;
     },
     handleScroll() {
       this.scrolled = window.scrollY > 20;
     },
-  },
-  data() {
-    return {
-      logoUrl: "/assets/LogoPortofolio.svg",
-      menu: false,
-      menuDisplay: false,
-      scrolled: false,
-    };
   },
   mounted() {
     window.addEventListener("scroll", this.handleScroll, { passive: true });
   },
   unmounted() {
     window.removeEventListener("scroll", this.handleScroll);
+    this.menuLocked = false;
   },
 };
 </script>

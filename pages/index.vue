@@ -1,15 +1,12 @@
 <template>
   <div class="home-container">
     <div class="home-content">
-      <presentation/>
-      <profilPicture/>
+      <Presentation />
+      <ProfilPicture />
     </div>
   </div>
 </template>
-<script lang = 'ts'>
 
-export default {};
-</script>
 <style scoped>
 .home-content {
   display: flex;
@@ -17,5 +14,6 @@ export default {};
 }
 .home-container {
   margin: auto;
+  height: 80vh;
 }
 </style>
